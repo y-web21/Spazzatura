@@ -1,0 +1,124 @@
+// ============= mixins ======================
+// おためし
+@mixin wh($x: 100%, $y: 100vh) {
+    width: $x;
+    height: $y;
+}
+
+@mixin retChek() {
+    @debug &;
+    @debug #{&};
+    @debug type-of(&); // 型を返す
+    @debug type-of(#{&}); // 型を返す
+}
+
+@mixin navBorderStyle(){
+    border-left: $navDelimtClr solid 1px;
+}
+
+@mixin heroFont(){
+
+// @each $key, $val in $webfontList {
+//   .wfont-#{$key} {
+//     font-family : $val;
+//   }
+// }
+
+    // font-family: 'Noto Sans KR', sans-serif;
+    // font-family: 'Anton', sans-serif;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+h2{
+    // @include heroFont();
+}
+
+// ============= animation ===============
+@mixin hover-underline($type: fade, $dir: null, $weight: 2px, $color: #000) {
+  @if $dir == fffl {
+    @if $type == fade {
+      $dir: 'top';
+    } @else if $type == slide {
+      $dir: 'center';
+    }
+  }
+
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  &::after {
+    position: absolute;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: $weight;
+    background: $color;
+    @if $type == fade {
+      transition: .3s;
+      opacity: 0;
+      visibility: hidden;
+      @if $dir == bottom {
+        bottom: $weight * -4;
+      } @else {
+        bottom: $weight;
+      }
+    } @else if $type == slide {
+      bottom: $weight * -2;
+      transform: scale(0, 1);
+      transition: transform .3s;
+      @if $dir == left-right or $dir == right-in-left {
+        transform-origin: left top;
+      } @else if $dir == right-left or $dir == left-in-right {
+        transform-origin: right top;
+      } @else {
+        transform-origin: center top;
+      }
+    }
+  }
+  &:hover::after {
+    @if $type == fade {
+      bottom: $weight * -2;
+      opacity: 1;
+      visibility: visible;
+    } @else if $type == slide {
+      @if $dir == left-in-right {
+        transform-origin: left top;
+      } @else if $dir == right-in-left {
+        transform-origin: right top;
+      }
+      transform: scale(1, 1);
+    }
+  }
+}
+// @debug index($grid-breakpoints, 0);
+// @debug nth($grid-breakpoints, 5);
+// @each $bp, $value in $grid-breakpoints {
+    // @debug #{$bp};
+    // @debug #{$value};
+// };
+// @each $bp, $value in $grid-breakpints {
+//     @mixin #{bp} {
+//       @media (max-width: #{value}) {
+//         @content;
+//       }
+//     }
+// };
+
+// 自己でグリッドレイアウト
+// @mixin grid-column($start, $end) {
+//   grid-column: $start #{'/'} $end;
+//   -ms-grid-column: $start;
+//   -ms-grid-column-span: $end - $start;
+// }
+// @mixin grid-row($start, $end) {
+//   grid-row: $start #{'/'} $end;
+//   -ms-grid-row: $start;
+//   -ms-grid-row-span: $end - $start;
+// }
+
+
+
+// @mixin float-left {
+//     float: left;
+//     // @include deprecate("The `float-left` mixin", "v4.3.0", "v5");
+// }

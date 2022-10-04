@@ -3,93 +3,13 @@
 // @import "_sanitize.scss";
 // @import url("https:/:/fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
 @import "bootstrap";
+@import "my_variables", "my_mixins", "my_nav";
 
 @debug 10em+3em * 4;
 
 /* user style definition */ //jump用メッセージ
 //使用しないクラスをコンパイルからはずす仕組みがあるか調べる
 
-// ============= variables ===================
-$debug_mode: true;
-$GraphicPerformanceImprovement: true;  // グラフィックパフォーマンスの向上適用
-// $GraphicPerformanceImprovement: false;  // グラフィックパフォーマンスの向上適用
-
-// --- hidden ---
-$headerDisable: false;
-$userDisable: false;
-$contantsDisable: false;
-
-// --- sudden ---
-$wireFrameMode: false;
-$colorbarDisp: false;
-// $placeholderLayoutMode: false;
-
-// --- colors ---
-// $themeClr: #228E41;
-$themeClr: #3AA0D4 ;
-// $themeClr: #333;
-$subClr1: lighten($themeClr,30%);
-$subClr2: lighten($themeClr,15%);
-// $subClr3: darken($themeClr,10%);
-$subClr3: #076EB2;
-// $subClr1: #E6FFED;
-// $subClr2: #A6FFBF;
-// $subClr3: #1C7334;
-// $themeClrLight: #1da96f;
-// $baseClr: #228E41;
-// $subClr1: desaturate(lighten($themeClr, 100%),100%);
-// $subClr2: desaturate(lighten($themeClr, 100%),50%);
-// $subClr3: saturate(darken($themeClr, 10%),0%);
-$accentClr: $subClr1;
-$accentClr2: red;
-$linkClr: #228E41;
-// $accentClr: #FF4333;
-
-$fClr: #eee;
-$fClr2: #212529;
-$textBackClr: #fff;
-$navDelimtClr: #aaa;
-$sectionBackClr: #eee;
-$themeClrAlpha90:rgba($themeClr, 0.94);
-$themeClrAlpha95:rgba($themeClr, 0.97);
-$twitterClr:#55acee;
-$snsColor: (
-  'twitter' : #55acee,
-  'facebook': #3b5998
-);
-$webfontList:(
-    'NotoSans': "font-family: 'Noto Sans KR', sans-serif",
-    'Anton': "font-family: 'Anton', sans-serif",
-    'Gloria': "font-family: 'Gloria Hallelujah', cursive"
-);
-
-// --- banner ---
-$headerHeight:50px;
-$bannerX:161px;
-$bannerY:$headerHeight - 2px;
-$bannerY2Xratio:0.79;
-
-// --- no use ---
-$mainVisual:null;
-
-// --- mein video ---
-$logoLgX2Yratio:1.29;
-$logoLgX:600px;
-$logoLgY:$logoLgX * $logoLgX2Yratio;
-
-$bodyFontSize:16; //1rem
-$bodyFontHeight:$bodyFontSize * 1.5; // fz * lineHighet
-
-$videoSubstituteImage:'http://placehold.jp/24/cccccc/ffffff/400x300.png?text=videoどした?ここには馬がおるはず。';
-
-// --- anim ---
-$underLineWeight: 4px;
-// --- style ---
-$mobileNaviY:64px;
-
-// ---  ---
-// ---  ---
-// -
 
 // 動画は、人々の動画をサンプルで挿入して、欲しい動画のイメージを相手に持ってもらう
 // ============= debug codes ===============
@@ -128,173 +48,7 @@ $mobileNaviY:64px;
 }@else {
 
 }
-// ============= mixins ======================
-// おためし
-@mixin wh($x: 100%, $y: 100vh) {
-    width: $x;
-    height: $y;
-}
 
-@mixin retChek() {
-    @debug &;
-    @debug #{&};
-    @debug type-of(&); // 型を返す
-    @debug type-of(#{&}); // 型を返す
-}
-
-@mixin navBorderStyle(){
-    border-left: $navDelimtClr solid 1px;
-}
-
-@mixin heroFont(){
-
-// @each $key, $val in $webfontList {
-//   .wfont-#{$key} {
-//     font-family : $val;
-//   }
-// }
-
-    // font-family: 'Noto Sans KR', sans-serif;
-    // font-family: 'Anton', sans-serif;
-    font-family: 'Gloria Hallelujah', cursive;
-}
-
-h2{
-    // @include heroFont();
-}
-
-
-@mixin hover-underline($type: fade, $dir: null, $weight: 2px, $color: #000) {
-  @if $dir == fffl {
-    @if $type == fade {
-      $dir: 'top';
-    } @else if $type == slide {
-      $dir: 'center';
-    }
-  }
-
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  &::after {
-    position: absolute;
-    left: 0;
-    content: '';
-    width: 100%;
-    height: $weight;
-    background: $color;
-    @if $type == fade {
-      transition: .3s;
-      opacity: 0;
-      visibility: hidden;
-      @if $dir == bottom {
-        bottom: $weight * -4;
-      } @else {
-        bottom: $weight;
-      }
-    } @else if $type == slide {
-      bottom: $weight * -2;
-      transform: scale(0, 1);
-      transition: transform .3s;
-      @if $dir == left-right or $dir == right-in-left {
-        transform-origin: left top;
-      } @else if $dir == right-left or $dir == left-in-right {
-        transform-origin: right top;
-      } @else {
-        transform-origin: center top;
-      }
-    }
-  }
-  &:hover::after {
-    @if $type == fade {
-      bottom: $weight * -2;
-      opacity: 1;
-      visibility: visible;
-    } @else if $type == slide {
-      @if $dir == left-in-right {
-        transform-origin: left top;
-      } @else if $dir == right-in-left {
-        transform-origin: right top;
-      }
-      transform: scale(1, 1);
-    }
-  }
-}
-@debug index($grid-breakpoints, 0);
-@debug nth($grid-breakpoints, 5);
-@each $bp, $value in $grid-breakpoints {
-    @debug #{$bp};
-    @debug #{$value};
-};
-// @each $bp, $value in $grid-breakpints {
-//     @mixin #{bp} {
-//       @media (max-width: #{value}) {
-//         @content;
-//       }
-//     }
-// };
-
-// 自己でグリッドレイアウト
-// @mixin grid-column($start, $end) {
-//   grid-column: $start #{'/'} $end;
-//   -ms-grid-column: $start;
-//   -ms-grid-column-span: $end - $start;
-// }
-// @mixin grid-row($start, $end) {
-//   grid-row: $start #{'/'} $end;
-//   -ms-grid-row: $start;
-//   -ms-grid-row-span: $end - $start;
-// }
-
-@mixin xs-g {
-  @media (min-width: 576px) {
-    @content;
-  }
-}
-@mixin sm-g {
-  @media (min-width: 576px) {
-    @content;
-  }
-}
-@mixin md-g {
-  @media (min-width: 768px) {
-    @content;
-  }
-}
-@mixin lg-g {
-  @media (min-width: 992px) {
-    @content;
-  }
-}
-@mixin xl-g {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
-@mixin sm-l {
-  @media (max-width: 575px){
-    @content;
-  }
-}
-@mixin md-l {
-  @media (max-width: 767px) {
-    @content;
- }
-}
-@mixin lg-l {
-  @media (max-width: 991px) {
-    @content;
-  }
-}
-@mixin xl-l {
-  @media (max-width: 1199px) {
-    @content;
-  }
-}
-// @mixin float-left {
-//     float: left;
-//     // @include deprecate("The `float-left` mixin", "v4.3.0", "v5");
-// }
 
 /*-------------------------------------------------------- */
 /* base
@@ -392,7 +146,7 @@ body {
   }
 }
 
-.twitter {
+.twitter-clr {
     font-family: FontAwesome;
     content: '\f099';
 }
@@ -551,7 +305,7 @@ body {
   }
 }
 
-mt8px{
+.mt8px{
     margin-top: 8px;
 }
 // .zindexInc {
@@ -564,78 +318,7 @@ mt8px{
 //   }
 // }
 
-// ============= nav ===============
-// アンダーラインアニメに必須
-// li a{display:block !important;}
 
-.grad-nav{
-    background: linear-gradient(to bottom, $themeClrAlpha90, $themeClrAlpha95);
-}
-
-.nav-item{
-    &-right{
-        width: 9rem;
-        @include xl-g {
-            width: 11rem;
-        }
-    }
-    &-top {
-        height: $headerHeight;
-        text-align: center;
-        @include xl-g {
-            width: 7rem;
-        }
-    }
-    &-delimline{
-        @include navBorderStyle;
-        &:first-child {
-            border-left: 0;
-        }
-    }
-}
-
-// hidden humberger menu border
-.navbar-dark .navbar-toggler {
-    border-color: rgba(0,0,0,0);
-}
-
-.banner {
-    width: $bannerX;
-    height: $bannerY;
-    max-width: $bannerX;
-
-    box-sizing: content-box;
-    border-left: 4px solid $white;
-    border-right: 7px solid $white;
-    margin: 0 7px;
-
-    &:hover {
-        opacity: 0.8;
-    }
-
-    &-s {
-        width: $headerHeight * $bannerY2Xratio;
-        height: $headerHeight;
-        // margin: 0 5px;
-
-
-        &:hover {
-            opacity: 0.8;
-        }
-
-    }
-}
-// [class^="banner"] {
-//     margin-left: 10px;
-// }
-
-.navbar-dark:hover .navbar-nav:hover .nav-link:hover {
-    color: rgba(255, 255, 255, 1) !important;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba($fClr, 0.9) !important;
-}
 
 
 // ============= footer ===============
@@ -653,30 +336,6 @@ mt8px{
 }
 
 .footer {
-
-    &-nav {
-
-        &-y {
-            height:$mobileNaviY;
-        }
-
-        &-style {
-            & li {
-                text-align: center;
-                font-size: 0.75rem;
-                list-style-type: none;
-            }
-        }
-
-        // 暫定的なスタイル調整
-        &-img {
-            max-width: 50%;
-            margin: 0 auto;
-            width: 16px;
-            height: 12px;
-        // ここまで
-        }
-    }
     &-title{
         color: rgba(#fff, 1);
         border-bottom: 1px solid ($fClr);

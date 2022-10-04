@@ -1,0 +1,98 @@
+// ============= global nav ===============
+.grad-nav{
+    background: linear-gradient(to bottom, $themeClrAlpha90, $themeClrAlpha95);
+}
+
+.nav-item{
+    &-right{
+        width: 9rem;
+        @include xl-g {
+            width: 11rem;
+        }
+    }
+    &-top {
+        height: $headerHeight;
+        text-align: center;
+        @include xl-g {
+            width: 7rem;
+        }
+    }
+    &-delimline{
+        @include navBorderStyle;
+        &:first-child {
+            border-left: 0;
+        }
+    }
+}
+
+// hidden humberger menu border
+.navbar-dark .navbar-toggler {
+    border-color: rgba(0,0,0,0);
+}
+
+.banner {
+    width: $bannerX;
+    height: $bannerY;
+    max-width: $bannerX;
+
+    box-sizing: content-box;
+    border-left: 4px solid $white;
+    border-right: 7px solid $white;
+    margin: 0 7px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &-s {
+        width: $headerHeight * $bannerY2Xratio;
+        height: $headerHeight;
+        // margin: 0 5px;
+
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+    }
+}
+// [class^="banner"] {
+//     margin-left: 10px;
+// }
+
+.navbar-dark:hover .navbar-nav:hover .nav-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba($fClr, 0.9) !important;
+}
+
+// ============= mobile nav ===============
+
+.footer {
+
+    &-nav {
+
+        &-y {
+            height:$mobileNaviY;
+        }
+
+        &-style {
+            & li {
+                text-align: center;
+                font-size: 0.75rem;
+                list-style-type: none;
+            }
+        }
+
+        // 暫定的なスタイル調整
+        &-img {
+            max-width: 50%;
+            margin: 0 auto;
+            width: 16px;
+            height: 12px;
+        // ここまで
+        }
+    }
+}

@@ -128,6 +128,8 @@ gulp.task('sass',function() {
 gulp.task('default',['delHtml','delJs','delSass','copyHtml','copyJs','sass'], function() {
   console.log('hello world!');
   browserSync.init({
+    // connectedなどの表示をOFF
+    // notify: false
     server: {
       baseDir: 'html'
     }
@@ -136,3 +138,10 @@ gulp.task('default',['delHtml','delJs','delSass','copyHtml','copyJs','sass'], fu
   gulp.watch(['assets/js/*.js'],['delJs','copyJs']);
   gulp.watch(['assets/scss/*.scss'],['delSass','sass']);
 })
+
+
+//ブラウザリロード
+//
+gulp.task('bs-reload', function () {
+    browserSync.reload();
+});

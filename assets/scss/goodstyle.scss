@@ -1,0 +1,147 @@
+@import "my_variables", "my_mixins";
+
+$globalNavHeight:80px;
+$sideTabHeight:3.5rem;
+$gotoTopHeight: 40vh;
+
+body {
+    margin: 0;
+}
+
+a{
+    color: $fClr;
+    text-decoration: none;
+}
+
+.float_menu {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: $globalNavHeight;
+    background-color: #999;
+    top: $globalNavHeight;
+    left: 0;
+    position: fixed;
+
+    & > li > a{
+    }
+}
+
+.d-block {
+    display: block;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.goto_top_tag {
+    padding: 0;
+    margin: 0;
+    width: 10rem;
+    height: $sideTabHeight;
+    background-color: #444;
+
+    top: $gotoTopHeight;
+    left: calc(100% - 3rem);
+    transform: rotate(-90deg);
+    /*起点を中心から左上に*/
+    transform-origin: 0% 0%;
+
+    position: fixed;
+    display: none;
+
+    border-radius: 0.4rem 0.4rem 0.1rem 0.1rem;
+}
+
+.goto_top_tag>a {
+    margin: 0;
+    color: $fClr;
+    text-align: center;
+    line-height: $sideTabHeight - 0.5rem;
+    text-decoration: none;
+}
+
+@keyframes sidetab-fadein {
+    0% {
+        opacity: 0;
+        transform: rotate(-90deg) translateY($sideTabHeight);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(-90deg) translateY(0px);
+    }
+}
+
+@keyframes sidetab-fadeout {
+    0% {
+        opacity: 1;
+        transform: rotate(-90deg) translateY(0px);
+    }
+
+    100% {
+        transform: rotate(-90deg) translateY($sideTabHeight);
+        opacity: 0;
+        display: none;
+        visibility: hidden;
+    }
+}
+
+.sidetab-fadein {
+    display: block;
+    animation: sidetab-fadein 0.3s ease-in 0s 1 normal forwards;
+}
+
+.sidetab-fadeout {
+    display: block;
+    animation: sidetab-fadeout 0.3s ease-in 0s 1 normal forwards;
+}
+
+.circle_nav {
+    &_position {
+        float: right;
+
+        $navDiameter:100px;
+        & li {
+            position: relative;
+            width: $navDiameter;
+            height: $navDiameter;
+            border-radius: $navDiameter / 2;
+            background:  map-get($snsColor, 'twitter');
+            margin: 0 0.3rem;
+
+            @include md-g {
+                margin: 0 0.6rem;
+            }
+
+            &:hover{
+                opacity: 0.9;
+            }
+
+        }
+
+        & a {
+            position: absolute;
+            width: $navDiameter;
+            height: $navDiameter;
+            border-radius: $navDiameter / 2;
+            // top: 50%;
+            // left: 50%;
+            // transform: translateY(-15%) translateX(-50%);
+            // color: $fClr;
+            // text-decoration: none;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: $navDiameter;
+
+            &:hover{
+                opacity: 0.9;
+            }
+        }
+
+        &::after {
+            clear: both;
+        }
+    }
+}

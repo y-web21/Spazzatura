@@ -1,0 +1,127 @@
+//@import "my_gridlayout"
+
+// ============= variables ===================
+$debug_mode: true;
+$GraphicPerformanceImprovement: true;  // グラフィックパフォーマンスの向上適用
+// $GraphicPerformanceImprovement: false;  // グラフィックパフォーマンスの向上適用
+
+// --- hidden ---
+$headerDisable: false;
+$userDisable: false;
+$contantsDisable: false;
+
+// --- sudden ---
+$wireFrameMode: false;
+$colorbarDisp: false;
+// $placeholderLayoutMode: false;
+
+// --- colors ---
+// $themeClr: #228E41;
+$themeClr: #3AA0D4 ;
+// $themeClr: #333;
+$subClr1: lighten($themeClr,30%);
+$subClr2: lighten($themeClr,15%);
+// $subClr3: darken($themeClr,10%);
+$subClr3: #076EB2;
+// $subClr1: #E6FFED;
+// $subClr2: #A6FFBF;
+// $subClr3: #1C7334;
+// $themeClrLight: #1da96f;
+// $baseClr: #228E41;
+// $subClr1: desaturate(lighten($themeClr, 100%),100%);
+// $subClr2: desaturate(lighten($themeClr, 100%),50%);
+// $subClr3: saturate(darken($themeClr, 10%),0%);
+$accentClr: $subClr1;
+$accentClr2: red;
+$linkClr: #228E41;
+// $accentClr: #FF4333;
+
+$fClr: #eee;
+$fClr2: #212529;
+$textBackClr: #fff;
+$navDelimtClr: #aaa;
+$sectionBackClr: #eee;
+$themeClrAlpha90:rgba($themeClr, 0.94);
+$themeClrAlpha95:rgba($themeClr, 0.97);
+$twitterClr:#55acee;
+$snsColor: (
+  'twitter' : #55acee,
+  'facebook': #3b5998
+);
+$webfontList:(
+    'NotoSans': "font-family: 'Noto Sans KR', sans-serif",
+    'Anton': "font-family: 'Anton', sans-serif",
+    'Gloria': "font-family: 'Gloria Hallelujah', cursive"
+);
+
+// --- banner ---
+$headerHeight:50px;
+$bannerX:161px;
+$bannerY:$headerHeight - 2px;
+$bannerY2Xratio:0.79;
+
+// --- no use ---
+$mainVisual:null;
+
+// --- mein video ---
+$logoLgX2Yratio:1.29;
+$logoLgX:600px;
+$logoLgY:$logoLgX * $logoLgX2Yratio;
+
+$bodyFontSize:16; //1rem
+$bodyFontHeight:$bodyFontSize * 1.5; // fz * lineHighet
+
+$videoSubstituteImage:'http://placehold.jp/24/cccccc/ffffff/400x300.png?text=videoどした?ここには馬がおるはず。';
+
+// --- anim ---
+$underLineWeight: 4px;
+// --- style ---
+$mobileNaviY:64px;
+
+
+// =============  ===============
+@mixin xs-g {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+@mixin sm-g {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+@mixin md-g {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin lg-g {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+@mixin xl-g {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+@mixin sm-l {
+  @media (max-width: 575px){
+    @content;
+  }
+}
+@mixin md-l {
+  @media (max-width: 767px) {
+    @content;
+ }
+}
+@mixin lg-l {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+@mixin xl-l {
+  @media (max-width: 1199px) {
+    @content;
+  }
+}
