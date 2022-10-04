@@ -10,9 +10,8 @@ sftp-config.json
 *.sublime-project
 *.sublime-workspace
 *.code-workspace
-html/css
-html/*.html
-html/js
+/html/*
+!/html/images
 
 
 # 個人用定ファルもある。以下公式より
