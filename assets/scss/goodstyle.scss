@@ -1,4 +1,8 @@
-$globalNavHeight:80px;
+$mainVisualHeight: 480px;
+$globalNavHeight: 80px;
+$circleNavDiameter:100px;
+$circleNavInitX: -200px;
+$circleNavSplitX: 50px;
 $sideTabHeight:3.5rem;
 $gotoTopHeight: 50vh;
 $clrActivePage: #90c;
@@ -6,7 +10,7 @@ $clrActivePage: #90c;
 
 body {
     margin: 0;
-    visibility:hidden;
+    // visibility:hidden;
 }
 
 a{
@@ -29,9 +33,24 @@ a{
     margin-left:auto;
 }
 
+.h-100{
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 5;
+}
+
 .container{
     margin: 0 auto;
     width: 95%;
+}
+
+.float-right{
+    float: right;
+
+    &::after {
+        clear: both;
+    }
 }
 
 // grid layoutで対応可能
@@ -52,6 +71,12 @@ a{
 // ============= js用パーツ ===============
 .nav_active_page{
     background-color: $clrActivePage;
+    // animation: key-opacity ease 100ms 0ms 1 normal forwards running;
+    transition: 300ms;
+}
+
+.hidOnload{
+    visibility: hidden;
 }
 
 // ============= 汎用 ===============
@@ -61,9 +86,10 @@ a{
     width: 100%;
     height: $globalNavHeight;
     background-color: #999;
-    top: $globalNavHeight;
+    top: $mainVisualHeight;
     left: 0;
-    position: fixed;
+    // jsで付与
+    // position: fixed;
 
     & > li > a{
     }
@@ -98,49 +124,61 @@ a{
 }
 
 .circle_nav {
-    &_position {
-        float: right;
 
-        $navDiameter:100px;
-        & li {
-            position: relative;
-            width: $navDiameter;
-            height: $navDiameter;
-            border-radius: $navDiameter / 2;
-            background:  map-get($snsColor, 'twitter');
-            margin: 0 0.3rem;
+    & li {
+        // position: relative;
+        width: $circleNavDiameter;
+        height: $circleNavDiameter;
+        border-radius: $circleNavDiameter / 2;
+        background:  map-get($snsColor, 'twitter');
+        margin: 0 0.3rem;
 
-            @include md-g {
-                margin: 0 0.6rem;
-            }
-
-            &:hover{
-                opacity: 0.9;
-            }
-
+        @include md-g {
+            margin: 0 0.6rem;
         }
 
-        & a {
-            position: absolute;
-            width: $navDiameter;
-            height: $navDiameter;
-            border-radius: $navDiameter / 2;
-            // top: 50%;
-            // left: 50%;
-            // transform: translateY(-15%) translateX(-50%);
-            // color: $fClr;
-            // text-decoration: none;
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: $navDiameter;
-
-            &:hover{
-                opacity: 0.9;
-            }
+        &:hover{
+            opacity: 0.9;
         }
 
-        &::after {
-            clear: both;
+    }
+
+    & ul{
+        // position: absolute;
+    }
+
+    & li{
+        position: absolute;
+        // 初期位置が画面外のため、サイドスクロールバー出るのを防止
+        overflow:hidden
+    }
+
+    & li{
+        // 処理不可の高いタイミングを避けるためディレイを設ける
+        animation: key-circle-all 500ms linear 500ms 1 normal forwards running;
+    }
+
+    & li:nth-child(1){animation: key-circle-slide1 1100ms ease-out 1000ms 1 normal forwards running;}
+    & li:nth-child(2){animation: key-circle-slide2 0900ms ease-out 1000ms 1 normal forwards running;}
+    & li:nth-child(3){animation: key-circle-slide3 0700ms ease-out 1000ms 1 normal forwards running;}
+    & li:nth-child(4){animation: key-circle-slide4 0500ms ease-out 1000ms 1 normal forwards running;}
+    // & li:nth-child(5) a{animation: key-circle-slide5 0300ms ease-out 1000ms 1 normal forwards running;}
+    & a {
+        position: absolute;
+        width: $circleNavDiameter;
+        height: $circleNavDiameter;
+        border-radius: $circleNavDiameter / 2;
+        // top: 50%;
+        // left: 50%;
+        // transform: translateY(-15%) translateX(-50%);
+        // color: $fClr;
+        // text-decoration: none;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: $circleNavDiameter;
+
+        &:hover{
+            opacity: 0.9;
         }
     }
 }
@@ -172,7 +210,7 @@ $imgSizeKurageY: 200px;
         z-index: 1;
         opacity: 0;
         color:$fClr;
-        background-color: #007;
+        background-color: #008;
         text-align: center;
         overflow: hidden;
         transition: 300ms opacity ease 0ms;
@@ -180,10 +218,40 @@ $imgSizeKurageY: 200px;
         &:hover{
             // animation: image_text_overlay 600ms ease-out 0s 1 normal forwards running;
             opacity:1;
-            transition: 300ms opacity ease 0ms;
+            transition: 600ms opacity ease 0ms;
         }
     }
 }
 
 
+// ============= mainVisual ===============
+.mainVisual{
+    position: relative;
+    width: 100%;
+    height: $mainVisualHeight;
+}
 
+.catch_phrase{
+    position: absolute;
+    top: 100px;
+    left: calc(10vw + 100px);
+    font-size: 4rem;
+}
+
+.sub_nav{
+    position: absolute;
+    top: 280px;
+    right: 0px;
+    // left: calc(100vw - 750px);
+}
+
+
+.glo_nav{
+    &_underline{
+        @include hover-underline($type: slide, $dir: center, $weight: 6px, $color: #eee);
+    }
+    &_style{
+        width: 8rem;
+        height: $globalNavHeight;
+    }
+}
