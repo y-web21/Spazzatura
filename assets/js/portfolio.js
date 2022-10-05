@@ -4,14 +4,18 @@ gotoTopHeight = 0
 window.onload = function() {
     gotoTopHeight = parseInt(getCssValue(document.querySelector('.goto_top_tag'), 'height'), 10);
     // console.log(document.querySelector('.goto_top_tag'));
+    addClassActivePageLink();
+    document.getElementsByTagName('body')[0].style.visibility = "visible";
+    console.log(document.getElementsByTagName('body'));
+    // target[i].classList.add('nav_active_page');
+
 };
 
 // Depends on jQuery
-// DOM load event
 $(document).ready(function() {
     // 下にスクロールした状態で、リロードするとナビ位置がずれるため、初回にも暫定的に走らせる
     // ちらつくため、要デバッグ
-    let gnavHeight = parseInt($('.float_menu').css('height'), 10);
+    let gnavHeight = parseInt($('.sticky_menu').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
     stickyNav(scrollVolume, gnavHeight);
 });
@@ -37,7 +41,7 @@ $(window).on('load', function() {
 // Scroll event
 var scrollTimer = 0;
 $(window).scroll(function() {
-    let gnavHeight = parseInt($('.float_menu').css('height'), 10);
+    let gnavHeight = parseInt($('.sticky_menu').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
     stickyNav(scrollVolume, gnavHeight);
 
@@ -49,7 +53,7 @@ $(window).scroll(function() {
         // gotoTop(scrollVolume, 600);
 
         chgClassWhenScrolling(scrollVolume, 700, 'goto_top_tag', 'sidetab-fadein', 'sidetab-fadeout');
-        chgClassWhenScrolling(scrollVolume, 700, 'float_menu', 'pos-fixed');
+        // chgClassWhenScrolling(scrollVolume, 700, 'sticky_menu', 'z-index9999');
         console.log(scrollTimer + 'ms');
         console.log(scrollVolume);
     }, 250);
@@ -59,12 +63,14 @@ $(window).scroll(function() {
 // jquery functions
 function stickyNav(scrollVolume, gnavY) {
     if (scrollVolume > gnavY) {
-        $("#header").css({
+        $(".stickyNav").css({
             "top": 0 + "px",
+            "z-index": "9999",
         });
     } else {
-        $("#header").css({
+        $(".stickyNav").css({
             "top": gnavY - scrollVolume + "px",
+            "z-index": "auto",
         });
     }
 }
@@ -145,4 +151,20 @@ function getCssValue(element, property) {
     let style = window.getComputedStyle(element);
     let value = style.getPropertyValue(property);
     return value;
+}
+
+// Native JS
+function addClassActivePageLink(){
+    let target = document.getElementsByClassName('addClsActiveLink');
+    let currentPage = location.pathname.replace('/','');
+
+    // a要素にはhrefが存在すると決め打ち
+    for (let i=0;i < target.length; i++){
+        if (target[i].attributes.href.value === currentPage){
+            target[i].classList.add('nav_active_page');
+        }
+        // href属性が存在するかチェック
+        // for (let j=0;j < target[i].attributes.length;j++){
+        // }
+    }
 }

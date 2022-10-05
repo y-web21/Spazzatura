@@ -1,10 +1,12 @@
 $globalNavHeight:80px;
 $sideTabHeight:3.5rem;
-$gotoTopHeight: 40vh;
+$gotoTopHeight: 50vh;
+$clrActivePage: #90c;
 @import "my_variables", "my_mixins", "my_common_style" ,"my_anime";
 
 body {
     margin: 0;
+    visibility:hidden;
 }
 
 a{
@@ -47,10 +49,13 @@ a{
 }
 
 
-
+// ============= js用パーツ ===============
+.nav_active_page{
+    background-color: $clrActivePage;
+}
 
 // ============= 汎用 ===============
-.float_menu {
+.sticky_menu {
     padding: 0;
     margin: 0;
     width: 100%;
@@ -59,7 +64,6 @@ a{
     top: $globalNavHeight;
     left: 0;
     position: fixed;
-    z-index: 9999;
 
     & > li > a{
     }
@@ -171,15 +175,14 @@ $imgSizeKurageY: 200px;
         background-color: #007;
         text-align: center;
         overflow: hidden;
-        transition: opacity 300ms;
+        transition: 300ms opacity ease 0ms;
 
         &:hover{
             // animation: image_text_overlay 600ms ease-out 0s 1 normal forwards running;
             opacity:1;
-            transition: 300ms;
+            transition: 300ms opacity ease 0ms;
         }
     }
-
 }
 
 

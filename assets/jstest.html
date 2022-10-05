@@ -18,6 +18,10 @@
     font-size: 1rem;
   }
   </style>
+  <noscript>
+  <!-- スクリプトが無効な場合は以下の指定がカスケードされる -->
+  <style type="text/css">body { visibility: visible; }</style>
+  </noscript>
 </head>
 
 <body>
@@ -27,12 +31,12 @@
   </script>
   <div id="chkVal" calss="chkVal"></div>
   <div id='imo'></div>
-  <ul class="float_menu" id="header">
-    <li class="d-inline-block"><a href="">menu1</a></li>
-    <li class="d-inline-block"><a href="">menu1</a></li>
-    <li class="d-inline-block"><a href="">menu2</a></li>
-    <li class="d-inline-block"><a href="">menu3</a></li>
-    <li class="d-inline-block"><a href="">menu4</a></li>
+  <ul class="sticky_menu stickyNav" id="addClsActiveLink">
+    <li class="d-inline-block" id=""><a class="addClsActiveLink" href="jstest.html">menu1</a></li>
+    <li class="d-inline-block" id=""><a class="addClsActiveLink" href="">menu1</a></li>
+    <li class="d-inline-block" id=""><a class="addClsActiveLink" href="">menu2</a></li>
+    <li class="d-inline-block" id=""><a class="addClsActiveLink" href="">menu3</a></li>
+    <li class="d-inline-block" id=""><a class="addClsActiveLink" href="">menu4</a></li>
   </ul>
   <div class="circle_nav_position">
     <ul class="circle_menu" id="header">
@@ -43,11 +47,16 @@
       <li class="d-inline-block"><a href="">menu4</a></li>
     </ul>
   </div>
-  <div class="goto_top_tag">
-    <a class="d-block" href="#">Go To Top&ensp;→</a>
-  </div>
+
   d<br>
-  d<br>
+  <h2>rule</h2>
+  <ul>
+    <li>jsから参照するid,classは、キャメルケース</li>
+    <li>アンダースコアを使用するクラスは、独自のクラス</li>
+    <li>ハイフンを使用するクラスは、OOCSS的なパーツ</li>
+    <li></li>
+    <li></li>
+  </ul>
   d<br>
   d<br>
   d<br>
@@ -91,7 +100,7 @@
   d<br>
   d<br>
   <h2>hoga~</h2>
-  <div class="container" id="textOverlay">
+  <div class="container">
     <div class="d_flex_row minw-550 w-90p mx-auto">
       <div class="image_hover_base">
         <img src="./images/kurage.jpg" alt="">
@@ -202,6 +211,11 @@
   d<br>
   d<br>
   d<br>
+
+  <!-- parts -->
+  <div class="goto_top_tag">
+    <a class="d-block" href="#">Go To Top&ensp;→</a>
+  </div>
 </body>
 <script src="./js/portfolio.js"></script>
 

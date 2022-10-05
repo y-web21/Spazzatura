@@ -12,9 +12,6 @@
     .lh-#{$i}r {
         line-height:#{$i}rem;
     }
-    .w-#{$i*10}p {
-        width: #{$i*10}#{'%'};
-    }
 }
 
 @for $i from 1 through 20 {
@@ -36,6 +33,9 @@
     }
     .maxh-#{$i * 5}v {
         max-height:#{$i * 5}vh;
+    }
+    .w-#{$i * 5}p {
+        width: #{$i * 5}#{'%'};
     }
 }
 
