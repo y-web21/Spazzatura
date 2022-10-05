@@ -1,8 +1,7 @@
-@import "my_variables", "my_mixins";
-
 $globalNavHeight:80px;
 $sideTabHeight:3.5rem;
 $gotoTopHeight: 40vh;
+@import "my_variables", "my_mixins", "my_common_style" ,"my_anime";
 
 body {
     margin: 0;
@@ -13,6 +12,44 @@ a{
     text-decoration: none;
 }
 
+// ============= bs4で代替可能 ===============
+// 名前毎流用(HTMLのクラス名そのままで入れ替え可能)
+.d-block {
+    display: block;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.mx-auto{
+    margin-right: auto;
+    margin-left:auto;
+}
+
+.container{
+    margin: 0 auto;
+    width: 95%;
+}
+
+// grid layoutで対応可能
+.d_flex_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+
+    & > img{
+        flex:0 1 auto;
+    }
+}
+
+
+
+
+// ============= 汎用 ===============
 .float_menu {
     padding: 0;
     margin: 0;
@@ -22,18 +59,12 @@ a{
     top: $globalNavHeight;
     left: 0;
     position: fixed;
+    z-index: 9999;
 
     & > li > a{
     }
 }
 
-.d-block {
-    display: block;
-}
-
-.d-inline-block {
-    display: inline-block;
-}
 
 .goto_top_tag {
     padding: 0;
@@ -45,57 +76,21 @@ a{
     top: $gotoTopHeight;
     left: calc(100% - 3rem);
     transform: rotate(-90deg);
-    /*起点を中心から左上に*/
+    /*中心回転から起点を中心から左上に*/
     transform-origin: 0% 0%;
 
     position: fixed;
     display: none;
 
     border-radius: 0.4rem 0.4rem 0.1rem 0.1rem;
-}
 
-.goto_top_tag>a {
-    margin: 0;
-    color: $fClr;
-    text-align: center;
-    line-height: $sideTabHeight - 0.5rem;
-    text-decoration: none;
-}
-
-@keyframes sidetab-fadein {
-    0% {
-        opacity: 0;
-        transform: rotate(-90deg) translateY($sideTabHeight);
+    & > a {
+        margin: 0;
+        color: $fClr;
+        text-align: center;
+        line-height: $sideTabHeight - 0.5rem;
+        text-decoration: none;
     }
-
-    100% {
-        opacity: 1;
-        transform: rotate(-90deg) translateY(0px);
-    }
-}
-
-@keyframes sidetab-fadeout {
-    0% {
-        opacity: 1;
-        transform: rotate(-90deg) translateY(0px);
-    }
-
-    100% {
-        transform: rotate(-90deg) translateY($sideTabHeight);
-        opacity: 0;
-        display: none;
-        visibility: hidden;
-    }
-}
-
-.sidetab-fadein {
-    display: block;
-    animation: sidetab-fadein 0.3s ease-in 0s 1 normal forwards;
-}
-
-.sidetab-fadeout {
-    display: block;
-    animation: sidetab-fadeout 0.3s ease-in 0s 1 normal forwards;
 }
 
 .circle_nav {
@@ -145,3 +140,47 @@ a{
         }
     }
 }
+
+$imgSizeKurageX: 200px;
+$imgSizeKurageY: 200px;
+
+.image_hover{
+    &_base{
+        position: relative;
+
+        & img{
+            width: $imgSizeKurageX;
+            height: $imgSizeKurageY;
+        }
+        &:hover{
+            // content:"textoverlay";
+            // opacity: 0;
+        }
+    }
+    &_text{
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: $imgSizeKurageX;
+        height: $imgSizeKurageY;
+        z-index: 1;
+        opacity: 0;
+        color:$fClr;
+        background-color: #007;
+        text-align: center;
+        overflow: hidden;
+        transition: opacity 300ms;
+
+        &:hover{
+            // animation: image_text_overlay 600ms ease-out 0s 1 normal forwards running;
+            opacity:1;
+            transition: 300ms;
+        }
+    }
+
+}
+
+
+

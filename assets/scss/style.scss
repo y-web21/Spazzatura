@@ -3,7 +3,7 @@
 // @import "_sanitize.scss";
 // @import url("https:/:/fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
 @import "bootstrap";
-@import "my_variables", "my_mixins", "my_nav";
+@import "my_variables", "my_mixins", "my_common_style", "my_nav";
 
 @debug 10em+3em * 4;
 
@@ -11,7 +11,6 @@
 //使用しないクラスをコンパイルからはずす仕組みがあるか調べる
 
 
-// 動画は、人々の動画をサンプルで挿入して、欲しい動画のイメージを相手に持ってもらう
 // ============= debug codes ===============
 @if $userDisable==true{
     .twitter-timeline , .hidToggle , video {visibility: hidden !important;}
@@ -246,64 +245,6 @@ body {
     }
 }
 
-@for $i from 2 through 14 {
-    .w-#{$i}r {
-        width:#{$i}rem;
-    }
-}
-
-@for $i from 1 through 10 {
-    .lh-#{$i} {
-        line-height:#{$i};
-    }
-    .lh-#{$i}r {
-        line-height:#{$i}rem;
-    }
-}
-
-@for $i from 1 through 20 {
-    .minw-#{$i * 50} {
-        min-width:#{$i * 50}px;
-    }
-    .maxw-#{$i * 50} {
-        max-width:#{$i * 50}px;
-    }
-    .maxh-#{$i * 50} {
-        max-height:#{$i * 50}px;
-    }
-    // height
-    .minh-#{$i * 5}v {
-        max-height:#{$i * 5}vh;
-    }
-    .minh-#{$i * 50} {
-        min-height:#{$i * 50}px;
-    }
-    .maxh-#{$i * 5}v {
-        max-height:#{$i * 5}vh;
-    }
-}
-
-
-@for $i from 1 through 8 {
-  $font-size: percentage(1 / $i);
-  .ftest-#{$i} {
-    font-size: $font-size;
-  }
-}
-
-@for $i from 1 through 40 {
-  $font-size: ($i / 20);
-  .fz-#{$font-size * 100}r {
-    font-size: #{$font-size}rem !important;
-  }
-}
-
-@for $i from 1 through 20 {
-  $font-size: ($i * 10);
-  .fz-#{$font-size}per {
-    font-size: #{$font-size}% !important;
-  }
-}
 
 .mt8px{
     margin-top: 8px;

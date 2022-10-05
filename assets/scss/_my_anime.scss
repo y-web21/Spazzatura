@@ -1,0 +1,46 @@
+@keyframes sidetab-fadein {
+    0% {
+        opacity: 0;
+        transform: rotate(-90deg) translateY($sideTabHeight);
+    }
+
+    100% {
+        opacity: 1;
+        transform: rotate(-90deg) translateY(0px);
+    }
+}
+
+@keyframes sidetab-fadeout {
+    0% {
+        opacity: 1;
+        transform: rotate(-90deg) translateY(0px);
+    }
+
+    100% {
+        transform: rotate(-90deg) translateY($sideTabHeight);
+        opacity: 0;
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@keyframes image_text_overlay {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sidetab-fadein {
+    display: block;
+    animation: sidetab-fadein 0.3s ease-in 0s 1 normal forwards;
+}
+
+.sidetab-fadeout {
+    display: block;
+    animation: sidetab-fadeout 0.3s ease-in 0s 1 normal forwards;
+}
+
