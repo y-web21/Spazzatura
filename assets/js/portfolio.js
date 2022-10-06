@@ -7,7 +7,7 @@ console.log(y);
 
 // mainVisual IDから取得するとメンテが楽だけど処理負荷的にはこれでも
 const TagVisubleVolume = 480;
-const NavHiddenVolume = 2400;
+const NavHiddenVolume = 24000;
 
 window.onload = function() {
     // all pages
@@ -57,7 +57,7 @@ $(window).scroll(function() {
     let mainVisualHeight = parseInt($('#mainVisual').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
     stickyNav(scrollVolume, mainVisualHeight);
-    parachan(scrollVolume , 'parachan' , 'parachanEntity');
+    parallaxBackgroud(scrollVolume , 'parallaxBg1' , 'parallaxBg1Entity');
 
     // 処理負荷軽減
     clearTimeout(scrollTimer);
@@ -97,7 +97,7 @@ function stickyNav(scrollVolume, gnavY) {
     }
 
     // 表示を消す必要がある場合。とりあえず消して動きをチェック
-    if(NavHiddenVolume === scrollVolume) {
+    if(NavHiddenVolume < scrollVolume) {
         $(".stickyNav").css({
             "position": "static",
             "visibility": "hidden",
@@ -109,7 +109,7 @@ function stickyNav(scrollVolume, gnavY) {
     }
 }
 
-function parachan(scrollVolume , areaId , entityId) {
+function parallaxBackgroud(scrollVolume , areaId , entityId) {
     let areaHeight = parseInt(getCssValue(document.getElementById(areaId),'height'),10);
     let imgHeight = parseInt(getCssValue(document.getElementById(entityId),'height'),10);
     let areaAbsPos =window.pageYOffset + document.getElementById(areaId).getBoundingClientRect().top;
