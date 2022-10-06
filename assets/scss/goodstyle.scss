@@ -11,7 +11,7 @@ $clrActivePage: #90c;
 
 body {
     margin: 0;
-    background-color: #999;
+    background-color: #ffC;
     z-index: 0;
     // visibility:hidden;
 }
@@ -23,6 +23,10 @@ a{
 
 // ============= bs4で代替可能 ===============
 // 名前毎流用(HTMLのクラス名そのままで入れ替え可能)
+.d-none{
+    display: none;
+}
+
 .d-block {
     display: block;
 }
@@ -38,6 +42,7 @@ a{
 
 .h-100{
     height: 100%;
+    //移動すべき記述
     box-sizing: border-box;
     text-align: center;
     line-height: 5;
@@ -86,6 +91,12 @@ a{
     transition: 300ms;
 }
 
+.nav_active_anchor{
+    background-color: #69f;
+    // animation: key-opacity ease 100ms 0ms 1 normal forwards running;
+    transition: 300ms;
+}
+
 .hidOnload{
     visibility: hidden;
 }
@@ -105,7 +116,6 @@ a{
     & > li > a{
     }
 }
-
 
 .goto_top_tag {
     padding: 0;
@@ -137,7 +147,6 @@ a{
 .circle_nav {
 
     & li {
-        // position: relative;
         width: $circleNavDiameter;
         height: $circleNavDiameter;
         border-radius: $circleNavDiameter / 2;
@@ -149,22 +158,16 @@ a{
         }
 
         &:hover{
-            opacity: 0.9;
+            // opacity: 0.9;
+            transform:scale(1.05,0.95);
         }
 
-    }
-
-    & ul{
-        // position: absolute;
     }
 
     & li{
         position: absolute;
         // 初期位置が画面外のため、サイドスクロールバー出るのを防止
-        overflow:hidden
-    }
-
-    & li{
+        overflow:hidden;
         // 処理不可の高いタイミングを避けるためディレイを設ける
         animation: key-circle-all 500ms linear 500ms 1 normal forwards running;
     }
@@ -253,7 +256,6 @@ $imgSizeKurageY: 200px;
     position: absolute;
     top: 280px;
     right: 0px;
-    // left: calc(100vw - 750px);
 }
 
 
@@ -269,23 +271,23 @@ $imgSizeKurageY: 200px;
 
 
 // ============= oden ===============
+$parallaxBgY: 450px;
+$parallaxBgRatio: 3;
+
 .parallax{
     &_background{
         position: relative;
         width: 100%;
-        height: 400px;
+        height: $parallaxBgY;
+        overflow: hidden;
 
-        // &::after{
         &_entity{
-            // content:'';
             position: absolute;
-            background:url('../images/kahun.jpg') no-repeat;
+            background:url('../images/kafun.jpg') repeat-x;
             width: 100%;
-            height: 1300px;
+            height: $parallaxBgY * $parallaxBgRatio;
             top: 0px;
-            // overflow: hidden;
-            z-index:-100;
-            // top: 3500px;
+            left: 0px;
         }
     }
 }
@@ -295,8 +297,19 @@ $imgSizeKurageY: 200px;
     width: 100%;
     height: 1000px;
     background-color: #fff;
+    border: #fff 50px solid;
     z-index: -1;
 }
+
+.juhun{
+    margin: 0;
+    font-size: 5rem;
+    position: absolute;
+    top: $parallaxBgY / 2;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
 
 // ============= form ===============
 // HTML5のフォームバリデーション
@@ -308,9 +321,34 @@ $imgSizeKurageY: 200px;
 // checkValidity
 // formElement.addEventListener('invalid', function(){...}, true);と第3引数にtrueを入れる
 
+form{
+    display: inline-block;
+}
+
+input,select{
+    margin: 0.3rem;
+    width: 200px;
+    height: 2rem;
+    font-size: 1.5rem;
+}
+
 .inputInvalid{
     background-color: #d00;
+    position: relative;
+
+    &+p{
+        width: 10rem;
+        height: 2rem;
+        color: red;
+        font-weight: bold;
+        display: inline;
+
+        &::before{
+            content: "※";
+        }
+    }
 }
+
 
 .selectedInvalid{
     position: relative;
@@ -324,4 +362,3 @@ $imgSizeKurageY: 200px;
         background-color: #0f0;
     }
 }
-

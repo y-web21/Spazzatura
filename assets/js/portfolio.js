@@ -10,29 +10,19 @@ const TagVisubleVolume = 480;
 const NavHiddenVolume = 2400;
 
 window.onload = function() {
+    // all pages
     gotoTopTagTop = parseInt(getCssValue(document.querySelector('.goto_top_tag'), 'height'), 10);
-    // console.log(document.querySelector('.goto_top_tag'));
     addClassActivePageLink();
 
-    // イベントリスナーでフォーム要素を監視
-    const formName = document.getElementById('formName');
-    let starttime = performance.now();
-    formName.addEventListener('keyup',function(){
-        validateName(formName);
-    },false);
 
-    const formSelect = document.getElementById('formSelect');
-    formSelect.addEventListener('change',function(){
-        console.log(formSelect);
-        validateOption(formSelect);
-    },false);
+    //
+    let currentPage = location.pathname.replace('/','');
 
-    let endtime = performance.now();
-    console.log('function validateName ' + (endtime - starttime) + ' ms');
+    if ('jstest.html' === currentPage){
+        entryFormEventListner();
+    }
 
     // console.log(document.getElementsByTagName('li'));
-
-
     // document.getElementsByClassName('hidOnload')[0].style.visibility = "visible";
     // document.getElementsByTagName('body')[0].style.visibility = "visible";
     // target[i].classList.add('nav_active_page');
@@ -44,14 +34,9 @@ window.onload = function() {
 
 // =================== Depends on jQuery=========================
 $(document).ready(function() {
-    // 下にスクロールした状態で、リロードするとナビ位置がずれるため、初回にも暫定的に走らせる
-    // ちらつくため、要デバッグ
-    let mainVisualHeight = parseInt($('#mainVisual').css('height'), 10);
-    let scrollVolume = $(this).scrollTop();
-    stickyNav(scrollVolume, mainVisualHeight);
 });
 $(window).on('load', function() {
-    // 取得する値が安定しないため、CSSの固定値決め打ちで対応
+    // 取得する値が安定しないため、スクロールバー幅はCSSの固定値決め打ちで対応
     // scrollbarWidth = window.innerWidth - document.body.clientWidth;
 });
 
@@ -72,19 +57,25 @@ $(window).scroll(function() {
     let mainVisualHeight = parseInt($('#mainVisual').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
     stickyNav(scrollVolume, mainVisualHeight);
-    parachan(scrollVolume);
+    parachan(scrollVolume , 'parachan' , 'parachanEntity');
 
-    //処理負荷軽減
+    // 処理負荷軽減
     clearTimeout(scrollTimer);
+    // anchor event test
+    console.log(location.hash);
+    anchorLink = location.hash;
+    if(anchorLink){
+        let anc = document.getElementsByClassName('addClsActiveLink');
+        console.log(anc);
+        anc[2].classList.add('nav_active_anchor');
+        // target[0].ClassList.add('nav_active_abchor');
+    }
+    //  anchorLinkを消すテスト
+    window.history.replaceState(null, '', location.pathname + location.search);
     scrollTimer = setTimeout(function() {
         console.log('-------')
         // $('#imo').text($(this).scrollTop());
-        // gotoTop(scrollVolume, 600);
-
         chgClassWhenScrolling(scrollVolume, TagVisubleVolume, 'goto_top_tag', 'sidetab-fadein', 'sidetab-fadeout');
-        // chgClassWhenScrolling(scrollVolume, TagVisubleVolume, 'sticky_menu', 'z-index9999');
-        console.log(scrollTimer + 'ms');
-        console.log(scrollVolume);
     }, 250);
 });
 
@@ -105,8 +96,8 @@ function stickyNav(scrollVolume, gnavY) {
         });
     }
 
-    // 表示を消す必要がある場合
-    if(NavHiddenVolume < scrollVolume) {
+    // 表示を消す必要がある場合。とりあえず消して動きをチェック
+    if(NavHiddenVolume === scrollVolume) {
         $(".stickyNav").css({
             "position": "static",
             "visibility": "hidden",
@@ -118,25 +109,20 @@ function stickyNav(scrollVolume, gnavY) {
     }
 }
 
-function parachan(scrollVolume) {
-    let bgpos = window.pageYOffset + document.getElementById('parachan').getBoundingClientRect().top;
-    let height = parseInt($('.parallax_background_entity').css('height'), 10);
+function parachan(scrollVolume , areaId , entityId) {
+    let areaHeight = parseInt(getCssValue(document.getElementById(areaId),'height'),10);
+    let imgHeight = parseInt(getCssValue(document.getElementById(entityId),'height'),10);
+    let areaAbsPos =window.pageYOffset + document.getElementById(areaId).getBoundingClientRect().top;
+    let scrollVolumeFromThis = scrollVolume - areaAbsPos + window.innerHeight;
+    let displayRange = areaHeight + window.innerHeight;
+    // console.log(areaHeight,imgHeight,areaAbsPos,scrollVolumeFromThis,displayRange);
     //本来的には画面の高さ分マージンを取る
-    let topThreshold = 2500;//bgpos-1000;
-    let btmThreshold = 4500;//bgpos+height+1000;
-    let hage = scrollVolume + scrollVolume * 0.1;
-    console.log(bgpos,height,topThreshold,scrollVolume,btmThreshold,hage);
-
-    if ((topThreshold > scrollVolume) || (btmThreshold < scrollVolume)) {
-        $(".parallax_background").css({
-            // "position": "fixed",
-            // "top": 0 + "px",
-            // "z-index": "9999",
-        });
+    let topThreshold = 0;//bgpos-1000;
+    let btmThreshold = 59000;//bgpos+height+1000;
+    if ((topThreshold < scrollVolume) || (btmThreshold > scrollVolume)) {
+        let newTop = -((imgHeight - areaHeight) / displayRange * scrollVolumeFromThis);
+        document.getElementById(entityId).style.top = newTop + "px";
     } else {
-        $(".parallax_background_entity").css({
-            "top": (scrollVolume - bgpos - height / 2) * 0.8 + "px",
-        });
     }
 }
 
@@ -221,12 +207,16 @@ function getCssValue(element, property) {
 function addClassActivePageLink(){
     let target = document.getElementsByClassName('addClsActiveLink');
     let currentPage = location.pathname.replace('/','');
+    console.log(target , currentPage);
 
     // a要素にはhrefが存在すると決め打ち
     for (let i=0;i < target.length; i++){
-        if (target[i].attributes.href.value === currentPage){
+        if (true === target[i].hasAttribute('href') && target[i].attributes.href.value === currentPage){
             target[i].classList.add('nav_active_page');
             return;
+
+        } else if(target[i].baseURI === 'hiroshima') {
+
         }
         // href属性が存在するかチェックするには、hasClassがある
         // for (let j=0;j < target[i].attributes.length;j++){
@@ -236,12 +226,23 @@ function addClassActivePageLink(){
 
 
 // ==================== form ========================
+function entryFormEventListner(){
+    // イベントリスナーでフォーム要素を監視
+    const formName = document.getElementById('formName');
+    let starttime = performance.now();
+    formName.addEventListener('keyup',function(){
+        validateName(formName);
+    },false);
 
+    const formSelect = document.getElementById('formSelect');
+    formSelect.addEventListener('change',function(){
+        console.log(formSelect);
+        validateOption(formSelect);
+    },false);
 
-// let btn = document.getElementById('body');
-// btn.addEventListener('click', function() {
-//     console.log('クリックされました！');
-// }, false);
+    let endtime = performance.now();
+    console.log('function validateName ' + (endtime - starttime) + ' ms');
+}
 
 
 
