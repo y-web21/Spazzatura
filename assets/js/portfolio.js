@@ -5,21 +5,30 @@ gotoTopTagTop = 0;
 var y = window.pageYOffset ;
 console.log(y);
 
-// mainVisual IDから取得するとメンテが楽だけ処理負荷的にはこれでも
+// mainVisual IDから取得するとメンテが楽だけど処理負荷的にはこれでも
 const TagVisubleVolume = 480;
-const NavHiddenVolume = 2200;
+const NavHiddenVolume = 2400;
 
 window.onload = function() {
     gotoTopTagTop = parseInt(getCssValue(document.querySelector('.goto_top_tag'), 'height'), 10);
     // console.log(document.querySelector('.goto_top_tag'));
     addClassActivePageLink();
+
+    // イベントリスナーでインプットボックスを監視
+    document.getElementById('formName').addEventListener('keyup',function(){
+        console.log('バリデーション実行');
+    },false);
+
+    // console.log(document.getElementsByTagName('li'));
+
+
     // document.getElementsByClassName('hidOnload')[0].style.visibility = "visible";
     // document.getElementsByTagName('body')[0].style.visibility = "visible";
     // target[i].classList.add('nav_active_page');
 
 };
 
-// Depends on jQuery
+// =================== Depends on jQuery=========================
 $(document).ready(function() {
     // 下にスクロールした状態で、リロードするとナビ位置がずれるため、初回にも暫定的に走らせる
     // ちらつくため、要デバッグ
@@ -30,9 +39,6 @@ $(document).ready(function() {
 $(window).on('load', function() {
     // 取得する値が安定しないため、CSSの固定値決め打ちで対応
     // scrollbarWidth = window.innerWidth - document.body.clientWidth;
-    //  $(".goto_top_tag").css({
-    //      "left": document.body.clientWidth - gotoTopTagTop
-    //  })
 });
 
 // --------- timer event --------------
@@ -95,7 +101,6 @@ function stickyNav(scrollVolume, gnavY) {
             "visibility": "visible",
         });
     }
-
 }
 
 function gotoTop(scrollVolume, threshold) {
@@ -133,7 +138,6 @@ function chgClassWhenScrolling(scrollVolume, threshold, elementName, addClassNam
                 }
             }
         }
-
     });
 }
 
@@ -154,7 +158,6 @@ function chgClassWhenScrolling2(scrollVolume, elementName, addClassName = null, 
                 $(this).removeClass(removeClassName);
             }
         } else {
-            console.log('hage');
             if (addClassName !== null) {
                 $(this).removeClass(addClassName);
             }
@@ -166,6 +169,7 @@ function chgClassWhenScrolling2(scrollVolume, elementName, addClassName = null, 
     });
 }
 
+// ================= Native JS ===================
 // common functions
 function getCssValue(element, property) {
     if (!element || !property) {
@@ -176,7 +180,6 @@ function getCssValue(element, property) {
     return value;
 }
 
-// Native JS
 function addClassActivePageLink(){
     let target = document.getElementsByClassName('addClsActiveLink');
     let currentPage = location.pathname.replace('/','');
@@ -185,12 +188,56 @@ function addClassActivePageLink(){
     for (let i=0;i < target.length; i++){
         if (target[i].attributes.href.value === currentPage){
             target[i].classList.add('nav_active_page');
-            return
+            return;
         }
-        // href属性が存在するかチェック
+        // href属性が存在するかチェックするには、hasClassがある
         // for (let j=0;j < target[i].attributes.length;j++){
         // }
     }
+}
+
+
+// ==================== form ========================
+
+
+// let btn = document.getElementById('body');
+// btn.addEventListener('click', function() {
+//     console.log('クリックされました！');
+// }, false);
+
+
+
+function validateName(target){
+    let starttime = performance.now();
+    console.log(target);
+    const regPtnName = /^[a-zA-Z ]{4,15}$/;
+    ret = target.value.match(regPtnName);
+    if (null === ret){
+        target.classList.add('inputInvalid');
+    }else{
+        target.classList.remove('inputInvalid');
+    }
+    let endtime = performance.now();
+    console.log(endtime);
+    console.log('function validateName ' + (endtime - starttime) + ' ms');
+}
+
+
+
+
+function chkForm(target){
+    // まとめてバリデーションする場合はFormのチェンジを拾う
+    // console.log(target[0].value);
+}
+
+function onChangetest(target){
+    // console.log(target);
+}
+
+
+function instantValidation(target , type, length){
+
+
 }
 
 // ぱららさんぷる

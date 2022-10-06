@@ -255,3 +255,19 @@ $imgSizeKurageY: 200px;
         height: $globalNavHeight;
     }
 }
+
+
+// ============= form ===============
+// HTML5のフォームバリデーション
+// :required
+// :optional
+// :valid
+// :invalid
+// JSのフォームバリデーション
+// checkValidity
+// formElement.addEventListener('invalid', function(){...}, true);と第3引数にtrueを入れる
+
+.inputInvalid{
+    background-color: #d00;
+}
+
