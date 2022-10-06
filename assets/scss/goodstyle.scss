@@ -8,8 +8,11 @@ $gotoTopHeight: 50vh;
 $clrActivePage: #90c;
 @import "my_variables", "my_mixins", "my_common_style" ,"my_anime";
 
+
 body {
     margin: 0;
+    background-color: #999;
+    z-index: 0;
     // visibility:hidden;
 }
 
@@ -45,6 +48,11 @@ a{
     width: 95%;
 }
 
+.container-fluid{
+    margin: 0 auto;
+    width: 100%;
+}
+
 .float-right{
     float: right;
 
@@ -67,6 +75,9 @@ a{
     }
 }
 
+.bg-white{
+    background-color: #fff;
+}
 
 // ============= js用パーツ ===============
 .nav_active_page{
@@ -257,6 +268,36 @@ $imgSizeKurageY: 200px;
 }
 
 
+// ============= oden ===============
+.parallax{
+    &_background{
+        position: relative;
+        width: 100%;
+        height: 400px;
+
+        // &::after{
+        &_entity{
+            // content:'';
+            position: absolute;
+            background:url('../images/kahun.jpg') no-repeat;
+            width: 100%;
+            height: 1300px;
+            top: 0px;
+            // overflow: hidden;
+            z-index:-100;
+            // top: 3500px;
+        }
+    }
+}
+
+.white_box{
+    margin: 0;
+    width: 100%;
+    height: 1000px;
+    background-color: #fff;
+    z-index: -1;
+}
+
 // ============= form ===============
 // HTML5のフォームバリデーション
 // :required
@@ -269,5 +310,18 @@ $imgSizeKurageY: 200px;
 
 .inputInvalid{
     background-color: #d00;
+}
+
+.selectedInvalid{
+    position: relative;
+    &::after{
+        position: absolute;
+        content: 'aaaaaaaaaaa';
+        top: 0;
+        left: 300;
+        width: 100px;
+        height: 100px;
+        background-color: #0f0;
+    }
 }
 

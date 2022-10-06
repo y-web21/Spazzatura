@@ -14,10 +14,21 @@ window.onload = function() {
     // console.log(document.querySelector('.goto_top_tag'));
     addClassActivePageLink();
 
-    // イベントリスナーでインプットボックスを監視
-    document.getElementById('formName').addEventListener('keyup',function(){
-        console.log('バリデーション実行');
+    // イベントリスナーでフォーム要素を監視
+    const formName = document.getElementById('formName');
+    let starttime = performance.now();
+    formName.addEventListener('keyup',function(){
+        validateName(formName);
     },false);
+
+    const formSelect = document.getElementById('formSelect');
+    formSelect.addEventListener('change',function(){
+        console.log(formSelect);
+        validateOption(formSelect);
+    },false);
+
+    let endtime = performance.now();
+    console.log('function validateName ' + (endtime - starttime) + ' ms');
 
     // console.log(document.getElementsByTagName('li'));
 
@@ -25,6 +36,9 @@ window.onload = function() {
     // document.getElementsByClassName('hidOnload')[0].style.visibility = "visible";
     // document.getElementsByTagName('body')[0].style.visibility = "visible";
     // target[i].classList.add('nav_active_page');
+
+    // debug
+    console.log(document.getElementsByClassName('jsdebug'));
 
 };
 
@@ -58,6 +72,7 @@ $(window).scroll(function() {
     let mainVisualHeight = parseInt($('#mainVisual').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
     stickyNav(scrollVolume, mainVisualHeight);
+    parachan(scrollVolume);
 
     //処理負荷軽減
     clearTimeout(scrollTimer);
@@ -102,6 +117,29 @@ function stickyNav(scrollVolume, gnavY) {
         });
     }
 }
+
+function parachan(scrollVolume) {
+    let bgpos = window.pageYOffset + document.getElementById('parachan').getBoundingClientRect().top;
+    let height = parseInt($('.parallax_background_entity').css('height'), 10);
+    //本来的には画面の高さ分マージンを取る
+    let topThreshold = 2500;//bgpos-1000;
+    let btmThreshold = 4500;//bgpos+height+1000;
+    let hage = scrollVolume + scrollVolume * 0.1;
+    console.log(bgpos,height,topThreshold,scrollVolume,btmThreshold,hage);
+
+    if ((topThreshold > scrollVolume) || (btmThreshold < scrollVolume)) {
+        $(".parallax_background").css({
+            // "position": "fixed",
+            // "top": 0 + "px",
+            // "z-index": "9999",
+        });
+    } else {
+        $(".parallax_background_entity").css({
+            "top": (scrollVolume - bgpos - height / 2) * 0.8 + "px",
+        });
+    }
+}
+
 
 function gotoTop(scrollVolume, threshold) {
     if (scrollVolume > threshold) {
@@ -208,8 +246,7 @@ function addClassActivePageLink(){
 
 
 function validateName(target){
-    let starttime = performance.now();
-    console.log(target);
+    console.log(target + 'aho');
     const regPtnName = /^[a-zA-Z ]{4,15}$/;
     ret = target.value.match(regPtnName);
     if (null === ret){
@@ -217,12 +254,17 @@ function validateName(target){
     }else{
         target.classList.remove('inputInvalid');
     }
-    let endtime = performance.now();
-    console.log(endtime);
-    console.log('function validateName ' + (endtime - starttime) + ' ms');
 }
 
-
+function validateOption(target){
+    let selected = target.selectedIndex;
+    console.log(selected);
+    if ("0" === target.value){
+        target.classList.add('selectedInvalid');
+    }else{
+        target.classList.remove('selectedInvalid');
+    }
+}
 
 
 function chkForm(target){
@@ -230,14 +272,8 @@ function chkForm(target){
     // console.log(target[0].value);
 }
 
-function onChangetest(target){
-    // console.log(target);
-}
-
 
 function instantValidation(target , type, length){
-
-
 }
 
 // ぱららさんぷる
