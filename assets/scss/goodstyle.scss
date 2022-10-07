@@ -121,18 +121,18 @@ a{
     }
 }
 
+$sideTabWidth: 10rem;
 .goto_top_tag {
-    padding: 0;
-    margin: 0;
-    width: 10rem;
+    padding: 0 1.2rem 0 0;
+    width: $sideTabWidth;
     height: $sideTabHeight;
     background-color: #444;
 
     top: $gotoTopHeight;
     left: calc(100% - 3rem);
-    transform: rotate(-90deg);
     /*中心回転から起点を中心から左上に*/
     transform-origin: 0% 0%;
+    transform: rotate(-90deg);
 
     position: fixed;
     display: none;
@@ -146,6 +146,19 @@ a{
         line-height: $sideTabHeight - 0.5rem;
         text-decoration: none;
     }
+
+    &::after {
+        position: absolute;
+        content: '';
+        border-top: 2px solid $fClr;
+        border-right: 2px solid $fClr;
+        top: 18px;
+        left: 118px;
+        width: 0.6rem;
+        height: 0.6rem;
+        transform: rotate(45deg);
+    }
+
 }
 
 .circle_nav {
@@ -278,6 +291,7 @@ $imgSizeKurageY: 200px;
 $parallaxBgY: 500px;
 $parallaxBgRatio: 2;
 
+// with js
 .parallax{
     &_background{
         position: relative;
@@ -328,6 +342,19 @@ $parallaxBgRatio: 2;
 // checkValidity
 // formElement.addEventListener('invalid', function(){...}, true);と第3引数にtrueを入れる
 
+// form ブラウザ依存属性リセット
+input, button, textarea, select {
+  // margin: 0;
+  // padding: 0;
+  // background: none;
+  // border: none;
+  // border-radius: 0;
+  // outline: none;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+}
+
 form{
     display: inline-block;
 }
@@ -337,6 +364,8 @@ input,select{
     width: 200px;
     height: 2rem;
     font-size: 1.5rem;
+    // border: 2px solid green;
+    // border-radius: 99px;
 }
 
 .inputInvalid{
@@ -367,5 +396,57 @@ input,select{
         width: 100px;
         height: 100px;
         background-color: #0f0;
+    }
+}
+
+
+
+input[type="submit"] {
+    font-size: 1.0em;
+    display: block;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    color: #fff;
+    background: #555;
+    font-weight: bold;
+    height: 3.0em;
+    line-height: 3.0em;
+    width: 100%;
+    padding: 0 2.5em 0 0.8em;
+    transition: 0.3s;
+
+
+    &:hover {
+        background: #134767;
+    }
+}
+
+.button_wrap {
+    color: #fff;
+    position: relative;
+    line-height: 2.8em;
+    width: 190px;
+    transition: 0.5s;
+    margin: 0 auto;
+
+    &::after {
+        transition: 0.3s;
+        content: "";
+        width: .6em;
+        height: .6em;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        position: absolute;
+        top: 0;
+        right: 20px;
+        margin: auto;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform:translateY(-10%) rotate(45deg);
+    }
+
+    &:hover::after {
+        right: 12px;
     }
 }

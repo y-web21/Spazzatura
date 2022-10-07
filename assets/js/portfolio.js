@@ -87,12 +87,14 @@ function stickyNav(scrollVolume, gnavY) {
             "position": "fixed",
             "top": 0 + "px",
             "z-index": "9999",
+            "box-shadow": "0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)",
         });
     } else {
         $(".stickyNav").css({
             "position": "static",
             "top": gnavY - scrollVolume + "px",
             "z-index": "auto",
+            "box-shadow":  "0 0",
         });
     }
 
