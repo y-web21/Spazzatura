@@ -9,6 +9,10 @@ $clrActivePage: #90c;
 @import "my_variables", "my_mixins", "my_common_style" ,"my_anime";
 
 
+*{
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background-color: #ffC;
@@ -271,23 +275,26 @@ $imgSizeKurageY: 200px;
 
 
 // ============= oden ===============
-$parallaxBgY: 450px;
-$parallaxBgRatio: 3;
+$parallaxBgY: 200px;
+$parallaxBgRatio: 4;
 
 .parallax{
     &_background{
         position: relative;
         width: 100%;
         height: $parallaxBgY;
-        overflow: hidden;
+        // overflow: hidden;
 
         &_entity{
             position: absolute;
             background:url('../images/kafun.jpg') repeat-x;
             width: 100%;
             height: $parallaxBgY * $parallaxBgRatio;
-            top: 0px;
+            // top: 0px;
+            top: - ($parallaxBgY * ($parallaxBgRatio - 1));
             left: 0px;
+            // debug
+            z-index: -20;
         }
     }
 }
@@ -296,7 +303,7 @@ $parallaxBgRatio: 3;
     margin: 0;
     width: 100%;
     height: 1000px;
-    background-color: #fff;
+    // background-color: #fff;
     border: #fff 50px solid;
     z-index: -1;
 }

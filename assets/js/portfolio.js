@@ -109,22 +109,6 @@ function stickyNav(scrollVolume, gnavY) {
     }
 }
 
-function parallaxBackgroud(scrollVolume , areaId , entityId) {
-    let areaHeight = parseInt(getCssValue(document.getElementById(areaId),'height'),10);
-    let imgHeight = parseInt(getCssValue(document.getElementById(entityId),'height'),10);
-    let areaAbsPos =window.pageYOffset + document.getElementById(areaId).getBoundingClientRect().top;
-    let scrollVolumeFromThis = scrollVolume - areaAbsPos + window.innerHeight;
-    let displayRange = areaHeight + window.innerHeight;
-    // console.log(areaHeight,imgHeight,areaAbsPos,scrollVolumeFromThis,displayRange);
-    //本来的には画面の高さ分マージンを取る
-    let topThreshold = 0;//bgpos-1000;
-    let btmThreshold = 59000;//bgpos+height+1000;
-    if ((topThreshold < scrollVolume) || (btmThreshold > scrollVolume)) {
-        let newTop = -((imgHeight - areaHeight) / displayRange * scrollVolumeFromThis);
-        document.getElementById(entityId).style.top = newTop + "px";
-    } else {
-    }
-}
 
 
 function gotoTop(scrollVolume, threshold) {
@@ -224,6 +208,44 @@ function addClassActivePageLink(){
     }
 }
 
+function parallaxBackgroud(scrollVolume , areaId , entityId) {
+    // 1pxスクロールあたりの画像スクロール量が、1px未満になると破綻する(ウインドウの高さにも影響を受けるため、画像の下側は、捨て領域として予め表示することで回避可能)
+    let viewAreaHeight = parseInt(getCssValue(document.getElementById(areaId),'height'),10);
+    let imgHeight = parseInt(getCssValue(document.getElementById(entityId),'height'),10);
+    let areaAbsPos =window.pageYOffset + document.getElementById(areaId).getBoundingClientRect().top;
+    let scrollVolumeFromThis = scrollVolume - areaAbsPos + window.innerHeight;
+    let displayRange = viewAreaHeight + window.innerHeight;
+    let initPos = imgHeight * -1;
+    // console.log(viewAreaHeight,imgHeight,areaAbsPos,scrollVolumeFromThis,displayRange);
+    //本来的には画面の高さ分マージンを取る
+    let topThreshold = 0;//bgpos-1000;
+    let btmThreshold = 59000;//bgpos+height+1000;
+    if ((topThreshold < scrollVolume) || (btmThreshold > scrollVolume)) {
+        let moveRangeWindowRatio = (imgHeight + viewAreaHeight) / displayRange;
+        let newTop = initPos + moveRangeWindowRatio  * scrollVolumeFromThis;
+        // console.log(scrollVolume);
+        console.log(moveRangeWindowRatio);
+        document.getElementById(entityId).style.top = newTop + "px";
+    } else {
+    }
+}
+
+function parallaxBackgroud2(scrollVolume , areaId , entityId) {
+    let viewAreaHeight = parseInt(getCssValue(document.getElementById(areaId),'height'),10);
+    let imgHeight = parseInt(getCssValue(document.getElementById(entityId),'height'),10);
+    let areaAbsPos =window.pageYOffset + document.getElementById(areaId).getBoundingClientRect().top;
+    let scrollVolumeFromThis = scrollVolume - areaAbsPos + window.innerHeight;
+    let displayRange = viewAreaHeight + window.innerHeight;
+    // console.log(viewAreaHeight,imgHeight,areaAbsPos,scrollVolumeFromThis,displayRange);
+    //本来的には画面の高さ分マージンを取る
+    let topThreshold = 0;//bgpos-1000;
+    let btmThreshold = 59000;//bgpos+height+1000;
+    if ((topThreshold < scrollVolume) || (btmThreshold > scrollVolume)) {
+        let newTop = -((imgHeight - viewAreaHeight) / displayRange * scrollVolumeFromThis);
+        document.getElementById(entityId).style.top = newTop + "px";
+    } else {
+    }
+}
 
 // ==================== form ========================
 function entryFormEventListner(){
