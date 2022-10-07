@@ -215,19 +215,10 @@ function parallaxBackgroud(scrollVolume , areaId , entityId) {
     let areaAbsPos =window.pageYOffset + document.getElementById(areaId).getBoundingClientRect().top;
     let scrollVolumeFromThis = scrollVolume - areaAbsPos + window.innerHeight;
     let displayRange = viewAreaHeight + window.innerHeight;
-    let initPos = imgHeight * -1;
-    // console.log(viewAreaHeight,imgHeight,areaAbsPos,scrollVolumeFromThis,displayRange);
-    //本来的には画面の高さ分マージンを取る
-    let topThreshold = 0;//bgpos-1000;
-    let btmThreshold = 59000;//bgpos+height+1000;
-    if ((topThreshold < scrollVolume) || (btmThreshold > scrollVolume)) {
-        let moveRangeWindowRatio = (imgHeight + viewAreaHeight) / displayRange;
-        let newTop = initPos + moveRangeWindowRatio  * scrollVolumeFromThis;
-        // console.log(scrollVolume);
-        console.log(moveRangeWindowRatio);
-        document.getElementById(entityId).style.top = newTop + "px";
-    } else {
-    }
+    let initPos = imgHeight * -1 + viewAreaHeight;
+    let moveRangeWindowRatio = (imgHeight - viewAreaHeight) / displayRange;
+    let newTop = initPos + moveRangeWindowRatio * scrollVolumeFromThis;
+    document.getElementById(entityId).style.top = newTop + "px";
 }
 
 function parallaxBackgroud2(scrollVolume , areaId , entityId) {

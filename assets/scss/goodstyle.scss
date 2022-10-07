@@ -275,7 +275,7 @@ $imgSizeKurageY: 200px;
 
 
 // ============= oden ===============
-$parallaxBgY: 200px;
+$parallaxBgY: 300px;
 $parallaxBgRatio: 4;
 
 .parallax{
@@ -283,11 +283,11 @@ $parallaxBgRatio: 4;
         position: relative;
         width: 100%;
         height: $parallaxBgY;
-        // overflow: hidden;
+        overflow: hidden;
 
         &_entity{
             position: absolute;
-            background:url('../images/kafun.jpg') repeat-x;
+            background:url('../images/kafun.jpg') repeat;
             width: 100%;
             height: $parallaxBgY * $parallaxBgRatio;
             // top: 0px;
