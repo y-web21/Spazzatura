@@ -15,8 +15,8 @@ $clrActivePage: #90c;
 
 body {
     margin: 0;
-    background-color: #ffC;
-    z-index: 0;
+    // background-color: #ffC;
+    // z-index: 0;
     // visibility:hidden;
 }
 
@@ -320,6 +320,23 @@ $parallaxBgRatio: 2;
     background-color: #fff;
     border: #fff 50px solid;
     z-index: -1;
+}
+
+.white_box-500{
+    margin: 0;
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+    border: #fff 50px solid;
+    z-index: -1;
+}
+
+.gray_box-500{
+    margin: 0;
+    width: 100%;
+    height: 500px;
+    background-color: #ddd;
+    border: #ddd 50px solid;
 }
 
 .juhun{
