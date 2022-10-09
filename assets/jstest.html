@@ -52,7 +52,7 @@
   </ul>
 
 
-<div class="gray_box-500">
+<div class="gray_box_500">
   <h2>rule</h2>
   <ul>
     <li>jsから参照するid,classは、キャメルケース</li>
@@ -89,8 +89,8 @@
       </div>
     </div>
   </div>
-<div class="white_box-500"></div>
-  <div class="gray_box-500">
+<div class="white_box_500"></div>
+  <div class="gray_box_500">
   </div>
   <h2 style="border: 5px solid white;margin: 0;">parallax background</h2>
   <div class="container-fluid">
@@ -101,11 +101,20 @@
     </div>
   </div>
   <div id="jumpingSpot"></div>
-  <div class="gray_box-500">
-      <h2>interactive validation on form.</h2>
-      <form action="" onInput="chkForm(this)">
-        <input id="formName" type="text" value="ini"><p class="errMag d-none">お名前を入れるんだ</p><br>
-        <select id="formSelect" class="jsdebug" name="" id="">
+
+  <div class="gray_box_500">
+    <div class="container d_flex_row">
+      <h2 class="w-100p ta-c">interactive validation on form.</h2>
+      <form class="d_flex_row maxw-600 w-90p mx-auto form_flex" action="" onInput="chkForm(this)">
+        <p class="ta-c">お名前</p>
+        <input id="formName" type="text" value="ini" required><p class="errMag d-none">お名前を入れるんだ</p>
+        <!-- validation on HTML -->
+        <p class="ta-c">TEL(test)</p>
+        <input id="formTel" type="text" pattern="^[0-9]{3}-[0-9]{4}-[0-9]{4}" title="ex 000-000-0000" required>
+        <p class="ta-c">メールアドレス</p>
+        <input id="formMail" type="text" pattern="/^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/" title="mail adress" required>
+        <p class="ta-c">お問い合わせ内容</p>
+        <select id="formSelect" class="ta-c" name="" id="" required>
           <option value="0">◆うに◆</option>
           <option value="1">test10</option>
           <option value="2">test15</option>
@@ -113,11 +122,13 @@
           <option value="4">test25</option>
           <option value="5">test30</option>
         </select>
-        <div class="button_wrap"><input type="submit" value="送っちまうのか？"></div></div>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <div class="button_wrap"><input type="submit" value="押すと送る？"></div></div>
         <input type="submit" value="send" onsubmit="onSubmitHandler(this)">
         <p></p>
-        </input></input>
       </form>
+      </div>
+    </div>
   </div>
   d<br>
   d<br>
@@ -133,67 +144,44 @@
   d<br>
   d<br>
   d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
+<!--
+    <nav class="navbar navbar-expand navbar-light bg-light fixed-bottom py-3 px-0 footer-nav-y">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav footer-nav-style w-100 ul-5col">
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="member.html"><i class="fa fa-users fa-lg d-block"></i>ft-mb-txt</a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="topics.html"><i class="fas fa-chalkboard d-block"></i>ft-mb-txt</span></a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="activity.html"><i class="fa fa-trophy fa-lg d-block"></i>ft-mb-txt</a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="access.html"><i class="fas fa-map-marked-alt fa-lg d-block"></i>ft-mb-txt</a></li>
+          <li class="nav-item nav-item-delimline w-20 dropdown dropup nav-menu-right">
+            <div class="nav-link dropdown-toggle p-0" id="dropdownfooter">
+              <i class="fa fa-angle-double-up fa-lg d-block"></i>ft-mb-txt
+            </div>
+            <div class="dropdown-menu dropdown-menu-right pt-4 pb-3">
+              <div class="container" style="width:330px">
+                <div>
+                <ul class="px-0 footer-nav-style ul-4col py-2">
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="index.html"><i class="fa fa-home d-block"></i>ft-mb-txt</a></li>
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="seminar.html"><i class="fas fa-chalkboard-teacher d-block"></i>ft-mb-txt</a></li>
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="news.html"><i class="fa fa-newspaper-o d-block"></i>ft-mb-txt</a></li>
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="event.html"><i class="fas fa-chalkboard d-block"></i>ft-mb-txt</a></li>
+                </ul>
+                </div>
+                <p class="mb-0 mt-3 fz-80r">ft-mb-more-txt2</p>
+                <ul class="px-0 footer-nav-style ul-4col py-2">
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="http://nlab.tms.chiba-u.jp/book/"><i class="fas fa-book-reader d-block"></i>ft-mb-txt</a></li>
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="http://nlab.tms.chiba-u.jp/gitbucket/"><i class="fab fa-git-square d-block"></i>ft-mb-txt</a></li>
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link mt8px" href="https://nlab.tms.chiba-u.jp/moodle/login/index.php"><img class="footer-nav-img d-block text-center" src="images/moodle80x60.png">ft-mb-txt</a></li>
+                  <li class="border-0 px-0 d-inline-block"><a class="nav-link" href="http://nakaguchilab.slack.com"><i class="fab fa-slack d-block"></i>ft-mb-txt</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  -->
+    <!-- mobile footer -->
+
   <!-- parts -->
   <div class="goto_top_tag">
     <a class="d-block" href="#">Go To Top</a>

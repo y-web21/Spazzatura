@@ -14,7 +14,6 @@ window.onload = function() {
     gotoTopTagTop = parseInt(getCssValue(document.querySelector('.goto_top_tag'), 'height'), 10);
     addClassActivePageLink();
 
-
     //
     let currentPage = location.pathname.replace('/','');
 
@@ -226,32 +225,67 @@ function parallaxBackgroud(scrollVolume , areaId , entityId , reverse = true) {
 // ==================== form ========================
 function entryFormEventListner(){
     // イベントリスナーでフォーム要素を監視
-    const formName = document.getElementById('formName');
-    let starttime = performance.now();
-    formName.addEventListener('keyup',function(){
-        validateName(formName);
-    },false);
 
-    const formSelect = document.getElementById('formSelect');
-    formSelect.addEventListener('change',function(){
-        console.log(formSelect);
-        validateOption(formSelect);
-    },false);
+    // debug用
+    const entryEventLister = false;
+    if (true === entryEventLister){
+        const formName = document.getElementById('formName');
+        formName.addEventListener('keyup',function(){
+            validateName(formName);
+        },false);
 
-    let endtime = performance.now();
-    console.log('function validateName ' + (endtime - starttime) + ' ms');
+        const formMail = document.getElementById('formMail');
+        formMail.addEventListener('keyup',function(){
+            validateMail(formMail);
+        },false);
+
+        const formSelect = document.getElementById('formSelect');
+        formSelect.addEventListener('change',function(){
+            console.log(formSelect);
+            validateOption(formSelect);
+        },false);
+    }
+
+    // let endtime = performance.now();
+    // console.log('function validateName ' + (endtime - starttime) + ' ms');
 }
 
-
+// default validate
+    const regPtnName = /^[a-zA-Z ]{4,15}$/;
+    const regPtnMail = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
 
 function validateName(target){
-    console.log(target + 'aho');
-    const regPtnName = /^[a-zA-Z ]{4,15}$/;
-    ret = target.value.match(regPtnName);
-    if (null === ret){
-        target.classList.add('inputInvalid');
+    if (undefined === target.attributes.pattern){
+        regPtn = regPtnName;
     }else{
-        target.classList.remove('inputInvalid');
+        regPtn = target.attributes.pattern;
+    }
+    let ret = target.value.match(regPtn);
+    if (null === ret){
+        target.classList.remove('inputCorrect');
+        target.classList.add('inputIncorrect');
+    }else{
+        target.classList.remove('inputIncorrect');
+        if (target.value.length > 4){
+            target.classList.add('inputCorrect');
+        }
+    }
+}
+
+function validateMail(target){
+    if (undefined === target.attributes.pattern){
+        regPtn = regPtnMail;
+    }else{
+        regPtn = target.attributes.pattern;
+    }
+    let ret = target.value.match(regPtn);
+    if (null === ret){
+        target.classList.add('inputIncorrect');
+        target.classList.remove('inputCorrect');
+    }else{
+        target.classList.add('inputCorrect');
+        target.classList.remove('inputIncorrect');
+
     }
 }
 
@@ -265,22 +299,20 @@ function validateOption(target){
     }
 }
 
-
 function chkForm(target){
     // まとめてバリデーションする場合はFormのチェンジを拾う
-    // console.log(target[0].value);
+    console.log(target.length);
+    let kas = target.getElementsByTagName('input');
+    for (let i=0;i<kas.length;i++){
+        if (target[i].id === 'formName'){
+            validateName(target[i]);
+        }
+        if (target[i].id === 'formMail'){
+            validateMail(target[i]);
+        }
+    }
 }
 
 
 function instantValidation(target , type, length){
 }
-
-// ぱららさんぷる
-// $(function() {
-// $(window).scroll(function(){
-// var y = $(this).scrollTop();
-// $('#bg01').css('background-position', '0 ' + parseInt( -y / 5 ) + 'px');
-// $('#bg02').css('background-position', '0 ' + parseInt( -y / 50 ) + 'px');
-// $('#bg03').css('background-position', '0 ' + parseInt( -y / 200 ) + 'px');
-// });
-// });
