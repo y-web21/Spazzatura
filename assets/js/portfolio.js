@@ -22,7 +22,7 @@ window.onload = function() {
     }
 
     // console.log(document.getElementsByTagName('li'));
-    // document.getElementsByClassName('hidOnload')[0].style.visibility = "visible";
+    // document.getElementsByClassName('hidUntilOnload')[0].style.visibility = "visible";
     // document.getElementsByTagName('body')[0].style.visibility = "visible";
     // target[i].classList.add('nav_active_page');
 
@@ -227,7 +227,7 @@ function entryFormEventListner(){
     // イベントリスナーでフォーム要素を監視
 
     // debug用
-    const entryEventLister = false;
+    const entryEventLister = true;
     if (true === entryEventLister){
         const formName = document.getElementById('formName');
         formName.addEventListener('keyup',function(){
@@ -273,12 +273,15 @@ function validateName(target){
 }
 
 function validateMail(target){
+    console.log(target.attributes.pattern);
     if (undefined === target.attributes.pattern){
         regPtn = regPtnMail;
     }else{
         regPtn = target.attributes.pattern;
     }
+    console.log(regPtn);
     let ret = target.value.match(regPtn);
+    console.log(ret);
     if (null === ret){
         target.classList.add('inputIncorrect');
         target.classList.remove('inputCorrect');
@@ -302,6 +305,7 @@ function validateOption(target){
 function chkForm(target){
     // まとめてバリデーションする場合はFormのチェンジを拾う
     console.log(target.length);
+    return;
     let kas = target.getElementsByTagName('input');
     for (let i=0;i<kas.length;i++){
         if (target[i].id === 'formName'){

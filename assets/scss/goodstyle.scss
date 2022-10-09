@@ -20,7 +20,11 @@ body {
     // visibility:hidden;
 }
 
-a{
+h2{
+    margin: 0;
+}
+
+a {
     color: $fClr;
     text-decoration: none;
 }
@@ -39,6 +43,49 @@ a{
     display: inline-block;
 }
 
+.mb-0,.my-0{
+    margin-bottom: 0px !important;
+}
+
+.my-0{
+    margin-top: 0px !important;
+}
+
+.h-100p{
+    height: 100%;
+}
+
+@for $i from 0 through 8 {
+  .mt-#{$i} {
+    margin-top: #{$i}rem !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem !important;
+  }
+  .mx-#{$i} {
+    margin-left: #{$i}rem !important;
+    margin-right: #{$i}rem !important;
+  }
+  .my-#{$i} {
+    margin-top: #{$i}rem !important;
+    margin-bottom: #{$i}rem !important;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i}rem !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}rem !important;
+  }
+  .px-#{$i} {
+    padding-left: #{$i}rem !important;
+    padding-right: #{$i}rem !important;
+  }
+  .py-#{$i} {
+    padding-top: #{$i}rem !important;
+    padding-bottom: #{$i}rem !important;
+  }
+}
+
 .mx-auto{
     margin-right: auto;
     margin-left:auto;
@@ -47,14 +94,13 @@ a{
 .h-100{
     height: 100%;
     //移動すべき記述
-    box-sizing: border-box;
-    text-align: center;
-    line-height: 5;
+    // text-align: center;
+    // line-height: 5;
 }
 
 .container{
     margin: 0 auto;
-    width: 95%;
+    max-width: 1000px;
 }
 
 .container-fluid{
@@ -62,7 +108,7 @@ a{
     width: 100%;
 }
 
-.float-right{
+.fl-r{
     float: right;
 
     &::after {
@@ -74,12 +120,28 @@ a{
     text-align: center;
 }
 
+.ta-r{
+    text-align: right;
+}
+
+.d-n-ls-md{
+    @include md-l {
+        display: none;
+    }
+}
+
+.d-n-gr-md{
+    @include md-g {
+        display: none;
+    }
+}
+
 // grid layoutで対応可能
 .d_flex_row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-content: space-between;
     align-items: center;
 
@@ -105,7 +167,7 @@ a{
     transition: 300ms;
 }
 
-.hidOnload{
+.hidUntilOnload{
     visibility: hidden;
 }
 
@@ -126,25 +188,33 @@ a{
 }
 
 $sideTabWidth: 10rem;
+$sideTabClr: #444;
+
 .goto_top_tag {
     padding: 0 1.2rem 0 0;
     width: $sideTabWidth;
     height: $sideTabHeight;
-    background-color: #444;
+    background-color: $sideTabClr;
+    z-index: 9998;
+
+    &:hover{
+        background-color: lighten($sideTabClr, 5%);
+    }
 
     top: $gotoTopHeight;
     left: calc(100% - 3rem);
     /*中心回転から起点を中心から左上に*/
     transform-origin: 0% 0%;
     transform: rotate(-90deg);
-
     position: fixed;
     display: none;
-
     border-radius: 0.4rem 0.4rem 0.1rem 0.1rem;
 
     & > a {
         margin: 0;
+        padding-right: 20px;
+        width: $sideTabWidth;
+        height: $sideTabHeight;
         color: $fClr;
         text-align: center;
         line-height: $sideTabHeight - 0.5rem;
@@ -157,12 +227,16 @@ $sideTabWidth: 10rem;
         border-top: 2px solid $fClr;
         border-right: 2px solid $fClr;
         top: 18px;
-        left: 118px;
+        right: 33px;
         width: 0.6rem;
         height: 0.6rem;
+        transition: 0.5s;
         transform: rotate(45deg);
     }
 
+    &:hover::after {
+        right: 23px;
+    }
 }
 
 .circle_nav {
@@ -180,7 +254,7 @@ $sideTabWidth: 10rem;
 
         &:hover{
             // opacity: 0.9;
-            transform:scale(1.05,0.95);
+            transform:scale(1.00,0.95);
         }
 
     }
@@ -218,7 +292,7 @@ $sideTabWidth: 10rem;
     }
 }
 
-$imgSizeKurageX: 200px;
+$imgSizeKurageX: 300px;
 $imgSizeKurageY: 200px;
 
 .image_hover{
@@ -228,6 +302,9 @@ $imgSizeKurageY: 200px;
         & img{
             width: $imgSizeKurageX;
             height: $imgSizeKurageY;
+            margin: 15px;
+            padding: 0;
+            box-sizing: content-box;
         }
         &:hover{
             // content:"textoverlay";
@@ -240,6 +317,7 @@ $imgSizeKurageY: 200px;
         top: 0;
         left: 0;
         margin: 0;
+        margin: 15px;
         width: $imgSizeKurageX;
         height: $imgSizeKurageY;
         z-index: 1;
@@ -260,7 +338,7 @@ $imgSizeKurageY: 200px;
 
 
 // ============= mainVisual ===============
-.mainVisual{
+.main_visual{
     position: relative;
     width: 100%;
     height: $mainVisualHeight;
@@ -280,8 +358,8 @@ $imgSizeKurageY: 200px;
 }
 
 
-.glo_nav{
-    &_underline{
+.gnav{
+    &_anim{
         @include hover-underline($type: slide, $dir: center, $weight: 6px, $color: #eee);
     }
     &_style{
@@ -292,7 +370,7 @@ $imgSizeKurageY: 200px;
 
 
 // ============= oden ===============
-$parallaxBgY: 500px;
+$parallaxBgY: 800px;
 $parallaxBgRatio: 2;
 
 // with js
@@ -311,6 +389,7 @@ $parallaxBgRatio: 2;
             // top: 0px;
             top: - ($parallaxBgY * ($parallaxBgRatio - 1));
             left: 0px;
+            filter: blur(5px);
             // debug
             z-index: -20;
         }
@@ -320,10 +399,15 @@ $parallaxBgRatio: 2;
 .white_box{
     margin: 0;
     width: 100%;
-    height: 1000px;
     background-color: #fff;
-    border: #fff 50px solid;
+    // border: #fff 50px solid;
     z-index: -1;
+}
+
+.gray_box{
+    margin: 0;
+    width: 100%;
+    background-color: #ddd;
 }
 
 .white_box_500{
@@ -338,9 +422,8 @@ $parallaxBgRatio: 2;
 .gray_box_500{
     margin: 0;
     width: 100%;
-    height: 500px;
+    // height: 500px;
     background-color: #ddd;
-    border: #ddd 50px solid;
 }
 
 .juhun{
@@ -384,7 +467,7 @@ input,select{
     margin: 0.3rem;
     // width: 200px;
     height: 2rem;
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     // border: 2px solid green;
     // border-radius: 99px;
 }
@@ -403,9 +486,9 @@ $clrFormCorrect:#95fe72;
     border: $clrFormIncorrect 1px solid;
     box-shadow:0px 0px 2px 1px $clrFormIncorrect;
 
-    &+p{
-        width: 10rem;
-        height: 2rem;
+    &+.errMsg{
+        // width: 10rem;
+        // height: 2rem;
         color: red;
         font-weight: bold;
         display: inline;
@@ -416,59 +499,58 @@ $clrFormCorrect:#95fe72;
     }
 }
 
-.inquery_style{
-    margin: 0 auto;
-    width: 80%;
-    text-align: center;
-    display: flex;
-
-    @include sm-l {
-        width: 50%;
-    }
-}
-
-.selectedInvalid{
-    position: relative;
-    &::after{
-        position: absolute;
-        content: 'aaaaaaaaaaa';
-        top: 0;
-        left: 300;
-        width: 100px;
-        height: 100px;
-        background-color: #0f0;
-    }
-}
 
 .form_flex{
-    & input, & select{
+    & input[type="text"],& input[type="tel"],& input[type="email"],& select{
         margin: 0;
         width: 100%;
 
-        @include sm-g {
+        @include md-g {
             margin: 1rem 0;
-            width: 50%;
-        }
-    }
-
-    & p{
-        text-align: left !important;
-        margin: 1.4rem 0 0.3rem;
-        width: 100%;
-
-        @include sm-g {
-            margin: 1rem 0;
-            width: 50%;
+            width: 70%;
         }
     }
 
     & textarea{
-        margin: 1rem 0;
+        margin: 0 0 2rem;
+        width: 100%;
+        height: 200px;
+
+        @include md-g {
+        margin: 1rem 0 2rem;
+            width: 70%;
+        }
+    }
+
+    & p{
+        text-align: left;
+        margin: 1.4rem 0 0.3rem;
         width: 100%;
 
-        @include sm-g {
-            // width: 50%;
+        @include md-g {
+            margin: 1rem 0;
+            width: 30%;
         }
+    }
+
+    & .errMsg{
+        margin: 4px 0 0;
+        font-size: 0.8rem;
+        text-align: left;
+        width: 100%;
+
+        @include md-g {
+            margin: 1rem 0;
+            width: 100%;
+        }
+    }
+}
+
+.h_200_gr_sm{
+    height: 100%;
+
+    @include md-g {
+        height: 200px;
     }
 }
 
@@ -488,6 +570,7 @@ input[type="submit"] {
     width: 100%;
     padding: 0 2.5em 0 0.8em;
     transition: 0.3s;
+    border-radius: 2px;
 
 
     &:hover {
@@ -511,8 +594,8 @@ input[type="submit"] {
         border-top: 2px solid #fff;
         border-right: 2px solid #fff;
         position: absolute;
-        top: 35px;
-        right: 26px;
+        top: 23px;
+        right: 66px;
         margin: auto;
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
@@ -520,7 +603,7 @@ input[type="submit"] {
     }
 
     &:hover::after {
-        right: 12px;
+        right: 52px;
     }
 }
 
@@ -528,6 +611,66 @@ input[type="submit"] {
 
 // ============= footer ===============
 
-.footer_nav{
+.footer {
+
+    &_nav{
+
+    }
+
+    &_copy{
+
+        &_style{
+            font-weight: 550;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+    }
 
 }
+
+$globalNavHeightMobile: 4rem;
+
+.sticky_menu_mobile {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: $globalNavHeightMobile;
+    background-color: gray;
+    bottom: 0;
+    left: 0;
+    // jsで付与
+    position: fixed;
+    z-index: 9999;
+    box-shadow:0px 0px 2px 1px lightgray;
+
+    & > li:nth-of-type(odd) {
+        width: calc(14%);
+        margin: 0 calc(1%);
+    }
+
+    & > li:nth-of-type(even) {
+        width: calc(17%);
+        margin: 0 calc(1%);
+    }
+
+    & a {
+        width: 100%;
+        height: $globalNavHeight / 2;
+        color: #fff;
+        font-size: 0.5rem;
+        list-style-type: none;
+        letter-spacing: -0px;
+    }
+
+    & i {
+        padding: 1rem;
+        width: 100%;
+        height: $globalNavHeight / 2;
+
+        & #text {
+            font-size: 10rem;
+        }
+
+    }
+}
+

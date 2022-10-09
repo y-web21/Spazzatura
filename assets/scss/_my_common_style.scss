@@ -34,8 +34,11 @@
     .maxh-#{$i * 5}v {
         max-height:#{$i * 5}vh;
     }
-    .w-#{$i * 5}p {
+    .w-#{$i * 5}per {
         width: #{$i * 5}#{'%'};
+    }
+    .h-#{$i * 5}per {
+        height: #{$i * 5}#{'%'};
     }
     .h-#{$i * 50} {
         height: #{$i * 50}px;

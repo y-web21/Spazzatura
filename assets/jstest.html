@@ -31,9 +31,9 @@
   </script>
   <div id="chkVal" calss="chkVal"></div>
   <div id='imo'></div>
-  <div class="mainVisual" id="mainVisual">
+  <div class="main_visual" id="mainVisual">
     <h1 class="catch_phrase">oden to udon.<span style="font-size: 1rem;">そのうちスライドします。たぶん。。。</span></h1>
-    <div class="circle_nav sub_nav float-right">
+    <div class="circle_nav sub_nav fl-r">
       <ul class="" id="header">
         <li class="d-inline-block ex-motion"><a href="">s_menu0</a></li>
         <li class="d-inline-block ex-motion"><a href="">s_menu1</a></li>
@@ -43,28 +43,39 @@
       </ul>
     </div>
   </div>
-  <ul class="sticky_menu stickyNav" id="addClsActiveLink">
-    <li class="d-inline-block glo_nav_underline glo_nav_style" id=""><a class="addClsActiveLink d-block h-100" href="jstest.html">g_menu0</a></li>
-    <li class="d-inline-block glo_nav_underline glo_nav_style" id=""><a class="addClsActiveLink d-block h-100" href="secondpage.html">g_menu1</a></li>
-    <li class="d-inline-block glo_nav_underline glo_nav_style" id=""><a class="addClsActiveLink d-block h-100" href="#jumpingSpot">g_menu2</a></li>
-    <li class="d-inline-block glo_nav_underline glo_nav_style" id=""><a class="addClsActiveLink d-block h-100" href="">g_menu3</a></li>
-    <li class="d-inline-block glo_nav_underline glo_nav_style" id=""><a class="addClsActiveLink d-block h-100" href="">g_menu4</a></li>
-  </ul>
+  <div class="container-fluid">
+    <ul class="sticky_menu stickyNav ta-c d-n-ls-md" id="addClsActiveLink">
+      <li class="d-inline-block gnav_anim gnav_style" id=""><a class="addClsActiveLink d-block h-100 lh-5" href="jstest.html">HOME</a></li>
+      <li class="d-inline-block gnav_anim gnav_style" id=""><a class="addClsActiveLink d-block h-100 lh-5" href="secondpage.html">WELCOME</a></li>
+      <li class="d-inline-block gnav_anim gnav_style" id=""><a class="addClsActiveLink d-block h-100 lh-5" href="#jumpingSpot">ABOUT</a></li>
+      <li class="d-inline-block gnav_anim gnav_style" id=""><a class="addClsActiveLink d-block h-100 lh-5" href="">PORTFOLIO</a></li>
+      <li class="d-inline-block gnav_anim gnav_style" id=""><a class="addClsActiveLink d-block h-100 lh-5" href="">CONTACT</a></li>
+    </ul>
+  </div>
 
+  <div id="welcome" class="container w-100per mt-5 pb-5">
+    <h2 class="pt-4 ta-c">welcome</h2>
+    <ul>
+      <li>jsから参照するid,classは、キャメルケース</li>
+      <li>アンダースコアを使用するクラスは、独自のクラス</li>
+      <li>ハイフンを使用するクラスは、OOCSS的なパーツ</li>
+      <li>jsの定数はアッパーキャメルケース</li>
+      <li></li>
+    </ul>
+  </div>
 
-<div class="gray_box_500">
-  <h2>rule</h2>
-  <ul>
-    <li>jsから参照するid,classは、キャメルケース</li>
-    <li>アンダースコアを使用するクラスは、独自のクラス</li>
-    <li>ハイフンを使用するクラスは、OOCSS的なパーツ</li>
-    <li>jsの定数はアッパーキャメルケース</li>
-    <li></li>
-  </ul>
-</div>
-  <div class="container bg-white">
-  <h2>display text link when hovering over image</h2>
-    <div class="d_flex_row minw-550 w-90p mx-auto">
+  <div id="aboutme" class="container-fluid mt-0">
+    <div class="parallax_background jsdebug" id="parallaxBg1">
+      <h2 class="mt-5 ta-c">about me</h2>
+      <div class="parallax_background_entity" id="parallaxBg1Entity">
+      </div>
+      <h3 class="juhun">受粉タイム</h3>
+    </div>
+  </div>
+
+  <div id="portpolio" class="container w-100per bg-white mt-5">
+  <h2 class="ta-c my-2">portfolio</h2>
+    <div class="d_flex_row mx-auto">
       <div class="image_hover_base">
         <img src="./images/kurage.jpg" alt="">
         <a href="#">
@@ -89,61 +100,68 @@
       </div>
     </div>
   </div>
-<div class="white_box_500"></div>
-  <div class="gray_box_500">
-  </div>
-  <h2 style="border: 5px solid white;margin: 0;">parallax background</h2>
-  <div class="container-fluid">
-    <div class="parallax_background jsdebug" id="parallaxBg1">
-      <div class="parallax_background_entity" id="parallaxBg1Entity">
-      </div>
-      <h3 class="juhun">受粉タイム</h3>
-    </div>
-  </div>
-  <div id="jumpingSpot"></div>
 
-  <div class="gray_box_500">
-    <div class="container d_flex_row">
-      <h2 class="w-100p ta-c">interactive validation on form.</h2>
-      <form class="d_flex_row maxw-600 w-90p mx-auto form_flex" action="" onInput="chkForm(this)">
-        <p class="ta-c">お名前</p>
-        <input id="formName" type="text" value="ini" required><p class="errMag d-none">お名前を入れるんだ</p>
-        <!-- validation on HTML -->
-        <p class="ta-c">TEL(test)</p>
-        <input id="formTel" type="text" pattern="^[0-9]{3}-[0-9]{4}-[0-9]{4}" title="ex 000-000-0000" required>
-        <p class="ta-c">メールアドレス</p>
-        <input id="formMail" type="text" pattern="/^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/" title="mail adress" required>
-        <p class="ta-c">お問い合わせ内容</p>
-        <select id="formSelect" class="ta-c" name="" id="" required>
-          <option value="0">◆うに◆</option>
-          <option value="1">test10</option>
-          <option value="2">test15</option>
-          <option value="3">test20</option>
-          <option value="4">test25</option>
-          <option value="5">test30</option>
-        </select>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-        <div class="button_wrap"><input type="submit" value="押すと送る？"></div></div>
-        <input type="submit" value="send" onsubmit="onSubmitHandler(this)">
-        <p></p>
-      </form>
-      </div>
+  <div class="container-fluid gray_box mt-5">
+    <h2 class="w-100per ta-c my-0 pt-4 pb-1">お問い合わせ</h2>
+    <form class="d_flex_row maxw-600 w-90per mx-auto form_flex" action="" onInput="chkForm(this)">
+      <p class="ta-c">お名前</p>
+      <input id="formName" type="text" pattern="^[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="例) 田中 太郎" required>
+      <p class="errMsg d-none">お名前を入れるんだ</p>
+      <!-- validation on HTML -->
+      <!-- <p class="ta-c">TEL(test)</p> -->
+      <!-- <input id="formTel" type="tel" pattern="^[0-9]{3}-[0-9]{4}-[0-9]{4}" title="ex 000-000-0000" placeholder="ex. dummy" required> -->
+      <p class="ta-c">メールアドレス</p>
+      <input id="formMail" type="email" title="mail adress" placeholder="例) address@domain.com" required>
+      <p class="errMsg d-none">無効なメールアドレスです。</p>
+      <p class="ta-c">件名</p>
+      <input id="formName" type="text" placeholder="件名をご入力ください" required><p class="errMag d-none"></p>
+<!--         <p class="ta-c">お問い合わせ内容</p>
+      <select id="formSelect" class="ta-c" name="" id="" required>
+        <option value="0">◆うに◆</option>
+        <option value="1">test10</option>
+        <option value="2">test15</option>
+        <option value="3">test20</option>
+        <option value="4">test25</option>
+        <option value="5">test30</option>
+      </select> -->
+      <p class="ta-c h_200_gr_sm">内容</p>
+      <textarea name="" id="" cols="30" rows="15" placeholder="お問い合わせ内容をご入力ください"></textarea>
+      <div class="button_wrap pb-3"><input type="submit" value="送信"></div></div>
+      <!-- <input type="submit" value="send" onsubmit="onSubmitHandler(this)"> -->
+      <p></p>
+    </form>
     </div>
   </div>
-  d<br>
-  d<br>
+
+  <div class="white_box pt-5 pb-1">
+    <p class="ta-c h-100p footer_copy footer_copy_style">&copy; 2022 yu urata</p>
   </div>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  <a href="#jumpin">nagareteku,ryuusei</a>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
-  d<br>
+
+  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
+
+
+  <div class="d-n-gr-md mb-4"></div>
+  <div class="container-fluid d-n-gr-md">
+    <ul class="footer-nav-style sticky_menu_mobile ta-c" id="addClsActiveLink">
+      <li class="d-inline-block" id=""><a class="addClsActiveLink d-block h-100" href="#mainVisual"><i class="fa fa-home fa-2x d-block"></i>HOME</a></li>
+      <li class="d-inline-block" id=""><a class="addClsActiveLink d-block h-100" href="secondpage.html"><i class="fas fa-door-open fa-2x d-block"></i>WELCOME</a></li>
+      <li class="d-inline-block" id=""><a class="addClsActiveLink d-block h-100" href="#jumpingSpot"><i class="fas fa-address-card fa-2x d-block"></i>ABOUT</a></li>
+      <li class="d-inline-block" id=""><a class="addClsActiveLink d-block h-100" href="jstest.html"><i class="fas fa-trophy fa-2x d-block"></i>PORTFOLIO</a></li>
+      <li class="d-inline-block" id=""><a class="addClsActiveLink d-block h-100" href=""><i class="far fa-envelope fa-2x d-block"></i>CONTACT</a></li>
+    </ul>
+  </div>
+
+  <!--       <ul class="navbar-nav footer-nav-style w-100 ul-5col">
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="member.html"><i class="fa fa-users fa-lg d-block"></i></a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="topics.html"><i class="fas fa-chalkboard d-block"></i>ft-mb-txt</a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="activity.html"><i class="fa fa-trophy fa-lg d-block"></i>ft-mb-txt</a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="access.html"><i class="fas fa-map-marked-alt fa-lg d-block"></i>ft-mb-txt</a></li>
+          <li class="nav-item nav-item-delimline"><a class="nav-link p-0" href="access.html"><i class="fas fa-map-marked-alt fa-lg d-block"></i>ft-mb-txt</a></li>
+        </ul> -->
+
+
+
+
 <!--
     <nav class="navbar navbar-expand navbar-light bg-light fixed-bottom py-3 px-0 footer-nav-y">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
@@ -179,8 +197,8 @@
         </ul>
       </div>
     </nav>
-  -->
-    <!-- mobile footer -->
+
+ -->    <!-- mobile footer -->
 
   <!-- parts -->
   <div class="goto_top_tag">
