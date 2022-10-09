@@ -33,6 +33,7 @@ $frameThick: 5px;
     &::after , &::before{
         box-sizing: border-box;
     }
+    visibility: hidden;
 }
 
 body {
@@ -287,7 +288,16 @@ dd {
     }
 }
 
+.fadeInL2R,.fadeInR2L{
+    animation: key-content-fadein 0.3s ease-in 0s 1 normal forwards;
+}
+
+
 // ============= 汎用 ===============
+.bgc_main{
+    background-color: $clrMain;
+}
+
 .sticky_menu {
     padding: 0;
     margin: 0;
@@ -883,46 +893,6 @@ $parallaxBgRatio: 2;
         }
     }
 }
-
-.white_box{
-    margin: 0;
-    width: 100%;
-    background-color: #fff;
-    // border: #fff 50px solid;
-    z-index: -1;
-}
-
-.gray_box{
-    margin: 0;
-    width: 100%;
-    background-color: #ddd;
-}
-
-.white_box_500{
-    margin: 0;
-    width: 100%;
-    height: 500px;
-    background-color: #fff;
-    border: #fff 50px solid;
-    z-index: -1;
-}
-
-.gray_box_500{
-    margin: 0;
-    width: 100%;
-    // height: 500px;
-    background-color: #ddd;
-}
-
-.juhun{
-    margin: 0;
-    font-size: 5rem;
-    position: absolute;
-    top: $parallaxBgY / 2;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
 
 // ============= form ===============
 // HTML5のフォームバリデーション

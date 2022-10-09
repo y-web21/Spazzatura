@@ -17,7 +17,27 @@ const mediaQueryLg = 992;
 var GnavTop;
 
 
+class test{
+
+    constructor(elementId , rootElemetId = null){
+        this.id = elementId;
+        if (rootElemetId === null) {
+            this.root = document;
+        }else{
+            this.root = document.getElementById(rootElemetId);
+        }
+    }
+
+    getId(){
+        return this.id;
+    }
+
+
+
+}
+
 window.onload = function() {
+
     // stickyNavJs用
     GnavTop = window.pageYOffset + document.getElementById('stickyWrap').getBoundingClientRect().top;
     // all pages
@@ -45,13 +65,18 @@ $(window).on('load', function() {
 // Scroll event
 var scrollTimer = 0;
 $(window).scroll(function() {
+    let obj = new test('stickyNav');
+    console.log(obj.getId());
+    obj = null;
+
+
     let mainVisualHeight = parseInt($('#mainVisual').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
 //    stickyNav(scrollVolume, mainVisualHeight);
     // stickyNav(scrollVolume, 600);
     // chgClassWhenScrolling(scrollVolume, 600, 'stickyNav', 'jasjas');
     stickyNavJs(scrollVolume,'stickyNav',containerInnerWidth, mediaQueryLg);
-
+    fadein(scrollVolume, 500, 'fadeIn0');
     // 処理負荷軽減
     clearTimeout(scrollTimer);
     var anchorLink = location.hash;
@@ -155,7 +180,7 @@ function chgClassWhenScrolling(scrollVolume, threshold, elementName, addClassNam
 
     timer = setTimeout(function () {
         console.log('window resized');
-        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         stickyNavJs(scrollTop,'stickyNav',containerInnerWidth, mediaQueryLg);
     }, 200);
   };
@@ -174,6 +199,9 @@ function addClassById(elementId, cssClassName){
     let target = document.getElementById(elementId);
     target.classList.add(cssClassName);
 }
+function addClassByElement(target, cssClassName){
+    target.classList.add(cssClassName);
+}
 
 function removeClassById(elementId, cssClassName){
     let target = document.getElementById(elementId);
@@ -183,7 +211,7 @@ function removeClassById(elementId, cssClassName){
 function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
     let target = document.getElementById(elementId);
     let nav = target.style;
-    let bodyWid = document.getElementsByTagName("body")[0].clientWidth
+    let bodyWid = document.getElementsByTagName("body")[0].clientWidth;
     let navWid = document.getElementById(elementId).clientWidth;
     let navLeft = (bodyWid - navWid) / 2;
 
@@ -216,6 +244,28 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
         nav.boxShadow = '0 0';
         // console.log(document.getElementById(elementId).children);
         removeClassById(elementId , 'childLi5Width');
+    }
+}
+
+function fadein(scrollVolume){
+
+    let targets = document.getElementsByClassName('fadeIn');
+    console.log(targets);
+    for(let i=0;i<targets.length;i++){
+        gachapin(scrollVolume , targets[i] );
+    }
+}
+
+function gachapin(scrollVolume, target){
+    // let target = document.getElementById(elementId);
+    let absPos = window.pageYOffset + target.getBoundingClientRect().top - window.innerHeight;
+
+    console.log(target.id);
+    if( absPos < scrollVolume ){
+        console.log(absPos,'>',scrollVolume);
+        addClassByElement(target , 'fadeInL2R');
+    }else{
+        // removeClassById(elementId , 'fadeInL2R');
     }
 }
 

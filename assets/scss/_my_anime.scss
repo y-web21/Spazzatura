@@ -1,3 +1,13 @@
+@keyframes key-content-fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 @keyframes key-sidetab-fadein {
     0% {
         opacity: 0;
