@@ -5,6 +5,7 @@
 
 // ============= local variables ===============
 $mainVisualHeight: 480px;
+$globalNavWidth: 480px;
 $globalNavHeight: 80px;
 $circleNavDiameter:100px;
 $circleNavInitX: -200px;
@@ -20,6 +21,7 @@ $clrSub1:#fff4ea;
 $clrSub2:#6b6155;
 $clrText: #eee;
 $carmine: #BE0039;
+$purple: #a03c8c;
 // $snsColor: (
 //   'twitter' : #55acee,
 //   'facebook': #3b5998
@@ -33,7 +35,10 @@ $frameThick: 5px;
     &::after , &::before{
         box-sizing: border-box;
     }
-    visibility: hidden;
+    // visibility: hidden;
+}
+html {
+  font-size: 100%;
 }
 
 body {
@@ -491,7 +496,8 @@ $imgSizeKurageY: 200px;
         justify-content: space-between;
         padding: 0;
         margin: 0;
-        width: 100%;
+        // width: 100%;
+        width: $globalNavWidth;
         height: $globalNavHeight;
         top: $mainVisualHeight;
         left: 0;
@@ -514,11 +520,11 @@ $imgSizeKurageY: 200px;
     & li {
         list-style: none;
         height: 100%;
-        background-color: $clrMain;
-        box-shadow: -3px -3px 5px 0px #0005 inset;
+        // background-color: $clrMain;
+        // box-shadow: -3px -3px 5px 0px #0005 inset;
         transition: 500ms;
-        width: $containerWidth / 5 - 10;
-
+        // width: $containerWidth / 5 - 10;
+        width: $globalNavWidth / 5
         @include lg-l {
             width: calc(100% / 5);
         }
@@ -533,8 +539,8 @@ $imgSizeKurageY: 200px;
             padding: 18px 0;
             line-height: 1;
             height: 100%;
-            color: #ddd;
-            text-shadow: 0px 0px 20px #ddd;
+            color: $purple;
+            text-shadow: 0px 0px 20px $purple;
             text-align: center;
             vertical-align: middle;
 
