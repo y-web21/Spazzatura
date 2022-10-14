@@ -524,7 +524,7 @@ $imgSizeKurageY: 200px;
         // box-shadow: -3px -3px 5px 0px #0005 inset;
         transition: 500ms;
         // width: $containerWidth / 5 - 10;
-        width: $globalNavWidth / 5
+        width: $globalNavWidth / 5;
         @include lg-l {
             width: calc(100% / 5);
         }
@@ -644,7 +644,13 @@ $imgSizeKurageY: 200px;
 }
 
 // ============= mainVisual ===============
-h1{
+.main_vis{
+
+    &_wrap{
+
+    }
+
+
     // font-family: 'Great Vibes', cursive;
     font-family: 'Tangerine', cursive;
     // font-family: 'Parisienne', cursive;
@@ -683,7 +689,6 @@ h1{
     // height: $mainVisualHeight;
     & .frame {
         position: relative;
-        box-sizing: border-box;
         border: $frameThick solid $clrMain;
         width: 100%;
         height: 100%;
@@ -692,8 +697,8 @@ h1{
     & img {
         position: absolute;
         // width: $containerWidth - $frameThick * 2 -500px;
-        width: 930px;
-        height: 390px;
+        // width: 930px;
+        // height: 390px;
         top: 0%;
         filter:brightness(70%);
     }

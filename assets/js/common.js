@@ -229,19 +229,19 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
         //fixed
         nav.position = 'fixed';
         nav.top = '0px';
-        nav.left = navLeft + 'px';
+        // nav.left = navLeft + 'px';
         nav.zIndex = 9999;
-        nav.width = width + 'px';
-        nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
+        // nav.width = width + 'px';
+        // nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
         addClassById(elementId , 'childLi5Width');
     }else{
         //static
         nav.position = 'static';
         nav.top = '0px';
-        nav.left = '0px';
+        // nav.left = '0px';
         nav.zIndex = 'auto';
-        nav.width = '100%';
-        nav.boxShadow = '0 0';
+        // nav.width = '100%';
+        // nav.boxShadow = '0 0';
         // console.log(document.getElementById(elementId).children);
         removeClassById(elementId , 'childLi5Width');
     }
