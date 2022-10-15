@@ -2,57 +2,203 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Spazzatura</title>
-  <!-- <link rel="stylesheet" href="./css/goodstyle.css"> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://unpkg.com/sanitize.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="./css/common.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script src="js/common.js"></script>
+    <meta charset="UTF-8">
+    <title>Spazzatura</title>
+    <!-- <link rel="stylesheet" href="./css/goodstyle.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/sanitize.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/common.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="js/common.js"></script>
 </head>
 
 <body>
-  <div class="pos-r" style="height: 7px;"></div>
-  <div class="bg_subClr1_second"></div>
-  <div class="container">
-    <h1 class="my-1 ta-c">Spa<span>zz</span>atura</a></h1>
-    <!-- <h1 class="ta-c"><img src="./images/logo.png" alt="" width="500" height="300"></h1> -->
-  </div>
-  <nav class="container global_menu">
-    <div class="sticky_nav_wrap" id="stickyWrap">
-    <ul class="mx-auto my-0 d-n-ls-l" id="stickyNav">
-      <li id="gnav1"><a href="index.html">ホーム</a></li>
-      <li id="gnav2"><a href="menu.html">メニュー</a></li>
-      <li id="gnav3"><a href="course.html">コース</a></li>
-      <li id="gnav4"><a href="access.html">アクセス</a></li>
-      <li id="gnav5"><a href="reserve.html">ご予約</a></li>
-    </ul>
+    <div class="pos-r" style="height: 7px;"></div>
+    <!-- <div class="bg_subClr1"></div> -->
+    <div class="h-200 bgc_sub1">
+        <div class="container-fluid main_vis_wrap_second"></div>
+        <h1 class="mx-0 my-0 ta-c main_vis_text main_vis_text_second">Spa<span>zz</span>atura</h1>
     </div>
-  </nav>
+    <nav class="container-fluid global_menu sticky_nav_wrap" id="stickyNav">
+        <ul class="mx-auto my-0">
+            <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
+            <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
+            <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
+            <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
+            <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
+        </ul>
+    </nav>
+    <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
+    <section class="container home_content_text mt-8 mb-6">
+        <h2 class="w-100per mb-2 home_h2_style hr mb-4"><span>MENU</span></h2>
+        <p class="ta-c">手造り無添加にこだわり本当に美味しい料理と<br> 美味しいお酒をご用意しています。
+            <br> 米沢から、こだわりの無投薬「天元豚」を直接仕入ております。
+            <br> この天元豚を余すことなく色々な料理に変え、お皿に表現していきます。
+            <br> ハムやベーコン、ソーセージなどのシャルキュトリーからパンやデザートに至るまで、すべて無添加で手造りです。
+            <br> ワインについても、自分たちの舌で確かめて、
+            <br> 美味しいと自信をもって出せる自然派ワインを厳選しています。
+            <br> グラスワインは常時赤白3種類づつくらいの中からお選びいただいております。
+            <br>
+        </p>
+        <div class="container mt-6">
+            <h3 class="w-100per home_h2_style hr fz-125r ta-c"><span>food menu</span></h3>
+            <div class="menu_table d_flex_row my-3 mx-auto px-0">
+                <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">前菜</h3>
+                <dl>
+                    <dt>有機人参のラペ</dt>
+                    <dd>￥500</dd>
+                    <dt>ラタトゥイユ</dt>
+                    <dd>￥800</dd>
+                    <dt>白レバーのペースト</dt>
+                    <dd>￥800</dd>
+                    <dt>エスカルゴの香草バター焼き</dt>
+                    <dd>￥950</dd>
+                    <dt>田舎風パテ</dt>
+                    <dd>￥950</dd>
+                    <dt>鮮魚のカルパッチョ</dt>
+                    <dd>￥1,200～</dd>
+                </dl>
+            </div>
+            <div class="menu_table d_flex_row my-3 mx-auto px-0">
+                <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">肉の前菜</h3>
+                <dl>
+                    <dt>農園野菜のグリーンサラダ</dt>
+                    <dd>￥800</dd>
+                    <dt>ロースハムのサラダ</dt>
+                    <dd>￥1100</dd>
+                    <dt>ニース風サラダ</dt>
+                    <dd>￥1100</dd>
+                    <dt></dt>
+                    <dd></dd>
+                </dl>
+            </div>
+            <div class="menu_table d_flex_row my-3 mx-auto px-0">
+                <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">メイン</h3>
+                <dl>
+                    <dt>ラム挽肉とじゃが芋のグラタン</dt>
+                    <dd>￥1,200</dd>
+                    <dt>骨付鴨肉のコンフィ</dt>
+                    <dd>￥1,800</dd>
+                    <dt>自家製ソーセージ</dt>
+                    <dd>￥1,000</dd>
+                    <dt>牛頬肉の赤ワイン煮込み　</dt>
+                    <dd>￥1,800</dd>
+                    <dt>塩豚とレンズ豆の煮込み</dt>
+                    <dd>￥1,680</dd>
+                    <dt>ビストロ（天元豚の厚切りソテーと自家製ソーセージ）</dt>
+                    <dd>￥2,980</dd>
+                </dl>
+            </div>
+            <div class="menu_table d_flex_row my-3 mx-auto px-0">
+                <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">前菜</h3>
+                <dl>
+                    <dt>有機人参のラペ</dt>
+                    <dd>￥500</dd>
+                    <dt>ラタトゥイユ</dt>
+                    <dd>￥800</dd>
+                    <dt>白レバーのペースト</dt>
+                    <dd>￥800</dd>
+                    <dt>エスカルゴの香草バター焼き</dt>
+                    <dd>￥950</dd>
+                    <dt>田舎風パテ</dt>
+                    <dd>￥950</dd>
+                    <dt>鮮魚のカルパッチョ</dt>
+                    <dd>￥1,200～</dd>
+                </dl>
+            </div>
+            <div class="menu_table d_flex_row my-3 mx-auto px-0">
+                <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">デザート</h3>
+                <dl>
+                    <dt>クレームブリュレ</dt>
+                    <dd>￥500</dd>
+                    <dt>季節のデザート</dt>
+                    <dd>￥500</dd>
+                    <dt>とろけるガトーショコラ</dt>
+                    <dd>￥500</dd>
+                    <dt></dt>
+                    <dd></dd>
+                </dl>
+            </div>
+        </div>
 
-
-
-  <section class="container mt-6 mb-4">
-    <div class="d_flex_row mb-2 x0_ls_md information">
-      <h2 class="fw-20per fw-lslg-100per home_h2_style font_ls_sm">MENU</h2>
-      <p class="fw-80per fw-lslg-100per line"></p>
-    </div>
-  </section>
-
-
-  <footer class="container">
-    <div class="line"></div>
-    <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
-  </footer>
-
-  <!-- mobile navi用にフッターリフト -->
-  <div class="d-n-gr-lg mb-6"></div>
-
-  <!-- parts -->
-  <div class="goto_top_tag">
+        <h3 class="w-100per home_h2_style hr ta-c">ドングリ</h3>
+        <article class="container menu_table d_flex_row my-3 mx-auto px-0">
+            <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">白ワイン</h3>
+            <dl>
+                <dt>プレン・シュッド　エステザルグ共同組合</dt>
+                <dd>￥4,300</dd>
+                <dt>アルザス　フライト・エシャール</dt>
+                <dd>￥5,600</dd>
+                <dt>ボルドー・ブラン　シャトー・ド・ノエラン</dt>
+                <dd>￥4,500</dd>
+                <dt>リースリング・トラディション　ドメーヌ・リーフレ</dt>
+                <dd>￥5,900</dd>
+                <dt>シャルドネ・シェーヌ　ギィ・アリオン</dt>
+                <dd>￥5,000</dd>
+                <dt>ブルゴーニュ・キュベ・アントワン　クロード・マレシャル</dt>
+                <dd>￥7,200</dd>
+                <dt>トゥーレーヌ・ブラン・ル・プチオ　ヴァンサン・リカール</dt>
+                <dd>￥5,400</dd>
+                <dt>グラン　シャトレーヌ　ドメーヌ　シャンタル　レスキュール</dt>
+                <dd>￥7,200</dd>
+                <dt>橙ワイン</dt>
+                <dd>￥800</dd>
+                <dt>紺ワイン</dt>
+                <dd>￥800</dd>
+                <dt>ワイーン</dt>
+                <dd>￥950</dd>
+                <dt>お水</dt>
+                <dd>￥96,050</dd>
+            </dl>
+            <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">赤ワイン</h3>
+            <dl>
+                <dt>プレン・シュッド</dt>
+                <dd>￥4,500</dd>
+                <dt>アルザス　フライト・エシャール</dt>
+                <dd>￥5,700</dd>
+                <dt>ボルドー・ブラン　シャトー・ド・ノエラン</dt>
+                <dd>￥4,700</dd>
+                <dt>リースリング・トラディション　ドメーヌ・リーフレ</dt>
+                <dd>￥6,900</dd>
+                <dt>シャルドネ・シェーヌ　ギィ・アリオン</dt>
+                <dd>￥4,700</dd>
+                <dt>ブルゴーニュ・キュベ・アントワン　クロード・マレシャル</dt>
+                <dd>￥7,200</dd>
+                <dt>トゥーレーヌ・ブラン・ル・プチオ　ヴァンサン・リカール</dt>
+                <dd>￥5,600</dd>
+                <dt>グラン　シャトレーヌ　ドメーヌ　シャンタル　レスキュール</dt>
+                <dd>￥12,000</dd>
+            </dl>
+            <h3 class="w-50per home_h2_style hr-fade ta-c mb-1">ビール</h3>
+            <dl>
+                <dt>ハートランド　生</dt>
+                <dd>￥680</dd>
+                <dt>クローネンブルグ１６６４</dt>
+                <dd>￥900</dd>
+                <dt>ギネス</dt>
+                <dd>￥800</dd>
+                <dt>クローネンブルグ１６６４　ブラン</dt>
+                <dd>￥900</dd>
+            </dl>
+        </article>
+    </section>
+    <footer class="container-fulid">
+        <div class="line mb-4"></div>
+        <div class="d_flex_row footer_text">
+            <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
+            <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
+                <span class="tel">03-xxxx-xxxx</span></p>
+        </div>
+        </div>
+        </div>
+        <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
+    </footer>
+    <!-- mobile navi用にフッターリフト -->
+    <div class="d-n-gr-lg mb-6"></div>
+    <!-- parts -->
+    <!--   <div class="goto_top_tag">
     <a class="d-block" href="#">Go To Top</a>
-  </div>
+  </div> -->
 </body>
 
 </html>

@@ -3,6 +3,9 @@
 var scrollbarWidth = 0;
 var gotoTopTagTop = 0;
 console.log(window.pageYOffset );
+var Ypos = () => window.pageYOffset;
+
+
 
 //window.scrollTo(0, 300)
 
@@ -13,10 +16,18 @@ const TagVisubleVolume = 480;
 const NavHiddenVolume = 24000;
 const containerInnerWidth = 930;
 const mediaQueryLg = 992;
+var ifMqGr = (mqwidth) => window.matchMedia( "(max-width: 700px)" ).matches;
+var ifMqLs = (mqwidth) => window.matchMedia( "(min-width: 700px)" ).matches;
+
+var debugShowStyles = (element) => console.log(window.getComputedStyle(element));
+var getAbsPos = (element) => window.pageYOffset + element.getBoundingClientRect().top;
+// var getAbsPos = (element) => window.pageYOffset + element.getBoundingClientRect().top - window.innerHeight;
 
 var GnavTop;
 
 
+// ================= class test =================
+/*
 class test{
 
     constructor(elementId , rootElemetId = null){
@@ -31,15 +42,19 @@ class test{
     getId(){
         return this.id;
     }
-
-
-
 }
+
+    let obj = new test('stickyNav');
+    console.log(obj.getId());
+    obj = null;
+//*/
+// ===============================================
+
 
 window.onload = function() {
 
     // stickyNavJs用
-    GnavTop = window.pageYOffset + document.getElementById('stickyWrap').getBoundingClientRect().top;
+    GnavTop = Ypos() + document.getElementById('stickyNav').getBoundingClientRect().top;
     // all pages
     gotoTopTagTop = parseInt(getCssValue(document.querySelector('.goto_top_tag'), 'height'), 10);
     addClassActivePageLink();
@@ -57,7 +72,6 @@ window.onload = function() {
 
 // =================== Depends on jQuery=========================
 $(document).ready(function() {
-console.log(this);
 });
 $(window).on('load', function() {
 });
@@ -65,18 +79,12 @@ $(window).on('load', function() {
 // Scroll event
 var scrollTimer = 0;
 $(window).scroll(function() {
-    let obj = new test('stickyNav');
-    console.log(obj.getId());
-    obj = null;
-
-
     let mainVisualHeight = parseInt($('#mainVisual').css('height'), 10);
     let scrollVolume = $(this).scrollTop();
-//    stickyNav(scrollVolume, mainVisualHeight);
-    // stickyNav(scrollVolume, 600);
-    // chgClassWhenScrolling(scrollVolume, 600, 'stickyNav', 'jasjas');
+
     stickyNavJs(scrollVolume,'stickyNav',containerInnerWidth, mediaQueryLg);
     fadein(scrollVolume, 500, 'fadeIn0');
+
     // 処理負荷軽減
     clearTimeout(scrollTimer);
     var anchorLink = location.hash;
@@ -179,6 +187,7 @@ function chgClassWhenScrolling(scrollVolume, threshold, elementName, addClassNam
     }
 
     timer = setTimeout(function () {
+
         console.log('window resized');
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         stickyNavJs(scrollTop,'stickyNav',containerInnerWidth, mediaQueryLg);
@@ -213,7 +222,11 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
     let nav = target.style;
     let bodyWid = document.getElementsByTagName("body")[0].clientWidth;
     let navWid = document.getElementById(elementId).clientWidth;
+    // 中央出し
     let navLeft = (bodyWid - navWid) / 2;
+    let navTop = getAbsPos(target);
+
+    console.log(window.outerHeight,getAbsPos(target));
 
     if (disableWidth > bodyWid){
         // mobile
@@ -225,14 +238,17 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
         nav.removeProperty('box-shadow');
         return;
     }
-    if( GnavTop < scrollVolume){
+    //Fixedにする位置が画面端ちょうど画面端に来ると、FixedとStaticに入れ替わりがずっと発生するバグがある
+    // ナビのポジションと残画面領域Yから、Fixedにしないようにする条件が必要
+    let mainVisAndGnavHeight = 380;
+    if( GnavTop < scrollVolume && document.body.clientHeight - window.innerHeight > mainVisAndGnavHeight){
         //fixed
         nav.position = 'fixed';
         nav.top = '0px';
         // nav.left = navLeft + 'px';
         nav.zIndex = 9999;
-        // nav.width = width + 'px';
-        // nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
+        nav.width = '100%';
+        nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
         addClassById(elementId , 'childLi5Width');
     }else{
         //static
@@ -240,8 +256,8 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
         nav.top = '0px';
         // nav.left = '0px';
         nav.zIndex = 'auto';
-        // nav.width = '100%';
-        // nav.boxShadow = '0 0';
+        nav.width = '100%';
+        nav.boxShadow = '0 0';
         // console.log(document.getElementById(elementId).children);
         removeClassById(elementId , 'childLi5Width');
     }
@@ -250,7 +266,6 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
 function fadein(scrollVolume){
 
     let targets = document.getElementsByClassName('fadeIn');
-    console.log(targets);
     for(let i=0;i<targets.length;i++){
         gachapin(scrollVolume , targets[i] );
     }
@@ -258,11 +273,10 @@ function fadein(scrollVolume){
 
 function gachapin(scrollVolume, target){
     // let target = document.getElementById(elementId);
-    let absPos = window.pageYOffset + target.getBoundingClientRect().top - window.innerHeight;
+    let absPos = getAbsPos(target);
 
-    console.log(target.id);
     if( absPos < scrollVolume ){
-        console.log(absPos,'>',scrollVolume);
+        // console.log(absPos,'>',scrollVolume);
         addClassByElement(target , 'fadeInL2R');
     }else{
         // removeClassById(elementId , 'fadeInL2R');

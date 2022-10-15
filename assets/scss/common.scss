@@ -1,27 +1,45 @@
-
-
 @import "my_variables", "my_mixins", "my_common_style", "fonts";
 
+$imagesPath: "../images/";
+@function imgUrl($fileName) {
+  @return url($imagesPath + $fileName);
+}
 
-// ============= local variables ===============
-$mainVisualHeight: 480px;
-$globalNavWidth: 480px;
+
+// ============= gloabal scope variables ===============
+$mainVisualHeight: 50vh;
+$secondVisualHeight: 200px;
+$globalNavWidth: 990px;
 $globalNavHeight: 80px;
 $circleNavDiameter:100px;
 $circleNavInitX: -200px;
 $circleNavSplitX: 50px;
 $sideTabHeight:3.5rem;
 $gotoTopHeight: 50vh;
+$sideTabWidth: 10rem;
+$sideTabClr: #444;
 $clrActivePage: #90c;
 @import "my_anime";
 
-$containerWidth: 960px;
+$containerWidth: 1200px;
 $clrMain:#432;
 $clrSub1:#fff4ea;
 $clrSub2:#6b6155;
+$clrSub3: darken($clrSub2 , 15%);
 $clrText: #eee;
 $carmine: #BE0039;
 $purple: #a03c8c;
+$clrFormIncorrect:red;
+$clrFormCorrect:#95fe72;
+$clr:(
+    'hr': $clrMain,
+    'text': $clrText,
+    'main': $clrMain,
+    'sub1': $clrSub1,
+    'sub2': $clrSub2,
+    'sub3': $clrSub3,
+    'btn': $clrSub2
+);
 // $snsColor: (
 //   'twitter' : #55acee,
 //   'facebook': #3b5998
@@ -30,11 +48,141 @@ $purple: #a03c8c;
 $clrAccent: #ffffff;
 $frameThick: 5px;
 
+
+// ============= test section ===============
+$prefix: ".maku";
+
+#{$prefix}-shout {
+  font-size: larger;
+}
+
+$icons: twitter, facebook, googleplus, instagram;
+
+@each $icon in $icons {
+    .icon-#{$icon} {
+        background-image: url("img/#{$icon}.png");
+    }
+}
+
+$icons: twitter, facebook, googleplus, instagram;
+@each $icon in $icons {
+    // インデックスキーを取得
+    $index: index($icons, $icon);
+    // 高さを指定
+    $heigth: 50px;
+    // 2つ目から50pxずつ引いてゆく
+    $position: ($index * $heigth - $heigth) * -1;
+
+    .icon-#{$icon} {
+        background-position: left $position;
+    }
+}
+
+// コンパイル後（CSS）
+.icon-twitter {
+    background-position: left 0px;
+}
+.icon-facebook {
+    background-position: left -50px;
+}
+.icon-googleplus {
+    background-position: left -100px;
+}
+.icon-instagram {
+    background-position: left -150px;
+}
+
+//配列をひとつずつ取得したい場合は nth関数 を使います。
+.twitter {
+    // リストの1番目を取得
+    content: "#{nth($icons, 1)}"; // twitter
+}
+
+// //classの継承
+// %box-base {
+//   margin: 10px;
+//   padding: 10px;
+// }
+
+// .box_red {
+//   @extend %box-base;
+//   color: #f00;
+// }
+
+// .box_blue {
+//   @extend %box-base;
+//   color: #00f;
+// }
+
+// // Mixinでもいい。CSSへの展開の仕方が違うが、効果は同じ
+// @mixin basebox {
+//   margin: 10px;
+//   padding: 10px;
+// }
+// .box_red {
+//   @include basebox;
+//   color: #f00;
+// }
+
+// .box_blue {
+//   @include basebox;
+//   color: #00f;
+// }
+
+// 関数も使用できる
+// $imagesPath: "../images/";
+// @function printUrl($fileName) {
+//   @return url($imagesPath + $fileName);
+// }
+
+// .icon {
+//   background: printUrl('icon.png') no-repeat center center;
+// }
+// // 出力
+// .icon {
+//   background: url("../images/icon.png") no-repeat center center;
+// }
+
+// if文もあるよ
+// @for $i from 1 through 5 {
+//   .box_#{$i} {
+//     margin: {
+//       // 普通の分岐
+//       @if $i == 1 {
+//         bottom: 5px;
+//       }
+//       @else {
+//         bottom: $i * 10px;
+//       }
+//     }
+//     // if関数まである
+//     padding: {
+//       left: if($i == 1, 5px, $i * 5px);
+//     }
+//   }
+// }
+
+// // 出力
+// .box1 {
+//   margin-bottom: 5px;
+//   padding-left: 5px;
+// }
+
+// .box2 {
+//   margin-bottom: 20px;
+//   padding-left: 10px;
+// }
+
+
+// ============= tag scope ===============
+
+
 *{
     box-sizing: border-box;
     &::after , &::before{
         box-sizing: border-box;
     }
+    outline: gray 4px;
     // visibility: hidden;
 }
 html {
@@ -49,9 +197,9 @@ body {
 }
 
 
-h2{
+h2,h3{
     margin: 0;
-    color: $clrText;
+    color: map-get($clr, 'text');
 }
 
 a {
@@ -65,8 +213,12 @@ li, p, dd, dt, h3, h4 {
     //font-family: 'Noto Serif JP', serif;
 }
 
+p{
+    color: map-get($clr, 'text');
+}
+
 dt {
-    color: $clrText;
+    color: map-get($clr, 'text');
 }
 dd {
     color: #000;
@@ -245,24 +397,25 @@ dd {
     }
 }
 
+.fx-AI-start{
+    align-items: start !important;
+}
+
 // grid layoutで対応可能
 .d_flex_row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: space-between;
-    align-items: flex-start;
+    align-content: space-betwen;
+    align-items: center;
     // align-items: center;
 
     & > img{
-        flex:0 1 auto;
+        // flex:0 1 auto;
     }
 }
 
-.bg-white{
-    background-color: #fff;
-}
 
 // ============= js用パーツ ===============
 .nav_active_page{
@@ -281,7 +434,9 @@ dd {
     visibility: hidden;
 }
 
-.childLi5Width{
+//コンテナをウインドウ幅(フルサイズ)とするためオミット
+.Li5Width{
+    width: 100%;
     //優先度の関係で属性セレクタとする
     & li[id^="gnav"]{
         &:not(:last-of-type){
@@ -298,9 +453,148 @@ dd {
 }
 
 
-// ============= 汎用 ===============
+// ============= common ===============
 .bgc_main{
     background-color: $clrMain;
+}
+
+.bgc_sub1{
+    background-color: map-get($clr, 'sub1')
+}
+
+.bgc_sub2{
+    background-color: map-get($clr, 'sub2')
+}
+
+.bgc_sub3{
+    background-color: map-get($clr, 'sub3')
+}
+
+@mixin bgc_sub1{background-color: map-get($clr, 'sub1')}
+@mixin bgc_sub2{background-color: map-get($clr, 'sub2')}
+@mixin bgc_sub3{background-color: map-get($clr, 'sub3')}
+@mixin clr_sub1{color: map-get($clr, 'sub1')}
+@mixin clr_sub2{color: map-get($clr, 'sub2')}
+@mixin clr_sub3{color: map-get($clr, 'sub3')}
+
+.clr_main{
+    color: $clrMain;
+}
+
+.clr_sub1{
+    color: map-get($clr, 'sub1')
+}
+
+.clr_sub2{
+    color: map-get($clr, 'sub2')
+}
+
+.clr_sub3{
+    color: map-get($clr, 'sub3')
+}
+
+
+
+@mixin fonts() {
+    font-family: 'Sawarabi Mincho', sans-serif;
+}
+@mixin fonts_eng() {
+    font-family: 'Tangerine', cursive;
+}
+
+
+.ff_theme{
+    @include fonts;
+}
+
+
+.button {
+  border-radius: 1px;
+  background-color: map-get($clr, 'main');
+  box-shadow: 0 6px map-get($clr, 'btn');
+
+    & a{
+      color: map-get($clr, 'text');
+      font-size: 2rem;
+      display: block;
+      @include fonts_eng;
+      padding-bottom: 0.3rem;
+    }
+
+    &:hover {
+        box-shadow: 0 5px map-get($clr, 'btn');
+        top: 1px;
+        opacity: 0.9;
+    }
+    &:active {
+        box-shadow: 0 0 map-get($clr, 'btn');
+        top: 6px;
+    }
+}
+
+
+.button3 {
+  border-radius: 2px;
+  box-shadow: 0 6px map-get($clr, 'btn');
+
+    &:hover {
+        box-shadow: 0 5px map-get($clr, 'btn');
+        top: 1px;
+    }
+    &:active {
+        box-shadow: 0 0 map-get($clr, 'btn');
+        top: 6px;
+    }
+}
+
+.button-slide {
+    border: 3px solid $carmine;
+    background-color: transparent;
+    color: #fff;
+    transition: 1000ms all;
+    position: relative;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: $carmine;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: 1000ms all;
+        transform-origin: 50% 50%;
+        z-index: -1;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #FFF;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 1000ms;
+        transform: scale(1, 0);
+        transform-origin: 0 50%;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &:hover {
+        color: $carmine;
+        transition: all 1000ms;
+    }
+
+    &:hover::after {
+        transform: scale(1, 1);
+        opacity: 1;
+        transition: all 1000ms;
+
+    }
 }
 
 .sticky_menu {
@@ -314,12 +608,7 @@ dd {
     // jsで付与
     // position: fixed;
 
-    & > li > a{
-    }
 }
-
-$sideTabWidth: 10rem;
-$sideTabClr: #444;
 
 .goto_top_tag {
     padding: 0 1.2rem 0 0;
@@ -479,16 +768,9 @@ $imgSizeKurageY: 200px;
 }
 
 // ============= header ===============
-.sticky_nav_wrap{
-    height: $globalNavHeight;
-
-    @include lg-l {
-        height: 0;
-    }
-}
-
 // mobile時のフッターナビも内包
 .global_menu {
+    background-color: map-get($clr, 'hr');
 
     & ul {
         display: flex;
@@ -497,7 +779,8 @@ $imgSizeKurageY: 200px;
         padding: 0;
         margin: 0;
         // width: 100%;
-        width: $globalNavWidth;
+        background-color: map-get($clr, 'hr');
+        max-width: $globalNavWidth;
         height: $globalNavHeight;
         top: $mainVisualHeight;
         left: 0;
@@ -512,6 +795,7 @@ $imgSizeKurageY: 200px;
             z-index: 999;
             top: auto;
             bottom: 0px;
+            width: 100%;
             box-shadow: 0px 0px 2px 1px #0005;
         }
     }
@@ -520,13 +804,13 @@ $imgSizeKurageY: 200px;
     & li {
         list-style: none;
         height: 100%;
-        // background-color: $clrMain;
         // box-shadow: -3px -3px 5px 0px #0005 inset;
         transition: 500ms;
         // width: $containerWidth / 5 - 10;
         width: $globalNavWidth / 5;
         @include lg-l {
             width: calc(100% / 5);
+            background-color: $clrMain;
         }
 
         &:hover {
@@ -539,16 +823,17 @@ $imgSizeKurageY: 200px;
             padding: 18px 0;
             line-height: 1;
             height: 100%;
-            color: $purple;
-            text-shadow: 0px 0px 20px $purple;
+            // color: $purple;
+            color: map-get($clr, 'text');
+            text-shadow: 0px 0px 4px $purple;
             text-align: center;
-            vertical-align: middle;
 
             @include lg-l {
                 padding: 14px 0;
+            }
+            @include sm-l {
                 font-size: 0.8rem;
             }
-
             &::after {
                 padding: 4px;
                 font-family: 'Tangerine', cursive;
@@ -585,8 +870,8 @@ $imgSizeKurageY: 200px;
 .home_h2_style{
     letter-spacing: 0.5rem;
     font-weight: 1;
-    font-family: 'Great Vibes', cursive;
-    font-family: 'Tangerine', cursive;
+    // font-family: 'Great Vibes', cursive;
+    // font-family: 'Tangerine', cursive;
     // font-family: 'Parisienne', cursive;
     // font-family: 'Italianno', cursive;
     // font-family: 'Allura', cursive;
@@ -596,12 +881,64 @@ $imgSizeKurageY: 200px;
     // font-family: 'Herr Von Muellerhoff', cursive;
     // font-family: 'Mr De Haviland', cursive;
     font-family: 'Sawarabi Mincho', sans-serif;
-    transform: scale(0.8, 1);
-    // margin-left: -50px;
     padding-left: 0;
     padding-right: 0;
-    display: block;
+    & span{
+        transform: scale(0.8, 1);
+    }
 }
+
+// hr tests
+.hr {
+    display: flex;
+    align-items: center;
+    text-align: center; /* for no-flexbox browsers */
+
+    &:before, &:after {
+        border-top: map-get($clr, 'hr') solid 1px;
+        content: "";
+        display: inline; /* for IE */
+        flex-grow: 1;
+    }
+    &:before{
+        margin-right: 0.5em;
+    }
+    &:after {
+        margin-left: 0.5em;
+    }
+}
+
+
+.hr-r {
+    display: flex;
+    align-items: center;
+    text-align: left; /* for no-flexbox browsers */
+
+    &:after {
+        border-top: map-get($clr, 'hr') solid 1px;
+        content: "";
+        display: inline; /* for IE */
+        flex-grow: 1;
+    }
+    &:after {
+        margin-left: 0.5em;
+    }
+}
+
+.pdauto{
+    @include lg-g {
+        padding: {
+            // top:calc(5%);
+            left:calc(10%);
+            // bottom: auto;
+            right:auto
+        }
+    }
+    @include lg-l {
+        padding-left: auto;
+    }
+}
+
 
 // ============= access ===============
 .dltable {
@@ -643,42 +980,168 @@ $imgSizeKurageY: 200px;
     }
 }
 
+// ============= menu ===============
+.menu_table {
+    & dl {
+        display: flex;
+        flex-wrap: wrap;
+        // border: 1px solid #ccc;
+        border-top: none;
+        width: 100%;
+        background-color: map-get($clr, 'sub3');
+        color: map-get($clr, 'sub1');
+        // box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
+    }
+
+    & dt {
+        // background: $clrMain;
+        width: 35%;
+        @include md-l {
+            width:70%;
+            display: block;
+            padding: 1rem !important;
+        };
+        justify-content: start;
+        align-items: center;
+
+        &:nth-of-type(even){
+            padding-left: 3rem;
+        }
+
+        // &:nth-of-type(2){
+        //     border-bottom: 1px solid #ccc;
+        // }
+    }
+
+    & dd {
+        text-align: right;
+        // background: $clrSub1;
+        // border-left: 1px solid #ccc;
+        margin: 0;
+        width: 15%;
+        justify-content: end;
+        align-items: center;
+
+        @include md-l {
+            width:30%;
+            padding: 1rem !important;
+        };
+
+        &:nth-of-type(odd){
+            padding-right: 3rem;
+        }
+
+    }
+    & dt, & dd{
+        height: 3.6rem;
+        color: map-get($clr, 'text');
+        padding: 0.8rem;
+        box-sizing: border-box;
+        border-bottom: 1px solid #ccc;
+
+        @include md-g {
+            &:nth-of-type(4n-3),&:nth-of-type(4n-2){
+                background-color: map-get($clr, 'hr');
+            }
+        }
+
+        @include md-l {
+            padding: 0.2rem !important;
+
+            &:nth-of-type(2n-1){
+                background-color: map-get($clr, 'hr');
+            }
+        }
+
+    }
+}
+
+
 // ============= mainVisual ===============
 .main_vis{
 
     &_wrap{
+        position: relative;
+        width: 100%;
+        height: $mainVisualHeight;
+        background: {
+            image: imgUrl("gyu-lamp.jpg");
+            repeat: no-repeat;
+            size: cover;
+            position: bottom 40% left 50%;
+        }
+        // background: no-repeat center/80% imgUrl("gyu-lamp.jpg");
+        filter:brightness(70%);
 
+        &_second {
+            position: relative;
+            width: 100%;
+            height: $secondVisualHeight;
+            background: {
+                image: imgUrl("gyu-lamp.jpg");
+                repeat: no-repeat;
+                size: cover;
+                position: bottom 40% left 50%;
+            }
+            filter:brightness(70%);
+        }
+
+        & img{
+            width: 100%;
+        }
     }
 
 
-    // font-family: 'Great Vibes', cursive;
-    font-family: 'Tangerine', cursive;
-    // font-family: 'Parisienne', cursive;
-    // font-family: 'Italianno', cursive;
-    // font-family: 'Allura', cursive;
-    // font-family: 'Pinyon Script', cursive;
-    // font-family: 'Alex Brush', cursive;
-    // font-family: 'Petit Formal Script', cursive;
-    // font-family: 'Herr Von Muellerhoff', cursive;
-    // font-family: 'Mr De Haviland', cursive;
-    font-size: 7rem;
-    font-weight: 2000;
+    &_text{
 
-    &::first-letter{
-        font-size: 8rem;
-        color: $carmine;
-    }
+        // &:before{
+        //     content:'';
+        //     position: relative;
+        // }
 
-    & span{
-        color: $carmine;
-    }
-
-    @include sm-l {
-        font-size: 5rem;
+        position: absolute;
+        top: $mainVisualHeight / 2;
+        left: 50%;
+        transform:translateX(-50%) translateY(-50%);
+        // font-family: 'Great Vibes', cursive;
+        font-family: 'Tangerine', cursive;
+        // font-family: 'Parisienne', cursive;
+        // font-family: 'Italianno', cursive;
+        // font-family: 'Allura', cursive;
+        // font-family: 'Pinyon Script', cursive;
+        // font-family: 'Alex Brush', cursive;
+        // font-family: 'Petit Formal Script', cursive;
+        // font-family: 'Herr Von Muellerhoff', cursive;
+        // font-family: 'Mr De Haviland', cursive;
+        font-size: 7rem;
+        font-weight: 1000;
+        color: #FFF;
+        text-shadow: 1px 1px 3px #0005;
+        z-index: 2;
+        width: 100%;
 
         &::first-letter{
-            font-size: 6rem;
+            font-size: 8rem;
             color: $carmine;
+        }
+
+        & span{
+            color: $carmine;
+        }
+
+        @include sm-l {
+            font-size: 5rem;
+
+            &::first-letter{
+                font-size: 6rem;
+                color: $carmine;
+            }
+        }
+
+        &_second {
+            position: absolute;
+            top: 100px;
+            color: #fff;
         }
     }
 }
@@ -765,7 +1228,9 @@ $catchCircleDiameter: 100px;
 
 // ============= section ===============
 .imgBox{
-    width: 400px;
+    max-width: 800px;
+    width: 100%;
+    // display: inline;
 }
 
 $centerTextHeight: 80px;
@@ -809,35 +1274,6 @@ $centerTextHeight: 80px;
     }
 }
 
-
-// div要素の入れ子で謎の隙間ができる問題
-.welcome h2{
-    margin-left: -48px;
-}
-.menu h2{
-    margin-left: -35px;
-}
-.staff h2{
-    margin-left: -35px;
-}
-.information h2{
-    margin-left: -60px;
-}
-.welcome p{
-    // margin-right: -48px;
-}
-.menu p{
-    // margin-left: -35px;
-}
-.staff p{
-    // margin-left: -0px;
-}
-.information p{
-    // margin-left: -60px;
-}
-
-
-
 .line{
     // position: absolute;
     content:'';
@@ -848,10 +1284,12 @@ $centerTextHeight: 80px;
 }
 
 .home_content_text{
-    color: $clrText;
+    color: map-get($clr, 'text');
     font-size: 1rem;
     line-height: 3;
+}
 
+.text_ls_lg_center{
     @include lg-l {
         padding: 0 !important;
         text-align: center;
@@ -917,15 +1355,15 @@ $parallaxBgRatio: 2;
 
 // form ブラウザ依存属性リセット
 input, button, textarea, select {
-  // margin: 0;
-  // padding: 0;
-  // background: none;
-  // border: none;
-  // border-radius: 0;
-  // outline: none;
-  // -webkit-appearance: none;
-  // -moz-appearance: none;
-  // appearance: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 form{
@@ -940,9 +1378,6 @@ input,select{
     // border: 2px solid green;
     // border-radius: 99px;
 }
-
-$clrFormIncorrect:red;
-$clrFormCorrect:#95fe72;
 
 .inputCorrect{
     outline: 0;
@@ -1093,7 +1528,7 @@ input[type="submit"] {
             font-size: 1rem;
             letter-spacing: 0.8rem;
             // text-transform: uppercase;
-            color: $clrText;
+            color: map-get($clr, 'text');
 
             @include md-l {
                 font-size: 0.8em;
@@ -1102,7 +1537,41 @@ input[type="submit"] {
 
         }
     }
+}
 
+.footer_text{
+
+    @include lg-l {
+        text-align: center;
+    }
+
+    & .tel{
+        font-size: 1.3em;
+    }
+
+    &_logo{
+        font-family: 'Tangerine', cursive;
+        font-size: 4rem;
+        font-weight: 1000;
+        color: #FFF;
+        text-shadow: 1px 1px 3px #0005;
+        z-index: 2;
+        width: 100%;
+        text-align: right;
+
+        @include lg-l {
+            text-align: center;
+        }
+
+        &::first-letter{
+            font-size: 5rem;
+            color: $carmine;
+        }
+
+        & span{
+            color: $carmine;
+        }
+    }
 }
 
 $globalNavHeightMobile: 4rem;
