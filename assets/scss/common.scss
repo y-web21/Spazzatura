@@ -18,11 +18,11 @@ $sideTabHeight:3.5rem;
 $gotoTopHeight: 50vh;
 $sideTabWidth: 10rem;
 $sideTabClr: #444;
-$clrActivePage: #90c;
 @import "my_anime";
 
 $containerWidth: 1200px;
 $clrMain:#432;
+$clrMainLight: lighten($clrMain, 5%);
 $clrSub1:#fff4ea;
 $clrSub2:#6b6155;
 $clrSub3: darken($clrSub2 , 15%);
@@ -31,13 +31,16 @@ $carmine: #BE0039;
 $purple: #a03c8c;
 $clrFormIncorrect:red;
 $clrFormCorrect:#95fe72;
+$clrActivePage: darken($carmine ,10%);
 $clr:(
     'hr': $clrMain,
     'text': $clrText,
     'main': $clrMain,
+    'mainHover': $clrMainLight,
     'sub1': $clrSub1,
     'sub2': $clrSub2,
     'sub3': $clrSub3,
+    'accent': $carmine,
     'btn': $clrSub2
 );
 // $snsColor: (
@@ -455,7 +458,7 @@ dd {
 
 // ============= common ===============
 .bgc_main{
-    background-color: $clrMain;
+    background-color: map-get($clr, 'main')
 }
 
 .bgc_sub1{
@@ -770,7 +773,7 @@ $imgSizeKurageY: 200px;
 // ============= header ===============
 // mobile時のフッターナビも内包
 .global_menu {
-    background-color: map-get($clr, 'hr');
+    background-color: map-get($clr, 'main');
 
     & ul {
         display: flex;
@@ -779,7 +782,7 @@ $imgSizeKurageY: 200px;
         padding: 0;
         margin: 0;
         // width: 100%;
-        background-color: map-get($clr, 'hr');
+        // background-color: map-get($clr, 'main');
         max-width: $globalNavWidth;
         height: $globalNavHeight;
         top: $mainVisualHeight;
@@ -806,14 +809,15 @@ $imgSizeKurageY: 200px;
         height: 100%;
         // box-shadow: -3px -3px 5px 0px #0005 inset;
         transition: 500ms;
-        // width: $containerWidth / 5 - 10;
-        width: $globalNavWidth / 5;
+        width: $containerWidth / 5 - 50;
+        // width: $globalNavWidth / 5;
+        background-color: map-get($clr, 'main');
         @include lg-l {
             width: calc(100% / 5);
-            background-color: $clrMain;
         }
 
         &:hover {
+            // background-color: map-get($clr, 'mainHover');
             transition: 500ms;
             opacity: 0.85;
         }
@@ -863,7 +867,7 @@ $imgSizeKurageY: 200px;
     content: 'access';
 }
 #gnav5 > a::after{
-    content: 'reserve';
+    content: 'message';
 }
 
 // ============= home ===============
@@ -906,6 +910,15 @@ $imgSizeKurageY: 200px;
     &:after {
         margin-left: 0.5em;
     }
+
+    &-fade {
+        // background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
+        background: linear-gradient(to left ,rgba(0,0,0,0), map-get($clr, 'main') 50%, rgba(0,0,0,0));
+        background-repeat: no-repeat;
+        background-position: 50% 100%;
+        background-size: 100% 2px;
+        padding: 10px;
+    }
 }
 
 
@@ -924,6 +937,8 @@ $imgSizeKurageY: 200px;
         margin-left: 0.5em;
     }
 }
+
+
 
 .pdauto{
     @include lg-g {
@@ -995,7 +1010,7 @@ $imgSizeKurageY: 200px;
 
     & dt {
         // background: $clrMain;
-        width: 35%;
+        width: 32%;
         @include md-l {
             width:70%;
             display: block;
@@ -1018,7 +1033,7 @@ $imgSizeKurageY: 200px;
         // background: $clrSub1;
         // border-left: 1px solid #ccc;
         margin: 0;
-        width: 15%;
+        width: 18%;
         justify-content: end;
         align-items: center;
 
@@ -1033,7 +1048,7 @@ $imgSizeKurageY: 200px;
 
     }
     & dt, & dd{
-        height: 3.6rem;
+        // height: 3.6rem;
         color: map-get($clr, 'text');
         padding: 0.8rem;
         box-sizing: border-box;
@@ -1216,15 +1231,83 @@ $catchCircleDiameter: 100px;
 //  }
 //
 //
-//  .gnav{
-//      &_anim{
-//          @include hover-underline($type: slide, $dir: center, $weight: 6px, $color: #eee);
-//      }
-//      &_style{
-//          width: 8rem;
-//          height: $globalNavHeight;
-//      }
-//  }
+ .gnav{
+     &_anim{
+         @include hover-underline-slow($type: slide, $dir: center, $weight: 5px, $color: map-get($clr, 'text') ,$pd-btm:  11px , $time: 500ms);
+     }
+     // &_style{
+     //     width: 8rem;
+     //     height: $globalNavHeight;
+     // }
+ }
+
+// ============= message ===============
+.message {
+
+    &_wrap {
+        outline: 1px solid white;
+        outline-offset: -6px;
+        width: 100%;
+        max-width: 1138px;
+        max-height: 450px;
+        min-height: 410px;
+        height: 38vw;
+        box-sizing: border-box;
+        // font-size: 0;
+        overflow: hidden;
+
+        @include lg-l {
+            // height: 800px;
+            max-height: 800px;
+            height: auto;
+        }
+    }
+
+    &_title {
+        letter-spacing: 0.2rem;
+        font-weight: 1;
+        // font-family: 'Great Vibes', cursive;
+        // font-family: 'Tangerine', cursive;
+        // font-family: 'Parisienne', cursive;
+        // font-family: 'Italianno', cursive;
+        // font-family: 'Allura', cursive;
+        // font-family: 'Pinyon Script', cursive;
+        // font-family: 'Alex Brush', cursive;
+        // font-family: 'Petit Formal Script', cursive;
+        // font-family: 'Herr Von Muellerhoff', cursive;
+        // font-family: 'Mr De Haviland', cursive;
+        font-family: 'Sawarabi Mincho', sans-serif;
+        padding-left: 0;
+        padding-right: 0;
+        transform: scale(0.8, 1);
+        // width: 150%;
+    }
+
+    &_text {
+        margin: 0;
+        padding: 1rem;
+        display: inline-block;
+        background-color: map-get($clr, 'main');
+        vertical-align: top;
+        width: 35%;
+        height: 100%;
+        @include lg-l {
+            width: 100%;
+            // height: 30%;
+        }
+    }
+
+    &_image {
+        display: inline-block;
+        max-width: 800px;
+        width: 65%;
+        @include lg-l {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+}
 
 // ============= section ===============
 .imgBox{

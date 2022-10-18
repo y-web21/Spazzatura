@@ -143,6 +143,64 @@
   }
 }
 
+@mixin hover-underline-slow($type: fade, $dir: null, $weight: 2px, $color: #000 , $pd-btm: 2px ,$time: 300ms) {
+  @if $dir == fffl {
+    @if $type == fade {
+      $dir: 'top';
+    } @else if $type == slide {
+      $dir: 'center';
+    }
+  }
+
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  &::after {
+    position: absolute;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: $weight;
+    background: $color;
+    @if $type == fade {
+      transition: $time;
+      opacity: 0;
+      visibility: hidden;
+      @if $dir == bottom {
+        bottom: $weight - $pd-btm / 2;
+      } @else {
+        bottom: $weight - $pd-btm / 2;
+      }
+    } @else if $type == slide {
+      bottom: $weight - $pd-btm / 2;
+      transform: scale(0, 1);
+      transition: transform $time;
+      @if $dir == left-right or $dir == right-in-left {
+        transform-origin: left top;
+      } @else if $dir == right-left or $dir == left-in-right {
+        transform-origin: right top;
+      } @else {
+        transform-origin: center top;
+      }
+    }
+  }
+  &:hover::after {
+    @if $type == fade {
+      bottom: $weight - $pd-btm / 2;
+      opacity: 1;
+      visibility: visible;
+    } @else if $type == slide {
+      @if $dir == left-in-right {
+        transform-origin: left top;
+      } @else if $dir == right-in-left {
+        transform-origin: right top;
+      }
+      transform: scale(1, 1);
+    }
+  }
+}
+
+
 
 //3d宣言をすることでハードウェアレンダリング(GPU)をブラウザに促す
 .ex-motion {transform: translate3d(0,0,0);}

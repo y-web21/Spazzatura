@@ -3,14 +3,17 @@
     .w-#{$i}r {
         width:#{$i}rem;
     }
+    .h-#{$i}r {
+        height:#{$i}rem;
+    }
 }
 
 @for $i from 1 through 10 {
     .lh-#{$i} {
-        line-height:#{$i};
+        line-height:#{$i} !important;
     }
     .lh-#{$i}r {
-        line-height:#{$i}rem;
+        line-height:#{$i}rem !important;
     }
 }
 
@@ -42,6 +45,12 @@
     }
     .h-#{$i * 50} {
         height: #{$i * 50}px;
+    }
+    .h-#{$i} {
+        height: #{$i}px;
+    }
+    .h-#{$i + 20} {
+        height: #{$i + 20}px;
     }
     .fw-#{$i * 5}per {
         flex: 0 0 #{$i * 5}#{'%'};

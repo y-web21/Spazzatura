@@ -2,7 +2,7 @@
 // global variables
 var scrollbarWidth = 0;
 var gotoTopTagTop = 0;
-console.log(window.pageYOffset );
+// console.log(window.pageYOffset );
 var Ypos = () => window.pageYOffset;
 
 
@@ -66,7 +66,7 @@ window.onload = function() {
     }
 
     // debug
-    console.log(document.getElementsByClassName('jsdebug'));
+    // console.log(document.getElementsByClassName('jsdebug'));
 
 };
 
@@ -97,7 +97,7 @@ $(window).scroll(function() {
     //  anchorLinkを消すテスト
     window.history.replaceState(null, '', location.pathname + location.search);
     scrollTimer = setTimeout(function() {
-        console.log('-------')
+        // console.log('-------')
         chgClassWhenScrolling(scrollVolume, TagVisubleVolume, 'goto_top_tag', 'sidetab-fadein', 'sidetab-fadeout');
     }, 250);
 });
@@ -226,7 +226,7 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
     let navLeft = (bodyWid - navWid) / 2;
     let navTop = getAbsPos(target);
 
-    console.log(window.outerHeight,getAbsPos(target));
+    // console.log(window.outerHeight,getAbsPos(target));
 
     if (disableWidth > bodyWid){
         // mobile
@@ -250,6 +250,7 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
         nav.width = '100%';
         nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
         addClassById(elementId , 'childLi5Width');
+        document.getElementById('offsetPlus').style.height = '180px';
     }else{
         //static
         nav.position = 'static';
@@ -260,6 +261,7 @@ function stickyNavJs(scrollVolume, elementId , width ,disableWidth = 0){
         nav.boxShadow = '0 0';
         // console.log(document.getElementById(elementId).children);
         removeClassById(elementId , 'childLi5Width');
+        document.getElementById('offsetPlus').style.height = '100px';
     }
 }
 
@@ -288,6 +290,9 @@ function gachapin(scrollVolume, target){
 function addClassActivePageLink(){
     let target = document.getElementsByClassName('addClsActiveLink');
     let currentPage = location.pathname.replace('/','');
+    if (currentPage === '') {
+        currentPage = 'index.html';
+    }
     // console.log(target , currentPage);
 
     for (let i=0;i < target.length; i++){
