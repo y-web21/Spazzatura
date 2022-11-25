@@ -16,26 +16,26 @@
 
 @for $i from 1 through 20 {
     .minw-#{$i * 50} {
-        min-width:#{$i * 50}px;
+        min-width:#{$i * 50}px !important;
     }
     .maxw-#{$i * 50} {
-        max-width:#{$i * 50}px;
+        max-width:#{$i * 50}px !important;
     }
-    .maxh-#{$i * 50} {
-        max-height:#{$i * 50}px;
+    .w-#{$i * 50} {
+        width:#{$i * 50}px !important;
     }
     // height
     .minh-#{$i * 5}v {
-        max-height:#{$i * 5}vh;
+        max-height:#{$i * 5}vh !important;
     }
     .minh-#{$i * 50} {
-        min-height:#{$i * 50}px;
+        min-height:#{$i * 50}px !important;
     }
-    .maxh-#{$i * 5}v {
-        max-height:#{$i * 5}vh;
+    .h-#{$i * 5}v {
+        height:#{$i * 5} !important;
     }
     .w-#{$i * 5}per {
-        width: #{$i * 5}#{'%'};
+        width: #{$i * 5}#{'%'} !important;
     }
     .h-#{$i * 5}per {
         height: #{$i * 5}#{'%'};
@@ -43,6 +43,29 @@
     .h-#{$i * 50} {
         height: #{$i * 50}px;
     }
+    .fw-#{$i * 5}per {
+        flex: 0 0 #{$i * 5}#{'%'};
+        max-width: #{$i * 5}#{'%'};
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .fw-lslg-#{$i * 5}per {
+        @include lg-l {
+            flex: 0 0 #{$i * 5}#{'%'};
+            max-width: #{$i * 5}#{'%'};
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+    .fw-lsmd-#{$i * 5}per {
+        @include md-l {
+            flex: 0 0 #{$i * 5}#{'%'};
+            max-width: #{$i * 5}#{'%'};
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
 }
 
 

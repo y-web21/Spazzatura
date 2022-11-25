@@ -1,0 +1,1172 @@
+
+
+@import "my_variables", "my_mixins", "my_common_style", "fonts";
+
+
+// ============= local variables ===============
+$mainVisualHeight: 480px;
+$globalNavHeight: 80px;
+$circleNavDiameter:100px;
+$circleNavInitX: -200px;
+$circleNavSplitX: 50px;
+$sideTabHeight:3.5rem;
+$gotoTopHeight: 50vh;
+$clrActivePage: #90c;
+@import "my_anime";
+
+$containerWidth: 960px;
+$clrMain:#432;
+$clrSub1:#fff4ea;
+$clrSub2:#6b6155;
+$clrText: #eee;
+$carmine: #BE0039;
+// $snsColor: (
+//   'twitter' : #55acee,
+//   'facebook': #3b5998
+// );
+// map-get($snsColor, 'twitter')
+$clrAccent: #ffffff;
+$frameThick: 5px;
+
+*{
+    box-sizing: border-box;
+    &::after , &::before{
+        box-sizing: border-box;
+    }
+}
+
+body {
+    margin: 0;
+    background-color: $clrSub2;
+    // z-index: 0;
+    // visibility:hidden;
+}
+
+
+h2{
+    margin: 0;
+    color: $clrText;
+}
+
+a {
+    // color: $fClr;
+    text-decoration: none;
+}
+
+li, p, dd, dt, h3, h4 {
+    font-family: 'Sawarabi Mincho', sans-serif;
+    // font-weight: 200;
+    //font-family: 'Noto Serif JP', serif;
+}
+
+dt {
+    color: $clrText;
+}
+dd {
+    color: #000;
+}
+
+
+// ============= bs4で代替可能 ===============
+// 名前毎流用(HTMLのクラス名そのままで入れ替え可能)
+.d-none{
+    display: none;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-inline{
+    display: inline;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.mb-0,.my-0{
+    margin-bottom: 0px !important;
+}
+
+.my-0{
+    margin-top: 0px !important;
+}
+
+.h-100p{
+    height: 100%;
+}
+
+@for $i from 0 through 10 {
+  .mt-#{$i} {
+    margin-top: #{$i}rem !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}rem !important;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i}rem !important;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i}rem !important;
+  }
+  .mx-#{$i} {
+    margin-left: #{$i}rem !important;
+    margin-right: #{$i}rem !important;
+  }
+  .my-#{$i} {
+    margin-top: #{$i}rem !important;
+    margin-bottom: #{$i}rem !important;
+  }
+  .pt-#{$i} {
+    padding-top: #{$i}rem !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}rem !important;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i}rem !important;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i}rem !important;
+  }
+
+  .px-#{$i} {
+    padding-left: #{$i}rem !important;
+    padding-right: #{$i}rem !important;
+  }
+  .py-#{$i} {
+    padding-top: #{$i}rem !important;
+    padding-bottom: #{$i}rem !important;
+  }
+}
+
+.mx-auto{
+    margin-right: auto !important;
+    margin-left:auto !important;
+}
+
+.my-auto{
+    margin-top: auto !important;
+    margin-bottom:auto !important;
+}
+
+.m-0auto{
+    margin: 0 auto;
+}
+
+// .h-100{
+    // height: 100%;
+    //移動すべき記述
+    // text-align: center;
+    // line-height: 5;
+// }
+
+.container{
+    margin: 0 auto;
+    max-width: $containerWidth;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-fluid{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.fl-l{
+    float: left;
+
+    &::after {
+        clear: both;
+    }
+}
+
+.fl-r{
+    float: right;
+
+    &::after {
+        clear: both;
+    }
+}
+
+.pos-a{
+    position: absolute;
+}
+.pos-f{
+    position: fixed;
+}
+.pos-r{
+    position: relative;
+}
+.pos-s{
+    position: static;
+}
+.ta-l{
+    text-align: left;
+}
+
+.ta-c{
+    text-align: center;
+}
+
+.ta-r{
+    text-align: right;
+}
+
+.d-n-ls-md{
+    @include md-l {
+        display: none;
+    }
+}
+
+.d-n-ls-lg{
+    @include lg-l {
+        display: none !important;
+    }
+}
+
+.d-n-gr-md{
+    @include md-g {
+        display: none;
+    }
+}
+
+.d-n-gr-lg{
+    @include lg-g {
+        display: none;
+    }
+}
+
+// grid layoutで対応可能
+.d_flex_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    align-items: flex-start;
+    // align-items: center;
+
+    & > img{
+        flex:0 1 auto;
+    }
+}
+
+.bg-white{
+    background-color: #fff;
+}
+
+// ============= js用パーツ ===============
+.nav_active_page{
+    background-color: $clrActivePage;
+    // animation: key-opacity ease 100ms 0ms 1 normal forwards running;
+    transition: 300ms;
+}
+
+.nav_active_anchor{
+    background-color: #69f;
+    // animation: key-opacity ease 100ms 0ms 1 normal forwards running;
+    transition: 300ms;
+}
+
+.hidUntilOnload{
+    visibility: hidden;
+}
+
+.childLi5Width{
+    //優先度の関係で属性セレクタとする
+    & li[id^="gnav"]{
+        &:not(:last-of-type){
+            width: calc(100% / 5);
+        }
+        &:last-of-type{
+            width: calc(100% / 5);
+        }
+    }
+}
+
+// ============= 汎用 ===============
+.sticky_menu {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: $globalNavHeight;
+    background-color: #999;
+    top: $mainVisualHeight;
+    left: 0;
+    // jsで付与
+    // position: fixed;
+
+    & > li > a{
+    }
+}
+
+$sideTabWidth: 10rem;
+$sideTabClr: #444;
+
+.goto_top_tag {
+    padding: 0 1.2rem 0 0;
+    width: $sideTabWidth;
+    height: $sideTabHeight;
+    background-color: $sideTabClr;
+    z-index: 9998;
+
+    &:hover{
+        background-color: lighten($sideTabClr, 5%);
+    }
+
+    top: $gotoTopHeight;
+    left: calc(100% - 3rem);
+    /*中心回転から起点を中心から左上に*/
+    transform-origin: 0% 0%;
+    transform: rotate(-90deg);
+    position: fixed;
+    display: none;
+    border-radius: 0.4rem 0.4rem 0.1rem 0.1rem;
+
+    & > a {
+        margin: 0;
+        padding-right: 20px;
+        width: $sideTabWidth;
+        height: $sideTabHeight;
+        color: $fClr;
+        text-align: center;
+        line-height: $sideTabHeight - 0.5rem;
+        text-decoration: none;
+    }
+
+    &::after {
+        position: absolute;
+        content: '';
+        border-top: 2px solid $fClr;
+        border-right: 2px solid $fClr;
+        top: 18px;
+        right: 33px;
+        width: 0.6rem;
+        height: 0.6rem;
+        transition: 0.5s;
+        transform: rotate(45deg);
+    }
+
+    &:hover::after {
+        right: 23px;
+    }
+}
+
+.circle_nav {
+
+    & li {
+        width: $circleNavDiameter;
+        height: $circleNavDiameter;
+        border-radius: $circleNavDiameter / 2;
+        background:  map-get($snsColor, 'twitter');
+        margin: 0 0.3rem;
+
+        @include md-g {
+            margin: 0 0.6rem;
+        }
+
+        &:hover{
+            // opacity: 0.9;
+            transform:scale(1.00,0.95);
+        }
+
+    }
+
+    & li{
+        position: absolute;
+        // 初期位置が画面外のため、サイドスクロールバー出るのを防止
+        overflow:hidden;
+        // 処理不可の高いタイミングを避けるためディレイを設ける
+        animation: key-circle-all 500ms linear 500ms 1 normal forwards running;
+    }
+
+    & li:nth-child(1){animation: key-circle-slide1 1100ms ease-out 1000ms 1 normal forwards running;}
+    & li:nth-child(2){animation: key-circle-slide2 0900ms ease-out 1000ms 1 normal forwards running;}
+    & li:nth-child(3){animation: key-circle-slide3 0700ms ease-out 1000ms 1 normal forwards running;}
+    & li:nth-child(4){animation: key-circle-slide4 0500ms ease-out 1000ms 1 normal forwards running;}
+    // & li:nth-child(5) a{animation: key-circle-slide5 0300ms ease-out 1000ms 1 normal forwards running;}
+    & a {
+        position: absolute;
+        width: $circleNavDiameter;
+        height: $circleNavDiameter;
+        border-radius: $circleNavDiameter / 2;
+        // top: 50%;
+        // left: 50%;
+        // transform: translateY(-15%) translateX(-50%);
+        // color: $fClr;
+        // text-decoration: none;
+        text-align: center;
+        font-size: 1.2rem;
+        line-height: $circleNavDiameter;
+
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+}
+
+$imgSizeKurageX: 300px;
+$imgSizeKurageY: 200px;
+
+.image_hover{
+    &_base{
+        position: relative;
+
+        & img{
+            width: $imgSizeKurageX;
+            height: $imgSizeKurageY;
+            margin: 15px;
+            padding: 0;
+            box-sizing: content-box;
+        }
+        &:hover{
+            // content:"textoverlay";
+            // opacity: 0;
+        }
+    }
+    &_text{
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        margin: 0;
+        margin: 15px;
+        width: $imgSizeKurageX;
+        height: $imgSizeKurageY;
+        z-index: 1;
+        opacity: 0;
+        color:$fClr;
+        background-color: #008;
+        text-align: center;
+        overflow: hidden;
+        transition: 300ms opacity ease 0ms;
+
+        &:hover{
+            // animation: image_text_overlay 600ms ease-out 0s 1 normal forwards running;
+            opacity:1;
+            transition: 600ms opacity ease 0ms;
+        }
+    }
+}
+
+.img_shadow_white{
+    // border: 5px solid #666;
+    box-shadow:inset 0px 0px 20px rgba(255,255,255,.8);
+
+    & img{
+        display: block;
+        position: relative;
+        z-index: -1;
+    }
+}
+
+// ============= header ===============
+.sticky_nav_wrap{
+    height: $globalNavHeight;
+
+    @include lg-l {
+        height: 0;
+    }
+}
+
+// mobile時のフッターナビも内包
+.global_menu {
+
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: $globalNavHeight;
+        top: $mainVisualHeight;
+        left: 0;
+        // jsで付与
+        // position: fixed;
+        text-align: center;
+
+        @include lg-l {
+            margin: 0 !important;
+            height: 4rem;
+            position: fixed;
+            z-index: 999;
+            top: auto;
+            bottom: 0px;
+            box-shadow: 0px 0px 2px 1px #0005;
+        }
+    }
+
+
+    & li {
+        list-style: none;
+        height: 100%;
+        background-color: $clrMain;
+        box-shadow: -3px -3px 5px 0px #0005 inset;
+        transition: 500ms;
+        width: $containerWidth / 5 - 10;
+
+        @include lg-l {
+            width: calc(100% / 5);
+        }
+
+        &:hover {
+            transition: 500ms;
+            opacity: 0.85;
+        }
+
+        & a {
+            display: block;
+            padding: 18px 0;
+            line-height: 1;
+            height: 100%;
+            color: #ddd;
+            text-shadow: 0px 0px 20px #ddd;
+            text-align: center;
+            vertical-align: middle;
+
+            @include lg-l {
+                padding: 14px 0;
+                font-size: 0.8rem;
+            }
+
+            &::after {
+                padding: 4px;
+                font-family: 'Tangerine', cursive;
+                font-size: 2.2rem;
+                line-height: 1;
+                text-align: center;
+                display: block;
+                color: #c7b289;
+
+                @include lg-l {
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+}
+#gnav1 > a::after{
+    content: 'home';
+}
+#gnav2 > a::after{
+    content: 'menu';
+}
+#gnav3 > a::after{
+    content: 'course';
+}
+#gnav4 > a::after{
+    content: 'access';
+}
+#gnav5 > a::after{
+    content: 'reserve';
+}
+
+// ============= home ===============
+.home_h2_style{
+    letter-spacing: 0.5rem;
+    font-weight: 1;
+    font-family: 'Great Vibes', cursive;
+    font-family: 'Tangerine', cursive;
+    // font-family: 'Parisienne', cursive;
+    // font-family: 'Italianno', cursive;
+    // font-family: 'Allura', cursive;
+    // font-family: 'Pinyon Script', cursive;
+    // font-family: 'Alex Brush', cursive;
+    // font-family: 'Petit Formal Script', cursive;
+    // font-family: 'Herr Von Muellerhoff', cursive;
+    // font-family: 'Mr De Haviland', cursive;
+    font-family: 'Sawarabi Mincho', sans-serif;
+    transform: scale(0.8, 1);
+    // margin-left: -50px;
+    padding-left: 0;
+    padding-right: 0;
+    display: block;
+}
+
+// ============= access ===============
+.dltable {
+    & dl {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #ccc;
+        border-top: none;
+        // box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
+
+    }
+
+    & dt {
+        background: $clrMain;
+        width: 12rem;
+        @include md-l {
+            width:100%;
+            display: block;
+        };
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & dd {
+        background: $clrSub1;
+        // border-left: 1px solid #ccc;
+        margin: 0;
+        width: calc(100% - 12rem);
+        width : -webkit-calc(100% - 12rem) ;
+        @include md-l {
+            width:100%;
+        };
+    }
+    & dt, & dd{
+        padding: 0.8rem;
+        box-sizing: border-box;
+        border-top: 1px solid #ccc;
+    }
+}
+
+// ============= mainVisual ===============
+h1{
+    // font-family: 'Great Vibes', cursive;
+    font-family: 'Tangerine', cursive;
+    // font-family: 'Parisienne', cursive;
+    // font-family: 'Italianno', cursive;
+    // font-family: 'Allura', cursive;
+    // font-family: 'Pinyon Script', cursive;
+    // font-family: 'Alex Brush', cursive;
+    // font-family: 'Petit Formal Script', cursive;
+    // font-family: 'Herr Von Muellerhoff', cursive;
+    // font-family: 'Mr De Haviland', cursive;
+    font-size: 7rem;
+    font-weight: 2000;
+
+    &::first-letter{
+        font-size: 8rem;
+        color: $carmine;
+    }
+
+    & span{
+        color: $carmine;
+    }
+
+    @include sm-l {
+        font-size: 5rem;
+
+        &::first-letter{
+            font-size: 6rem;
+            color: $carmine;
+        }
+    }
+}
+.main_visual{
+    // position: relative;
+    height: 400px;
+
+    // height: $mainVisualHeight;
+    & .frame {
+        position: relative;
+        box-sizing: border-box;
+        border: $frameThick solid $clrMain;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    & img {
+        position: absolute;
+        // width: $containerWidth - $frameThick * 2 -500px;
+        width: 930px;
+        height: 390px;
+        top: 0%;
+        filter:brightness(70%);
+    }
+}
+
+$containerInnerWidth: 930px;
+$catchCircleDiameter: 100px;
+.catch_phrase{
+    &_bg{
+        position: absolute;
+        top: -50px;
+        left: $containerInnerWidth / 2;
+        width: $catchCircleDiameter;
+        height: $catchCircleDiameter * 4;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 30px 100px #fff;
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+    &_text{
+        text-orientation: mixed;
+        writing-mode: vertical-rl;
+        font-size: 2rem;
+        text-align: center;
+        display: block;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-50%) translateY(0%);
+
+        & span {
+            font-size: 3rem;
+            color: $carmine;
+        }
+
+    }
+}
+
+
+// jstest.html
+//  .catch_phrase{
+//      position: absolute;
+//      top: 100px;
+//      left: calc(10vw + 100px);
+//      font-size: 4rem;
+//  }
+//
+//  .sub_nav{
+//      position: absolute;
+//      top: 280px;
+//      right: 0px;
+//  }
+//
+//
+//  .gnav{
+//      &_anim{
+//          @include hover-underline($type: slide, $dir: center, $weight: 6px, $color: #eee);
+//      }
+//      &_style{
+//          width: 8rem;
+//          height: $globalNavHeight;
+//      }
+//  }
+
+// ============= section ===============
+.imgBox{
+    width: 400px;
+}
+
+$centerTextHeight: 80px;
+.center_text{
+    & p{
+        height: 2px;
+        margin: $centerTextHeight/2 0;
+    }
+    & h3{
+        height: $centerTextHeight;
+        line-height: $centerTextHeight;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+}
+
+.bg_subClr1{
+    position: absolute;
+    background-color: $clrSub1;
+    z-index: -50;
+    width: 100%;
+    height: 800px;
+
+    @include lg-l {
+        height: 700px;
+    }
+    @include sm-l {
+        height: 650px;
+    }
+}
+
+.bg_subClr1_second {
+    position: absolute;
+    background-color: $clrSub1;
+    z-index: -50;
+    width: 100%;
+    height: 350px;
+
+    @include lg-l {
+        height: 250px;
+    }
+}
+
+
+// div要素の入れ子で謎の隙間ができる問題
+.welcome h2{
+    margin-left: -48px;
+}
+.menu h2{
+    margin-left: -35px;
+}
+.staff h2{
+    margin-left: -35px;
+}
+.information h2{
+    margin-left: -60px;
+}
+.welcome p{
+    // margin-right: -48px;
+}
+.menu p{
+    // margin-left: -35px;
+}
+.staff p{
+    // margin-left: -0px;
+}
+.information p{
+    // margin-left: -60px;
+}
+
+
+
+.line{
+    // position: absolute;
+    content:'';
+    // top: 0.5rem;
+    height: 2px;
+    width: 100%;
+    border-top: 1px solid $clrMain;
+}
+
+.home_content_text{
+    color: $clrText;
+    font-size: 1rem;
+    line-height: 3;
+
+    @include lg-l {
+        padding: 0 !important;
+        text-align: center;
+    }
+}
+
+.font_ls_sm{
+    @include sm-l {
+        letter-spacing: 0.3rem;
+    }
+}
+
+.px0_ls_md{
+    @include md-l {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+.menu, .staff{
+
+    & img{
+        box-shadow: 4px 4px 5px #0005;
+    }
+}
+
+// ============= oden ===============
+$parallaxBgY: 800px;
+$parallaxBgRatio: 2;
+
+// with js
+.parallax{
+    &_background{
+        position: relative;
+        width: 100%;
+        height: $parallaxBgY;
+        overflow: hidden;
+
+        &_entity{
+            position: absolute;
+            background:url('../images/kafun.jpg') repeat;
+            width: 100%;
+            height: $parallaxBgY * $parallaxBgRatio;
+            // top: 0px;
+            top: - ($parallaxBgY * ($parallaxBgRatio - 1));
+            left: 0px;
+            filter: blur(5px);
+            // debug
+            z-index: -20;
+        }
+    }
+}
+
+.white_box{
+    margin: 0;
+    width: 100%;
+    background-color: #fff;
+    // border: #fff 50px solid;
+    z-index: -1;
+}
+
+.gray_box{
+    margin: 0;
+    width: 100%;
+    background-color: #ddd;
+}
+
+.white_box_500{
+    margin: 0;
+    width: 100%;
+    height: 500px;
+    background-color: #fff;
+    border: #fff 50px solid;
+    z-index: -1;
+}
+
+.gray_box_500{
+    margin: 0;
+    width: 100%;
+    // height: 500px;
+    background-color: #ddd;
+}
+
+.juhun{
+    margin: 0;
+    font-size: 5rem;
+    position: absolute;
+    top: $parallaxBgY / 2;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+// ============= form ===============
+// HTML5のフォームバリデーション
+// :required
+// :optional
+// :valid
+// :invalid
+// JSのフォームバリデーション
+// checkValidity
+// formElement.addEventListener('invalid', function(){...}, true);と第3引数にtrueを入れる
+
+// form ブラウザ依存属性リセット
+input, button, textarea, select {
+  // margin: 0;
+  // padding: 0;
+  // background: none;
+  // border: none;
+  // border-radius: 0;
+  // outline: none;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+}
+
+form{
+    display: inline-block;
+}
+
+input,select{
+    margin: 0.3rem;
+    // width: 200px;
+    height: 2rem;
+    // font-size: 1.5rem;
+    // border: 2px solid green;
+    // border-radius: 99px;
+}
+
+$clrFormIncorrect:red;
+$clrFormCorrect:#95fe72;
+
+.inputCorrect{
+    outline: 0;
+    border: $clrFormCorrect 1px solid;
+    box-shadow:0px 0px 2px 1px $clrFormCorrect;
+}
+
+.inputIncorrect{
+    outline: 0;
+    border: $clrFormIncorrect 1px solid;
+    box-shadow:0px 0px 2px 1px $clrFormIncorrect;
+
+    &+.errMsg{
+        // width: 10rem;
+        // height: 2rem;
+        color: red;
+        font-weight: bold;
+        display: inline;
+
+        &::before{
+            content: "※";
+        }
+    }
+}
+
+
+.form_flex{
+    & input[type="text"],& input[type="tel"],& input[type="email"],& select{
+        margin: 0;
+        width: 100%;
+
+        @include md-g {
+            margin: 1rem 0;
+            width: 70%;
+        }
+    }
+
+    & textarea{
+        margin: 0 0 2rem;
+        width: 100%;
+        height: 200px;
+
+        @include md-g {
+        margin: 1rem 0 2rem;
+            width: 70%;
+        }
+    }
+
+    & p{
+        text-align: left;
+        margin: 1.4rem 0 0.3rem;
+        width: 100%;
+
+        @include md-g {
+            margin: 1rem 0;
+            width: 30%;
+        }
+    }
+
+    & .errMsg{
+        margin: 4px 0 0;
+        font-size: 0.8rem;
+        text-align: left;
+        width: 100%;
+
+        @include md-g {
+            margin: 1rem 0;
+            width: 100%;
+        }
+    }
+}
+
+.h_200_gr_sm{
+    height: 100%;
+
+    @include md-g {
+        height: 200px;
+    }
+}
+
+
+
+input[type="submit"] {
+    font-size: 1.0em;
+    display: block;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+    color: #fff;
+    background: #555;
+    font-weight: bold;
+    height: 3.0em;
+    line-height: 3.0em;
+    width: 100%;
+    padding: 0 2.5em 0 0.8em;
+    transition: 0.3s;
+    border-radius: 2px;
+
+
+    &:hover {
+        background: #134767;
+    }
+}
+
+.button_wrap {
+    color: #fff;
+    position: relative;
+    line-height: 2.8em;
+    width: 190px;
+    transition: 0.5s;
+    margin: 0 auto;
+
+    &::after {
+        transition: 0.3s;
+        content: "";
+        width: .6em;
+        height: .6em;
+        border-top: 2px solid #fff;
+        border-right: 2px solid #fff;
+        position: absolute;
+        top: 23px;
+        right: 66px;
+        margin: auto;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform:translateY(-10%) rotate(45deg);
+    }
+
+    &:hover::after {
+        right: 52px;
+    }
+}
+
+
+
+// ============= footer ===============
+
+.footer {
+
+    &_nav{
+
+    }
+
+    &_copy{
+
+        &_style{
+            // font-weight: 550;
+            font-size: 1rem;
+            letter-spacing: 0.8rem;
+            // text-transform: uppercase;
+            color: $clrText;
+
+            @include md-l {
+                font-size: 0.8em;
+                letter-spacing: 0.2rem;
+            }
+
+        }
+    }
+
+}
+
+$globalNavHeightMobile: 4rem;
+
+.sticky_menu_mobile {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: $globalNavHeightMobile;
+    background-color: gray;
+    bottom: 0;
+    left: 0;
+    // jsで付与
+    position: fixed;
+    z-index: 9999;
+    box-shadow:0px 0px 2px 1px lightgray;
+
+    & > li:nth-of-type(odd) {
+        width: calc(14%);
+        margin: 0 calc(1%);
+    }
+
+    & > li:nth-of-type(even) {
+        width: calc(17%);
+        margin: 0 calc(1%);
+    }
+
+    & a {
+        width: 100%;
+        height: $globalNavHeight / 2;
+        color: #fff;
+        font-size: 0.5rem;
+        list-style-type: none;
+        letter-spacing: -0px;
+    }
+
+    & i {
+        padding: 1rem;
+        width: 100%;
+        height: $globalNavHeight / 2;
+
+        & #text {
+            font-size: 10rem;
+        }
+
+    }
+}
+

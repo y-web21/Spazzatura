@@ -3,53 +3,81 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>bootstrap test | アクセス</title>
+  <title>Spazzatura</title>
+  <!-- <link rel="stylesheet" href="./css/goodstyle.css"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- OGP設定 -->
-  <!-- <meta property="fb:app_id" content="123456789012345" /> -->
-  <!-- <meta property="og:title" content="AboutUs | テスト株式会社" /> -->
-  <!-- <meta property="og:type" content="website" /> -->
-  <!-- <meta property="og:url" content="http://120.0.0.1" /> -->
-  <!-- <meta property="og:image" content="images/404.jpg" /> -->
-  <!-- <meta property="og:site_name" content="WebsitePractice" /> -->
-  <!-- <meta property="og:description" content="websiteのPracticeです。" /> -->
-  <meta name="keywords" content="HTML5,Practice">
-  <meta name="description" content="まずは見てごらん">
-  <meta name="format-detection" content="telephone=no,address=no,email=no">
-  <!-- icon -->
-  <link rel="icon" type="image/png" href="images/favcon64.png">
-  <!-- <link rel="apple-touch-icon" type="image/png" href=""> -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-  <!-- <link rel="icon" href="favicon.ico" type="image/x-icon" /> from nlab -->
-  <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> from nlab -->
-  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- font awesome declaration -->
-  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-  <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <script>
-    //  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  //  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  //  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  //  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  //  ga('create', 'UA-68932896-1', 'auto');
-  //  ga('send', 'pageview');
-  </script>
+	<link href="https://unpkg.com/sanitize.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="./css/common.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="js/common.js"></script>
 </head>
 
-<body class="clr-theme-light-bg">
-  <!-- end of mobile nav -->
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/holder.min.js"></script>
-  <script>
-  // include external html
-  $(function() {
-    $(".referMember").load("./member.html #top_members"); // include newsMember
-    $(".referNews").load("./news.html #topNewsSource"); // include newsFeed
-  });
-  </script>
+<body>
+	<div class="pos-r" style="height: 7px;"></div>
+	<div class="bg_subClr1_second"></div>
+  <div class="container">
+    <h1 class="my-1 ta-c">Spa<span>zz</span>atura</a></h1>
+    <!-- <h1 class="ta-c"><img src="./images/logo.png" alt="" width="500" height="300"></h1> -->
+  </div>
+  <nav class="container global_menu">
+    <div class="sticky_nav_wrap" id="stickyWrap">
+    <ul class="mx-auto my-0 d-n-ls-l" id="stickyNav">
+      <li id="gnav1"><a href="index.html">ホーム</a></li>
+      <li id="gnav2"><a href="menu.html">メニュー</a></li>
+      <li id="gnav3"><a href="course.html">コース</a></li>
+      <li id="gnav4"><a href="access.html">アクセス</a></li>
+      <li id="gnav5"><a href="reserve.html">ご予約</a></li>
+    </ul>
+    </div>
+  </nav>
+
+
+  <section class="container main_visual mt-2 d-none" id="mainVisual">
+		<div class="frame">
+	  	<img src="./images/gyu-lamp.jpg" alt="">
+	  </div>
+  </section>
+
+  <section class="container mt-8 mb-4">
+		<div class="d_flex_row mb-2 x0_ls_md information">
+    	<h2 class="fw-30per fw-lslg-100per home_h2_style font_ls_sm">ACCCESS</h2>
+	    <p class="fw-70per fw-lslg-100per line"></p>
+	  </div>
+    <div class="dltable my-3 mx-auto px-0">
+      <dl>
+        <dt>店名</dt>
+        <dd>Spazzatura</dd>
+        <dt>代表者</dt>
+        <dd>アルバル・ヌニェス・カベサ・デ・バカ</dd>
+        <dt>住所</dt>
+        <dd>〒xxx-xxxx 昭和基地 19広場</dd>
+        <dt>電話</dt>
+        <dd>（不通）</dd>
+        <dt>E-Mail</dt>
+        <dd><address>spazzatura@aa.nz</address></dd>
+        <dt>アクセス</dt>
+  			<dd><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d379243.81431452837!2d39.443526610843264!3d-69.06710956682423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb117e3256620884d%3A0x2c5de33064b7f227!2z5pit5ZKM5Z-65ZywIDE55bqD5aC0!5e0!3m2!1sja!2sjp!4v1567944475326!5m2!1sja!2sjp" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe><br>
+        <small>より大きな地図で <a class="common-link" href="https://maps.google.co.jp/maps/ms?msa=0&amp;msid=201601300266466533221.00049382ec0294d023fc6&amp;gl=jp&amp;hl=ja&amp;brcurrent=3,0x60228484a83d682f:0x72ea03070733eefb,0&amp;ie=UTF8&amp;ll=35.627482,140.104206&amp;spn=0,0&amp;t=m&amp;start=0&amp;geocode=FbWOHwIdb85ZCClfEsDVnYQiYDFSL-lwNYZqoQ%3B&amp;source=embed" style="text-align:left">Spazzatura</a> を表示</small>
+          <p class="m-0 mt-3">オーストラリアまで飛行機で行き、<br>オーストラリア西岸のフリーマントルより<br>
+          南極観測船”しらせ”にて3週間</p>
+        </dd>
+      </dl>
+    </div>
+  </section>
+
+
+	<footer class="container">
+		<div class="line"></div>
+		<p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
+	</footer>
+
+	<!-- mobile navi用にフッターリフト -->
+	<div class="d-n-gr-lg mb-6"></div>
+
+  <!-- parts -->
+  <div class="goto_top_tag">
+    <a class="d-block" href="#">Go To Top</a>
+  </div>
 </body>
 
 </html>
