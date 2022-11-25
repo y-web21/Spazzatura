@@ -82,3 +82,9 @@ Thumbs.db
 *.tmp
 # Vagrant specific
 .vagrant/
+
+.env
+*.map
+dest/**/*
+!dest/**/*html
+
