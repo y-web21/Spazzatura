@@ -2,16 +2,11 @@
   "private": true,
   "devDependencies": {
     "browser-sync": "^2.18.13",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^4.0.1"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
   },
-  "scripts": {
-    "sas": "gulp sass",
-    "gulp": "gulp"
-  },
+  "scripts": {},
   "dependencies": {
-    "vinyl-ftp": "^0.6.1"
+    "dotenv": "^16.0.3"
   }
 }
