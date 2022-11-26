@@ -6,8 +6,8 @@
     "webpack-cli": "^5.0.0"
   },
   "scripts": {
-    "build-prod": "webpack --config webpack.prod.js",
-    "build": "webpack --config webpack.dev.js"
+    "build": "webpack --config webpack.prod.js",
+    "watch": "webpack --config webpack.dev.js"
   },
   "engines": {
     "node": "16.14.x",
