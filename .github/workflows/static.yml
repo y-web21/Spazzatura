@@ -43,4 +43,4 @@ jobs:
           node-version: 16.14
       - run: npm ci && npm run build
       - name: debug
-        run: ls -al && cd dest && ls -al
+        run: ls -al && cd dest && ls -al && ls -al js && cat js/main.js
