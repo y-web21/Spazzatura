@@ -1,0 +1,90 @@
+# Project Specific rules here
+#-------------------------
+.github
+node_modules
+extensions
+sftp-config.json
+.project
+.settings
+.buildpath
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+/html/*
+!/html/images
+
+
+# 個人用定ファルもある。以下公式より
+# https://git-scm.com/docs/gitignore
+# ユーザーワークフロー固有は$GIT_DIR/info/excludeファイルに含めるべき。
+# ユーザーが無視させたいパターン(ユーザーのエディタなどによって生成された)ファイルは、~/.gitconfig内にあるcore.excludesFileで指定されたファイルに含める。
+# デフォルト値は $XDG_CONFIG_HOME/git/ignore。もし $XDG_CONFIG_HOME がセットされていないか空の場合、$HOME/.config/git/ignore が代わりに使われる。
+
+# 自分用は
+# $HOME/.gitconfig に core.excludesfile を追加
+# excludesfile = /users/xxx/.gitignore
+# /users/xxx/.gitignore
+
+# memo
+#-----------------------------------------
+# プロジェクトの途中から、gitignoreを追加、追記しても機能しない
+# git rm -r --cached
+# あとは平常運転
+#
+# 特定の拡張子を無視する場合はどこにも/を付けない
+# *.o
+
+# 特定のファイルを無視する場合は先頭に/を付ける
+# /npm-debug.log
+
+# 特定のディレクトリを無視する場合は先頭と末尾に/を付ける
+# /bin/
+
+# あらゆる階層の「cache」フォルダの中身だけを除外。
+# 「cache」フォルダ自体は無視しない。
+# **/cache/*
+
+# Gitはパフォーマンス上の理由から、ディレクトリを無視した場合、そのディレクトリ中の一部のファイルやディレクトリだけを無視しないようにすることはできないという制限を設けている
+# /movies/*
+# !/movies/.wmv
+#======
+# Temporary Files
+#---------------------------
+# vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+# Emacs
+.\#*
+# Backup files
+#---------------------------
+*~
+*.orig
+*.bak
+# yyyyMMdd
+*.[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+# yyyyMMddHHmm
+*.[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+# yyyyMMddHHmmss
+*.[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]
+# OS dependent files
+#---------------------------
+.DS_Store
+Thumbs.db
+# Bundler specific
+#---------------------------
+/vendor/bundle/
+/.bundle/
+# Office specific
+~$*
+*.tmp
+# Vagrant specific
+.vagrant/
+
+.env
+*.map
+dest/**/*
+!dest/**/*html
+
