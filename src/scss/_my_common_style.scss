@@ -95,6 +95,6 @@
 @for $i from 1 through 20 {
   $font-size: ($i * 10);
   .fz-#{$font-size}per {
-    font-size: #{$font-size}% !important;
+    font-size: #{$font-size}\% !important;
   }
 }
