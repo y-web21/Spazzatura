@@ -10,6 +10,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, "dest"),
+    filename: path.join("js", 'main.js'),
     clean: {
       keep: /.*.html/, // 出力先削除後にビルドソース出力の対象外
     },
