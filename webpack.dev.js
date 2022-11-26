@@ -13,9 +13,6 @@ module.exports = merge(common, {
   watchOptions:{
     ignored: /node_modules/
   },
-  output: {
-    path: path.join(__dirname, "dest"),
-  },
   devtool: "hidden-source-map",
   module: {
     rules: [
