@@ -1,3 +1,5 @@
+@use "my_variables" as variables;
+
 // ============= mixins ======================
 // おためし
 @mixin wh($x: 100%, $y: 100vh) {
@@ -13,7 +15,7 @@
 }
 
 @mixin navBorderStyle(){
-    border-left: $navDelimtClr solid 1px;
+    border-left: variables.$navDelimtClr solid 1px;
 }
 
 @mixin heroFont(){
@@ -122,3 +124,51 @@ h2{
 //     float: left;
 //     // @include deprecate("The `float-left` mixin", "v4.3.0", "v5");
 // }
+
+
+// =============  ===============
+@mixin xs-g {
+    @media (min-width: 576px) {
+      @content;
+    }
+  }
+  @mixin sm-g {
+    @media (min-width: 576px) {
+      @content;
+    }
+  }
+  @mixin md-g {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  @mixin lg-g {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+  @mixin xl-g {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  @mixin sm-l {
+    @media (max-width: 575px){
+      @content;
+    }
+  }
+  @mixin md-l {
+    @media (max-width: 767px) {
+      @content;
+   }
+  }
+  @mixin lg-l {
+    @media (max-width: 991px) {
+      @content;
+    }
+  }
+  @mixin xl-l {
+    @media (max-width: 1199px) {
+      @content;
+    }
+  }

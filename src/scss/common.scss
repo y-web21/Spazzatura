@@ -1,3 +1,4 @@
+@use "my_mixins" as mix;
 @import "my_variables", "my_mixins", "my_common_style", "fonts";
 
 $imagesPath: "../images/";
@@ -18,7 +19,6 @@ $sideTabHeight:3.5rem;
 $gotoTopHeight: 50vh;
 $sideTabWidth: 10rem;
 $sideTabClr: #444;
-@import "my_anime";
 
 $containerWidth: 1200px;
 $clrMain:#432;
@@ -32,7 +32,7 @@ $purple: #a03c8c;
 $clrFormIncorrect:red;
 $clrFormCorrect:#95fe72;
 $clrActivePage: darken($carmine ,10%);
-$clr:(
+$clrMap:(
     'hr': $clrMain,
     'text': $clrText,
     'main': $clrMain,
@@ -59,13 +59,13 @@ $prefix: ".maku";
   font-size: larger;
 }
 
-$icons: twitter, facebook, googleplus, instagram;
+// $icons: "twitter" ,"facebook" ,"googleplus" ,"instagram";
 
-@each $icon in $icons {
-    .icon-#{$icon} {
-        background-image: url("img/#{$icon}.png");
-    }
-}
+// @each $icon in $icons {
+//     .icon-#{$icon} {
+//         background-image: url("img/#{$icon}.png");
+//     }
+// }
 
 $icons: twitter, facebook, googleplus, instagram;
 @each $icon in $icons {
@@ -123,12 +123,12 @@ $icons: twitter, facebook, googleplus, instagram;
 //   padding: 10px;
 // }
 // .box_red {
-//   @include basebox;
+//   @include mix.basebox;
 //   color: #f00;
 // }
 
 // .box_blue {
-//   @include basebox;
+//   @include mix.basebox;
 //   color: #00f;
 // }
 
@@ -202,7 +202,7 @@ body {
 
 h2,h3{
     margin: 0;
-    color: map-get($clr, 'text');
+    color: map-get($clrMap, 'text');
 }
 
 a {
@@ -217,11 +217,11 @@ li, p, dd, dt, h3, h4 {
 }
 
 p{
-    color: map-get($clr, 'text');
+    color: map-get($clrMap, 'text');
 }
 
 dt {
-    color: map-get($clr, 'text');
+    color: map-get($clrMap, 'text');
 }
 dd {
     color: #000;
@@ -377,25 +377,25 @@ dd {
 }
 
 .d-n-ls-md{
-    @include md-l {
+    @include mix.md-l {
         display: none;
     }
 }
 
 .d-n-ls-lg{
-    @include lg-l {
+    @include mix.lg-l {
         display: none !important;
     }
 }
 
 .d-n-gr-md{
-    @include md-g {
+    @include mix.md-g {
         display: none;
     }
 }
 
 .d-n-gr-lg{
-    @include lg-g {
+    @include mix.lg-g {
         display: none;
     }
 }
@@ -458,42 +458,42 @@ dd {
 
 // ============= common ===============
 .bgc_main{
-    background-color: map-get($clr, 'main')
+    background-color: map-get($clrMap, 'main')
 }
 
 .bgc_sub1{
-    background-color: map-get($clr, 'sub1')
+    background-color: map-get($clrMap, 'sub1')
 }
 
 .bgc_sub2{
-    background-color: map-get($clr, 'sub2')
+    background-color: map-get($clrMap, 'sub2')
 }
 
 .bgc_sub3{
-    background-color: map-get($clr, 'sub3')
+    background-color: map-get($clrMap, 'sub3')
 }
 
-@mixin bgc_sub1{background-color: map-get($clr, 'sub1')}
-@mixin bgc_sub2{background-color: map-get($clr, 'sub2')}
-@mixin bgc_sub3{background-color: map-get($clr, 'sub3')}
-@mixin clr_sub1{color: map-get($clr, 'sub1')}
-@mixin clr_sub2{color: map-get($clr, 'sub2')}
-@mixin clr_sub3{color: map-get($clr, 'sub3')}
+@mixin bgc_sub1{background-color: map-get($clrMap, 'sub1')}
+@mixin bgc_sub2{background-color: map-get($clrMap, 'sub2')}
+@mixin bgc_sub3{background-color: map-get($clrMap, 'sub3')}
+@mixin clr_sub1{color: map-get($clrMap, 'sub1')}
+@mixin clr_sub2{color: map-get($clrMap, 'sub2')}
+@mixin clr_sub3{color: map-get($clrMap, 'sub3')}
 
 .clr_main{
     color: $clrMain;
 }
 
 .clr_sub1{
-    color: map-get($clr, 'sub1')
+    color: map-get($clrMap, 'sub1')
 }
 
 .clr_sub2{
-    color: map-get($clr, 'sub2')
+    color: map-get($clrMap, 'sub2')
 }
 
 .clr_sub3{
-    color: map-get($clr, 'sub3')
+    color: map-get($clrMap, 'sub3')
 }
 
 
@@ -513,11 +513,11 @@ dd {
 
 .button {
   border-radius: 1px;
-  background-color: map-get($clr, 'main');
-  box-shadow: 0 6px map-get($clr, 'btn');
+  background-color: map-get($clrMap, 'main');
+  box-shadow: 0 6px map-get($clrMap, 'btn');
 
     & a{
-      color: map-get($clr, 'text');
+      color: map-get($clrMap, 'text');
       font-size: 2rem;
       display: block;
       @include fonts_eng;
@@ -525,12 +525,12 @@ dd {
     }
 
     &:hover {
-        box-shadow: 0 5px map-get($clr, 'btn');
+        box-shadow: 0 5px map-get($clrMap, 'btn');
         top: 1px;
         opacity: 0.9;
     }
     &:active {
-        box-shadow: 0 0 map-get($clr, 'btn');
+        box-shadow: 0 0 map-get($clrMap, 'btn');
         top: 6px;
     }
 }
@@ -538,14 +538,14 @@ dd {
 
 .button3 {
   border-radius: 2px;
-  box-shadow: 0 6px map-get($clr, 'btn');
+  box-shadow: 0 6px map-get($clrMap, 'btn');
 
     &:hover {
-        box-shadow: 0 5px map-get($clr, 'btn');
+        box-shadow: 0 5px map-get($clrMap, 'btn');
         top: 1px;
     }
     &:active {
-        box-shadow: 0 0 map-get($clr, 'btn');
+        box-shadow: 0 0 map-get($clrMap, 'btn');
         top: 6px;
     }
 }
@@ -671,7 +671,7 @@ dd {
         background:  map-get($snsColor, 'twitter');
         margin: 0 0.3rem;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 0 0.6rem;
         }
 
@@ -773,7 +773,7 @@ $imgSizeKurageY: 200px;
 // ============= header ===============
 // mobile時のフッターナビも内包
 .global_menu {
-    background-color: map-get($clr, 'main');
+    background-color: map-get($clrMap, 'main');
 
     & ul {
         display: flex;
@@ -782,7 +782,7 @@ $imgSizeKurageY: 200px;
         padding: 0;
         margin: 0;
         // width: 100%;
-        // background-color: map-get($clr, 'main');
+        // background-color: map-get($clrMap, 'main');
         max-width: $globalNavWidth;
         height: $globalNavHeight;
         top: $mainVisualHeight;
@@ -791,7 +791,7 @@ $imgSizeKurageY: 200px;
         // position: fixed;
         text-align: center;
 
-        @include lg-l {
+        @include mix.lg-l {
             margin: 0 !important;
             height: 4rem;
             position: fixed;
@@ -811,13 +811,13 @@ $imgSizeKurageY: 200px;
         transition: 500ms;
         width: $containerWidth / 5 - 50;
         // width: $globalNavWidth / 5;
-        background-color: map-get($clr, 'main');
-        @include lg-l {
+        background-color: map-get($clrMap, 'main');
+        @include mix.lg-l {
             width: calc(100% / 5);
         }
 
         &:hover {
-            // background-color: map-get($clr, 'mainHover');
+            // background-color: map-get($clrMap, 'mainHover');
             transition: 500ms;
             opacity: 0.85;
         }
@@ -828,14 +828,14 @@ $imgSizeKurageY: 200px;
             line-height: 1;
             height: 100%;
             // color: $purple;
-            color: map-get($clr, 'text');
+            color: map-get($clrMap, 'text');
             text-shadow: 0px 0px 4px $purple;
             text-align: center;
 
-            @include lg-l {
+            @include mix.lg-l {
                 padding: 14px 0;
             }
-            @include sm-l {
+            @include mix.sm-l {
                 font-size: 0.8rem;
             }
             &::after {
@@ -847,7 +847,7 @@ $imgSizeKurageY: 200px;
                 display: block;
                 color: #c7b289;
 
-                @include lg-l {
+                @include mix.lg-l {
                     font-size: 1.8rem;
                 }
             }
@@ -899,7 +899,7 @@ $imgSizeKurageY: 200px;
     text-align: center; /* for no-flexbox browsers */
 
     &:before, &:after {
-        border-top: map-get($clr, 'hr') solid 1px;
+        border-top: map-get($clrMap, 'hr') solid 1px;
         content: "";
         display: inline; /* for IE */
         flex-grow: 1;
@@ -913,7 +913,7 @@ $imgSizeKurageY: 200px;
 
     &-fade {
         // background: linear-gradient(to left, #333, #333 50%, #eee 75%, #333 75%);
-        background: linear-gradient(to left ,rgba(0,0,0,0), map-get($clr, 'main') 50%, rgba(0,0,0,0));
+        background: linear-gradient(to left ,rgba(0,0,0,0), map-get($clrMap, 'main') 50%, rgba(0,0,0,0));
         background-repeat: no-repeat;
         background-position: 50% 100%;
         background-size: 100% 2px;
@@ -928,7 +928,7 @@ $imgSizeKurageY: 200px;
     text-align: left; /* for no-flexbox browsers */
 
     &:after {
-        border-top: map-get($clr, 'hr') solid 1px;
+        border-top: map-get($clrMap, 'hr') solid 1px;
         content: "";
         display: inline; /* for IE */
         flex-grow: 1;
@@ -941,7 +941,7 @@ $imgSizeKurageY: 200px;
 
 
 .pdauto{
-    @include lg-g {
+    @include mix.lg-g {
         padding: {
             // top:calc(5%);
             left:calc(10%);
@@ -949,7 +949,7 @@ $imgSizeKurageY: 200px;
             right:auto
         }
     }
-    @include lg-l {
+    @include mix.lg-l {
         padding-left: auto;
     }
 }
@@ -969,7 +969,7 @@ $imgSizeKurageY: 200px;
     & dt {
         background: $clrMain;
         width: 12rem;
-        @include md-l {
+        @include mix.md-l {
             width:100%;
             display: block;
         };
@@ -984,7 +984,7 @@ $imgSizeKurageY: 200px;
         margin: 0;
         width: calc(100% - 12rem);
         width : -webkit-calc(100% - 12rem) ;
-        @include md-l {
+        @include mix.md-l {
             width:100%;
         };
     }
@@ -1003,15 +1003,15 @@ $imgSizeKurageY: 200px;
         // border: 1px solid #ccc;
         border-top: none;
         width: 100%;
-        background-color: map-get($clr, 'sub3');
-        color: map-get($clr, 'sub1');
+        background-color: map-get($clrMap, 'sub3');
+        color: map-get($clrMap, 'sub1');
         // box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
     }
 
     & dt {
         // background: $clrMain;
         width: 32%;
-        @include md-l {
+        @include mix.md-l {
             width:70%;
             display: block;
             padding: 1rem !important;
@@ -1037,7 +1037,7 @@ $imgSizeKurageY: 200px;
         justify-content: end;
         align-items: center;
 
-        @include md-l {
+        @include mix.md-l {
             width:30%;
             padding: 1rem !important;
         };
@@ -1049,22 +1049,22 @@ $imgSizeKurageY: 200px;
     }
     & dt, & dd{
         // height: 3.6rem;
-        color: map-get($clr, 'text');
+        color: map-get($clrMap, 'text');
         padding: 0.8rem;
         box-sizing: border-box;
         border-bottom: 1px solid #ccc;
 
-        @include md-g {
+        @include mix.md-g {
             &:nth-of-type(4n-3),&:nth-of-type(4n-2){
-                background-color: map-get($clr, 'hr');
+                background-color: map-get($clrMap, 'hr');
             }
         }
 
-        @include md-l {
+        @include mix.md-l {
             padding: 0.2rem !important;
 
             &:nth-of-type(2n-1){
-                background-color: map-get($clr, 'hr');
+                background-color: map-get($clrMap, 'hr');
             }
         }
 
@@ -1144,7 +1144,7 @@ $imgSizeKurageY: 200px;
             color: $carmine;
         }
 
-        @include sm-l {
+        @include mix.sm-l {
             font-size: 5rem;
 
             &::first-letter{
@@ -1231,15 +1231,6 @@ $catchCircleDiameter: 100px;
 //  }
 //
 //
- .gnav{
-     &_anim{
-         @include hover-underline-slow($type: slide, $dir: center, $weight: 5px, $color: map-get($clr, 'text') ,$pd-btm:  11px , $time: 500ms);
-     }
-     // &_style{
-     //     width: 8rem;
-     //     height: $globalNavHeight;
-     // }
- }
 
 // ============= message ===============
 .message {
@@ -1256,7 +1247,7 @@ $catchCircleDiameter: 100px;
         // font-size: 0;
         overflow: hidden;
 
-        @include lg-l {
+        @include mix.lg-l {
             // height: 800px;
             max-height: 800px;
             height: auto;
@@ -1287,11 +1278,11 @@ $catchCircleDiameter: 100px;
         margin: 0;
         padding: 1rem;
         display: inline-block;
-        background-color: map-get($clr, 'main');
+        background-color: map-get($clrMap, 'main');
         vertical-align: top;
         width: 35%;
         height: 100%;
-        @include lg-l {
+        @include mix.lg-l {
             width: 100%;
             // height: 30%;
         }
@@ -1301,7 +1292,7 @@ $catchCircleDiameter: 100px;
         display: inline-block;
         max-width: 800px;
         width: 65%;
-        @include lg-l {
+        @include mix.lg-l {
             width: 100%;
             max-width: 100%;
         }
@@ -1337,10 +1328,10 @@ $centerTextHeight: 80px;
     width: 100%;
     height: 800px;
 
-    @include lg-l {
+    @include mix.lg-l {
         height: 700px;
     }
-    @include sm-l {
+    @include mix.sm-l {
         height: 650px;
     }
 }
@@ -1352,7 +1343,7 @@ $centerTextHeight: 80px;
     width: 100%;
     height: 350px;
 
-    @include lg-l {
+    @include mix.lg-l {
         height: 250px;
     }
 }
@@ -1367,26 +1358,26 @@ $centerTextHeight: 80px;
 }
 
 .home_content_text{
-    color: map-get($clr, 'text');
+    color: map-get($clrMap, 'text');
     font-size: 1rem;
     line-height: 3;
 }
 
 .text_ls_lg_center{
-    @include lg-l {
+    @include mix.lg-l {
         padding: 0 !important;
         text-align: center;
     }
 }
 
 .font_ls_sm{
-    @include sm-l {
+    @include mix.sm-l {
         letter-spacing: 0.3rem;
     }
 }
 
 .px0_ls_md{
-    @include md-l {
+    @include mix.md-l {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
@@ -1492,7 +1483,7 @@ input,select{
         margin: 0;
         width: 100%;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 1rem 0;
             width: 70%;
         }
@@ -1503,7 +1494,7 @@ input,select{
         width: 100%;
         height: 200px;
 
-        @include md-g {
+        @include mix.md-g {
         margin: 1rem 0 2rem;
             width: 70%;
         }
@@ -1514,7 +1505,7 @@ input,select{
         margin: 1.4rem 0 0.3rem;
         width: 100%;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 1rem 0;
             width: 30%;
         }
@@ -1526,7 +1517,7 @@ input,select{
         text-align: left;
         width: 100%;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 1rem 0;
             width: 100%;
         }
@@ -1536,7 +1527,7 @@ input,select{
 .h_200_gr_sm{
     height: 100%;
 
-    @include md-g {
+    @include mix.md-g {
         height: 200px;
     }
 }
@@ -1611,9 +1602,9 @@ input[type="submit"] {
             font-size: 1rem;
             letter-spacing: 0.8rem;
             // text-transform: uppercase;
-            color: map-get($clr, 'text');
+            color: map-get($clrMap, 'text');
 
-            @include md-l {
+            @include mix.md-l {
                 font-size: 0.8em;
                 letter-spacing: 0.2rem;
             }
@@ -1624,7 +1615,7 @@ input[type="submit"] {
 
 .footer_text{
 
-    @include lg-l {
+    @include mix.lg-l {
         text-align: center;
     }
 
@@ -1642,7 +1633,7 @@ input[type="submit"] {
         width: 100%;
         text-align: right;
 
-        @include lg-l {
+        @include mix.lg-l {
             text-align: center;
         }
 

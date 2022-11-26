@@ -1,3 +1,6 @@
+@use "my_variables";
+@use "my_mixins" as mixins;
+@use "sass:math";
 
 @for $i from 2 through 14 {
     .w-#{$i}r {
@@ -59,7 +62,7 @@
         padding-right: 1rem;
     }
     .fw-lslg-#{$i * 5}per {
-        @include lg-l {
+        @include mixins.lg-l {
             flex: 0 0 #{$i * 5}#{'%'};
             max-width: #{$i * 5}#{'%'};
             padding-left: 1rem;
@@ -67,7 +70,7 @@
         }
     }
     .fw-lsmd-#{$i * 5}per {
-        @include md-l {
+        @include mixins.md-l {
             flex: 0 0 #{$i * 5}#{'%'};
             max-width: #{$i * 5}#{'%'};
             padding-left: 1rem;
@@ -79,21 +82,21 @@
 
 
 @for $i from 1 through 8 {
-  $font-size: percentage(1 / $i);
+  $font-size: percentage(math.div(1, $i));
   .ftest-#{$i} {
     font-size: $font-size;
   }
 }
 
 @for $i from 1 through 40 {
-  $font-size: ($i / 20);
+  $font-size: calc($i * 20);
   .fz-#{$font-size * 100}r {
     font-size: #{$font-size}rem !important;
   }
 }
 
 @for $i from 1 through 20 {
-  $font-size: ($i * 10);
+  $font-size: calc($i *  10);
   .fz-#{$font-size}per {
     font-size: #{$font-size}\% !important;
   }
