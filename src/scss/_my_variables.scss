@@ -1,5 +1,3 @@
-//@import "my_gridlayout"
-
 // ============= variables ===================
 $debug_mode: true;
 $GraphicPerformanceImprovement: true;  // グラフィックパフォーマンスの向上適用
@@ -68,10 +66,9 @@ $logoLgX2Yratio:1.29;
 $logoLgX:600px;
 $logoLgY:$logoLgX * $logoLgX2Yratio;
 
-$bodyFontSize:16; //1rem
+$bodyFontSize:16px; //1rem
 $bodyFontHeight:$bodyFontSize * 1.5; // fz * lineHighet
-
-$videoSubstituteImage:'http://placehold.jp/24/cccccc/ffffff/400x300.png?text=videoどした?ここには馬がおるはず。';
+// $bodyFontHeight * 1.5; // fz * lineHighet
 
 // --- anim ---
 $underLineWeight: 4px;
@@ -79,49 +76,3 @@ $underLineWeight: 4px;
 $mobileNaviY:64px;
 
 
-// =============  ===============
-@mixin xs-g {
-  @media (min-width: 576px) {
-    @content;
-  }
-}
-@mixin sm-g {
-  @media (min-width: 576px) {
-    @content;
-  }
-}
-@mixin md-g {
-  @media (min-width: 768px) {
-    @content;
-  }
-}
-@mixin lg-g {
-  @media (min-width: 992px) {
-    @content;
-  }
-}
-@mixin xl-g {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
-@mixin sm-l {
-  @media (max-width: 575px){
-    @content;
-  }
-}
-@mixin md-l {
-  @media (max-width: 767px) {
-    @content;
- }
-}
-@mixin lg-l {
-  @media (max-width: 991px) {
-    @content;
-  }
-}
-@mixin xl-l {
-  @media (max-width: 1199px) {
-    @content;
-  }
-}

@@ -6,7 +6,9 @@ module.exports = {
     './index.js',
     './holder.min.js',
     './main.js',
-    './common.js'
+    './common.js',
+    // './scss/style.scss',
+    './scss/spazzatura.scss'
   ],
   output: {
     path: path.join(__dirname, "dest"),
@@ -17,6 +19,64 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(scss)$/,
+        use: [
+        {
+          // inject CSS to page
+          loader: 'style-loader',
+        },
+        {
+        //   // translates CSS into CommonJS modules
+          loader: 'css-loader',
+        },
+        {
+          // Run postcss actions
+          loader: 'postcss-loader',
+          options: {
+            // postcss plugins, can be exported to postcss.config.js
+            plugins:function () { // postcss plugins, can be exported to postcss.config.js
+              return [
+                require('autoprefixer')
+              ];
+            }
+          }
+        },
+        {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }]
+      },
+      //     {
+      //       test: /\.s[ac]ss$/i,
+      //       use: [
+      //         // Creates `style` nodes from JS strings
+      //         "style-loader",
+      //         "css-loader",
+      //         "sass-loader",
+      //       ],
+      //     },
+      //   ],
+      //   rules: [
+      //     {
+      //       test: /\.s[ac]ss$/i,
+      //       use: [
+      //         "style-loader",
+      //         {
+      //           // Compiles Sass to CSS
+      //           loader: "css-loader",
+      //           options: {
+      //             sourceMap: true,
+      //           },
+      //         },
+      //         {
+      //           // Translates CSS into CommonJS
+      //           loader: "sass-loader",
+      //           options: {
+      //             sourceMap: true,
+      //           },
+      //         },
+      //       ],
+      //     },
     ],
   },
 };

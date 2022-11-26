@@ -1,100 +1,26 @@
-@charset "utf-8";
-@import url("https://fonts.googleapis.com/css?family=Anton|Gloria+Hallelujah|Noto+Sans+KR:700&display=swap");
-// @import "_sanitize.scss";
+@use "sass:math";
+@use "my_variables" as variables;
+@use "my_mixins" as mixins;
+@use "my_common_style";
+@use "my_nav";
+// @import url("https://fonts.googleapis.com/css?family=Anton|Gloria+Hallelujah|Noto+Sans+KR:700&display=swap");
 // @import url("https:/:/fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
-@import "bootstrap";
+// @import "_sanitize.scss";
 
-@debug 10em+3em * 4;
+
+// @debug 10em+3em * 4;
 
 /* user style definition */ //jump用メッセージ
 //使用しないクラスをコンパイルからはずす仕組みがあるか調べる
+$body-color: blue;
 
-// ============= variables ===================
-$debug_mode: true;
-$GraphicPerformanceImprovement: true;  // グラフィックパフォーマンスの向上適用
-// $GraphicPerformanceImprovement: false;  // グラフィックパフォーマンスの向上適用
+body {
+  color: $body-color;
+}
 
 
-// --- hidden ---
-$headerDisable: false;
-$userDisable: false;
-$contantsDisable: false;
-
-// --- sudden ---
-$wireFrameMode: false;
-$colorbarDisp: false;
-// $placeholderLayoutMode: false;
-
-// --- colors ---
-// $themeClr: #228E41;
-$themeClr: #3AA0D4 ;
-// $themeClr: #333;
-$subClr1: lighten($themeClr,30%);
-$subClr2: lighten($themeClr,15%);
-// $subClr3: darken($themeClr,10%);
-$subClr3: #076EB2;
-// $subClr1: #E6FFED;
-// $subClr2: #A6FFBF;
-// $subClr3: #1C7334;
-// $themeClrLight: #1da96f;
-// $baseClr: #228E41;
-// $subClr1: desaturate(lighten($themeClr, 100%),100%);
-// $subClr2: desaturate(lighten($themeClr, 100%),50%);
-// $subClr3: saturate(darken($themeClr, 10%),0%);
-$accentClr: $subClr1;
-$accentClr2: red;
-$linkClr: #228E41;
-// $accentClr: #FF4333;
-
-$fClr: #eee;
-$fClr2: #212529;
-$textBackClr: #fff;
-$navDelimtClr: #aaa;
-$sectionBackClr: #eee;
-$themeClrAlpha90:rgba($themeClr, 0.94);
-$themeClrAlpha95:rgba($themeClr, 0.97);
-$twitterClr:#55acee;
-$snsColor: (
-  'twitter' : #55acee,
-  'facebook': #3b5998
-);
-$webfontList:(
-    'NotoSans': "font-family: 'Noto Sans KR', sans-serif",
-    'Anton': "font-family: 'Anton', sans-serif",
-    'Gloria': "font-family: 'Gloria Hallelujah', cursive"
-);
-
-// --- banner ---
-$headerHeight:50px;
-$bannerX:161px;
-$bannerY:$headerHeight - 2px;
-$bannerY2Xratio:0.79;
-
-// --- no use ---
-$mainVisual:null;
-
-// --- mein video ---
-$logoLgX2Yratio:1.29;
-$logoLgX:600px;
-$logoLgY:$logoLgX * $logoLgX2Yratio;
-
-$bodyFontSize:16; //1rem
-$bodyFontHeight:$bodyFontSize * 1.5; // fz * lineHighet
-
-$videoSubstituteImage:'http://placehold.jp/24/cccccc/ffffff/400x300.png?text=videoどした?ここには馬がおるはず。';
-
-// --- anim ---
-$underLineWeight: 4px;
-// --- style ---
-$mobileNaviY:64px;
-
-// ---  ---
-// ---  ---
-// -
-
-// 動画は、人々の動画をサンプルで挿入して、欲しい動画のイメージを相手に持ってもらう
 // ============= debug codes ===============
-@if $userDisable==true{
+@if variables.$wireFrameMode==true{
     .twitter-timeline , .hidToggle , video {visibility: hidden !important;}
     footer  {& dl, & ul, & h2, & h3 ,& p ,& u ,& img {visibility: hidden !important;}}
     header  {& dl, & ul, & h2, & h3 ,& p ,& u ,& img {visibility: hidden !important;}}
@@ -102,15 +28,15 @@ $mobileNaviY:64px;
     aside   {& dl, & ul, & h2, & h3 ,& p ,& u ,& img {visibility: hidden !important;}}
 }
 
-@if $headerDisable==true{
+@if variables.$headerDisable==true{
     header {visibility: hidden !important;}
 }
 
-@if $contantsDisable==true{
+@if variables.$contantsDisable==true{
     .container*:not([class^="col-"]){visibility: hidden !important;}
 }
 
-@if $wireFrameMode==true {
+@if variables.$wireFrameMode==true {
     .container,.container-fluid{
         outline: 1px dashed gray;
         outline-offset: -1px;
@@ -122,180 +48,13 @@ $mobileNaviY:64px;
         outline-offset: -3px !important;
     }
 
-    // $themeClr: #8E8E8E;
 }
-@if $colorbarDisp==false{
+@if variables.$colorbarDisp==false{
     .boxcolorbar {display: none;}
 }@else {
 
 }
-// ============= mixins ======================
-// おためし
-@mixin wh($x: 100%, $y: 100vh) {
-    width: $x;
-    height: $y;
-}
 
-@mixin retChek() {
-    @debug &;
-    @debug #{&};
-    @debug type-of(&); // 型を返す
-    @debug type-of(#{&}); // 型を返す
-}
-
-@mixin navBorderStyle(){
-    border-left: $navDelimtClr solid 1px;
-}
-
-@mixin heroFont(){
-
-// @each $key, $val in $webfontList {
-//   .wfont-#{$key} {
-//     font-family : $val;
-//   }
-// }
-
-    // font-family: 'Noto Sans KR', sans-serif;
-    // font-family: 'Anton', sans-serif;
-    font-family: 'Gloria Hallelujah', cursive;
-}
-
-h2{
-    // @include heroFont();
-}
-
-
-@mixin hover-underline($type: fade, $dir: null, $weight: 2px, $color: #000) {
-  @if $dir == fffl {
-    @if $type == fade {
-      $dir: 'top';
-    } @else if $type == slide {
-      $dir: 'center';
-    }
-  }
-
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  &::after {
-    position: absolute;
-    left: 0;
-    content: '';
-    width: 100%;
-    height: $weight;
-    background: $color;
-    @if $type == fade {
-      transition: .3s;
-      opacity: 0;
-      visibility: hidden;
-      @if $dir == bottom {
-        bottom: $weight * -4;
-      } @else {
-        bottom: $weight;
-      }
-    } @else if $type == slide {
-      bottom: $weight * -2;
-      transform: scale(0, 1);
-      transition: transform .3s;
-      @if $dir == left-right or $dir == right-in-left {
-        transform-origin: left top;
-      } @else if $dir == right-left or $dir == left-in-right {
-        transform-origin: right top;
-      } @else {
-        transform-origin: center top;
-      }
-    }
-  }
-  &:hover::after {
-    @if $type == fade {
-      bottom: $weight * -2;
-      opacity: 1;
-      visibility: visible;
-    } @else if $type == slide {
-      @if $dir == left-in-right {
-        transform-origin: left top;
-      } @else if $dir == right-in-left {
-        transform-origin: right top;
-      }
-      transform: scale(1, 1);
-    }
-  }
-}
-@debug index($grid-breakpoints, 0);
-@debug nth($grid-breakpoints, 5);
-@each $bp, $value in $grid-breakpoints {
-    @debug #{$bp};
-    @debug #{$value};
-};
-// @each $bp, $value in $grid-breakpints {
-//     @mixin #{bp} {
-//       @media (max-width: #{value}) {
-//         @content;
-//       }
-//     }
-// };
-
-// 自己でグリッドレイアウト
-// @mixin grid-column($start, $end) {
-//   grid-column: $start #{'/'} $end;
-//   -ms-grid-column: $start;
-//   -ms-grid-column-span: $end - $start;
-// }
-// @mixin grid-row($start, $end) {
-//   grid-row: $start #{'/'} $end;
-//   -ms-grid-row: $start;
-//   -ms-grid-row-span: $end - $start;
-// }
-
-@mixin xs-g {
-  @media (min-width: 576px) {
-    @content;
-  }
-}
-@mixin sm-g {
-  @media (min-width: 576px) {
-    @content;
-  }
-}
-@mixin md-g {
-  @media (min-width: 768px) {
-    @content;
-  }
-}
-@mixin lg-g {
-  @media (min-width: 992px) {
-    @content;
-  }
-}
-@mixin xl-g {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
-@mixin sm-l {
-  @media (max-width: 575px){
-    @content;
-  }
-}
-@mixin md-l {
-  @media (max-width: 767px) {
-    @content;
- }
-}
-@mixin lg-l {
-  @media (max-width: 991px) {
-    @content;
-  }
-}
-@mixin xl-l {
-  @media (max-width: 1199px) {
-    @content;
-  }
-}
-// @mixin float-left {
-//     float: left;
-//     // @include deprecate("The `float-left` mixin", "v4.3.0", "v5");
-// }
 
 /*-------------------------------------------------------- */
 /* base
@@ -362,29 +121,29 @@ body {
 // ============= color definition ===============
 .clr {
     &-theme {
-        background-color: $themeClr;
+        background-color: variables.$themeClr;
         // background-color: rgba(#pointer-events: , .85);
 
         &-o95 {
-            background-color: rgba($themeClr, 0.95);
+            background-color: rgba(variables.$themeClr, 0.95);
         }
 
         &-light {
-            background-color: $subClr1;
+            background-color: variables.$subClr1;
         }
 
         &-dark {
-            background-color: $subClr3;
+            background-color: variables.$subClr3;
         }
 
         &-light-bg {
-            // background-color: lighten($subClr1,5%);
+            // background-color: lighten(variables.$subClr1,5%);
              background-color: #f8f8f8;
         }
     }
 }
 
-@each $key, $color in $snsColor {
+@each $key, $color in variables.$snsColor {
   .clr-#{$key} {
     color: $color;
     &:hover {
@@ -393,7 +152,7 @@ body {
   }
 }
 
-.twitter {
+.twitter-clr {
     font-family: FontAwesome;
     content: '\f099';
 }
@@ -426,45 +185,25 @@ body {
     // letter-spacing: -.4em;
 }
 [class^="colorbar"] {
-    @include wh(50px, 50px);
+    @include mixins.wh(50px, 50px);
     display: inline-block;
 }
 .colorbar{
-    &1{background-color: $subClr1;border:5px solid $accentClr}
-    &2{background-color: $subClr2;}
-    &3{background-color: $themeClr;}
-    &4{background-color: $subClr3;}
-    &5{background-color: $accentClr;}
+    &1{background-color: variables.$subClr1;border:5px solid variables.$accentClr}
+    &2{background-color: variables.$subClr2;}
+    &3{background-color: variables.$themeClr;}
+    &4{background-color: variables.$subClr3;}
+    &5{background-color: variables.$accentClr;}
 }
 
 // ============= style definition ===============
 // bootstrapとの重複がある場合は後々消す
 
-// ============= bootstrap4 style custumize ===============
-.nav-item-top {
-    height: $headerHeight;
-    text-align: center;
-
-    @include xl-g {
-        width: 7rem;
-    }
-}
-.nav-item-delimline{
-    @include navBorderStyle;
-
-    // &:last-child {
-    //     @include sm {
-    //         // ハンバーガーメニューで余計な線が表示されるため、md未満の条件分岐を追記するといいよ!
-    //         border-right: #999 solid 1px;
-    //     }
-    // }
-    &:first-child {
-    border-left: 0;
-    }
-}
+// ============= bootstrap4 style overwrite ===============
+/* _nav.scss */
 .nav-link {
-    padding-top: ($headerHeight - $bodyFontHeight)/2;
-    padding-bottom: ($headerHeight - $bodyFontHeight)/2 - $underLineWeight - 4px;
+    padding-top: calc((variables.$headerHeight - variables.$bodyFontHeight)/2);
+    padding-bottom: calc((variables.$headerHeight - variables.$bodyFontHeight)/2 - variables.$underLineWeight - 4px);
 }
 
 .dropdown {
@@ -473,7 +212,7 @@ body {
     }
     &-toggle::after{
     margin-left: -0px;
-    border: $underLineWeight;
+    border: variables.$underLineWeight;
     }
 }
 
@@ -497,82 +236,22 @@ body {
 // ============= bootstrap4 extension ===============
 // sass script test
 @for $i from 6 through 12 {
-
     .mt-#{$i},
     .my-#{$i} {
-        // $buf: $i / 2; // local変数的に使える
-        margin-top: #{$i / 2}rem !important; // 簡単な演算はバッファ不要
+        $value: math.div($i, 2);
+        margin-top: #{$value}rem !important; // 簡単な演算はバッファ不要
     }
 }
 
 @for $i from 6 through 12 {
-
     .pb-#{$i} {
-        // $buf: $i / 2; // local変数的に使える
-        padding-bottom: #{$i / 2}rem !important; // 簡単な演算はバッファ不要
-    }
-}
-
-@for $i from 2 through 14 {
-    .w-#{$i}r {
-        width:#{$i}rem;
-    }
-}
-
-@for $i from 1 through 10 {
-    .lh-#{$i} {
-        line-height:#{$i};
-    }
-    .lh-#{$i}r {
-        line-height:#{$i}rem;
-    }
-}
-
-@for $i from 1 through 20 {
-    .minw-#{$i * 50} {
-        min-width:#{$i * 50}px;
-    }
-    .maxw-#{$i * 50} {
-        max-width:#{$i * 50}px;
-    }
-    .maxh-#{$i * 50} {
-        max-height:#{$i * 50}px;
-    }
-    // height
-    .minh-#{$i * 5}v {
-        max-height:#{$i * 5}vh;
-    }
-    .minh-#{$i * 50} {
-        min-height:#{$i * 50}px;
-    }
-    .maxh-#{$i * 5}v {
-        max-height:#{$i * 5}vh;
+        $value: math.div($i, 2);
+        padding-bottom: #{$value}rem !important; // 簡単な演算はバッファ不要
     }
 }
 
 
-@for $i from 1 through 8 {
-  $font-size: percentage(1 / $i);
-  .ftest-#{$i} {
-    font-size: $font-size;
-  }
-}
-
-@for $i from 1 through 40 {
-  $font-size: ($i / 20);
-  .fz-#{$font-size * 100}r {
-    font-size: #{$font-size}rem !important;
-  }
-}
-
-@for $i from 1 through 20 {
-  $font-size: ($i * 10);
-  .fz-#{$font-size}per {
-    font-size: #{$font-size}% !important;
-  }
-}
-
-mt8px{
+.mt8px{
     margin-top: 8px;
 }
 // .zindexInc {
@@ -585,102 +264,27 @@ mt8px{
 //   }
 // }
 
-// ============= nav ===============
-// アンダーラインアニメに必須
-// li a{display:block !important;}
 
-.grad-nav{
-  background: linear-gradient(to bottom, $themeClrAlpha90, $themeClrAlpha95);
-}
-
-.nav-item-right{
-    width: 9rem;
-    @include xl-g {
-        width: 11rem;
-    }
-}
-
-// hidden humberger menu border
-.navbar-dark .navbar-toggler {
-    border-color: rgba(0,0,0,0);
-}
-
-//test
-.youkoso{
-font-size: 1rem !important;
-color: #eee !important;
-}
-
-.banner {
-    width: $bannerX;
-    height: $bannerY;
-    max-width: $bannerX;
-
-    box-sizing: content-box;
-    border-left: 4px solid $white;
-    border-right: 7px solid $white;
-    margin: 0 7px;
-
-    &:hover {
-        opacity: 0.8;
-    }
-
-    &-s {
-        width: $headerHeight * $bannerY2Xratio;
-        height: $headerHeight;
-        // margin: 0 5px;
-
-
-        &:hover {
-            opacity: 0.8;
-        }
-
-    }
-}
-// [class^="banner"] {
-//     margin-left: 10px;
-// }
-
-.navbar-dark:hover .navbar-nav:hover .nav-link:hover {
-    color: rgba(255, 255, 255, 1) !important;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba($fClr, 0.9) !important;
-}
 
 
 // ============= footer ===============
+.ul {
+    &-4col{
+        & > li{
+            width: calc(24% - 1px);
+        }
+    }
+    &-5col{
+        & > li{
+            width: 20%;
+        }
+    }
+}
+
 .footer {
-
-    &-nav {
-
-        &-y {
-            height:$mobileNaviY;
-        }
-
-        &-style {
-            text-align: center;
-            width: 65px !important;
-            height: 100%;
-            font-size: 0.75rem;
-            text-align: center;
-            list-style-type: none;
-            line-height: 1.75;
-        }
-
-        // 暫定的なスタイル調整
-        &-img {
-            max-width: 50%;
-            margin: 0 auto;
-            width: 16px;
-            height: 12px;
-        // ここまで
-    }
-    }
     &-title{
         color: rgba(#fff, 1);
-        border-bottom: 1px solid ($fClr);
+        border-bottom: 1px solid (variables.$fClr);
         font-size: 1.2rem;
         letter-spacing: 0.15rem;
         max-width: 440px;
@@ -688,10 +292,10 @@ color: #eee !important;
 
     &-link-style {
         margin-bottom: 0;
-        color: rgba($fClr, 1);
+        color: rgba(variables.$fClr, 1);
         font-size:0.9rem;
         &:hover{
-            color: rgba($accentClr,.9);
+            color: rgba(variables.$accentClr,.9);
             text-decoration: none;
         }
         & i{
@@ -703,7 +307,7 @@ color: #eee !important;
 
     &-contactUs {
         display: table;
-        color: rgba($fClr, 1);
+        color: rgba(variables.$fClr, 1);
 
         & dl {
             display: table-row;
@@ -722,7 +326,6 @@ color: #eee !important;
         & dd {
             padding-left: 1rem;
         }
-
     }
 }
 
@@ -737,9 +340,9 @@ color: #eee !important;
     }
 
     & dt {
-        background: $subClr1;
+        background: variables.$subClr1;
         width: 12rem;
-        @include md-l {
+        @include mixins.md-l {
             width:100%;
             display: block;
         };
@@ -754,7 +357,7 @@ color: #eee !important;
         margin: 0;
         width: calc(100% - 12rem);
         width : -webkit-calc(100% - 12rem) ;
-        @include md-l {
+        @include mixins.md-l {
             width:100%;
         };
     }
@@ -766,20 +369,20 @@ color: #eee !important;
 }
 
 .hidden-container-grater-md{
-    @include md-g {
+    @include mixins.md-g {
         display: none;
     }
 }
 
 .hidden-container-less-md{
-    @include md-l {
+    @include mixins.md-l {
         display: none;
     }
 }
 
 .footer-lift-less-md{
-    @include md-l {
-        padding-bottom: $mobileNaviY;
+    @include mixins.md-l {
+        padding-bottom: variables.$mobileNaviY;
     }
 }
 
@@ -797,16 +400,16 @@ color: #eee !important;
     // margin-right: auto;
     margin: 60px auto;
 
-    @include sm-l {
+    @include mixins.sm-l {
         font-size: 1.2rem;
         font-weight: bold;
     }
 
     & span {
-        border-bottom: double $accentClr;
+        border-bottom: double variables.$accentClr;
         padding: 0 2rem;
 
-        @include sm-l {
+        @include mixins.sm-l {
                 padding: 0 1rem;
         }
 
@@ -816,7 +419,7 @@ color: #eee !important;
     text-align: center;
     margin-bottom: 2.5rem;
 
-    @include sm-l {
+    @include mixins.sm-l {
         font-size: 1.2rem;
         font-weight: bold;
     }
@@ -831,7 +434,7 @@ color: #eee !important;
 
         &:before {
             content:  '';
-            background-color: $subClr1;
+            background-color: variables.$subClr1;
             display:  block;
             position:  absolute;
             left:  0;
@@ -846,17 +449,17 @@ color: #eee !important;
 
 .common-link{
     text-decoration: underline;
-    color: $linkClr;
+    color: variables.$linkClr;
 
     &:hover{
-        color:$accentClr2;
+        color:variables.$accentClr2;
     }
 }
 
 
 .card-column1-less-md{
     columns:1;
-    @include md-g {
+    @include mixins.md-g {
         columns:2;
     };
 }
@@ -869,10 +472,10 @@ color: #eee !important;
 // news.html
 .news-layout{
     width: 100%;
-    @include sm-g {
+    @include mixins.sm-g {
         width: 100% !important;
     }
-    @include xl-g {
+    @include mixins.xl-g {
         width: 49.5% !important;
     }
 
@@ -882,7 +485,7 @@ color: #eee !important;
     }
 
     &:nth-child(2n + 1){
-        @include xl-g {
+        @include mixins.xl-g {
             margin-right: 1%;
         };
     }
@@ -891,10 +494,10 @@ color: #eee !important;
 //evnet.html
 .event-layout{
     width: 100%;
-    @include sm-g {
+    @include mixins.sm-g {
         width: 49.5% !important;
     }
-    @include xl-g {
+    @include mixins.xl-g {
         width: 32.5% !important;
     }
 
@@ -904,7 +507,7 @@ color: #eee !important;
     }
 
     &:nth-child(3n + 1) , &:nth-child(3n + 2){
-        @include xl-g {
+        @include mixins.xl-g {
             margin-right: 1.25%;
         };
     }
@@ -915,7 +518,7 @@ color: #eee !important;
 
     & div {
         padding: 2rem !important;
-        // @include xl-g {
+        // @include mixins.xl-g {
         // max-width: 880px;
         //暫定
         @media (min-width: 1660px) {
@@ -946,10 +549,10 @@ color: #eee !important;
 
     &-card {
     width: 100%;
-    // @include sm-g {
+    // @include mixins.sm-g {
     //     width: 49.5% !important;
     // }
-    // @include xl-g {
+    // @include mixins.xl-g {
     //     width: 32.5% !important;
     // }
 
@@ -960,7 +563,7 @@ color: #eee !important;
     }
 
     &:nth-child(3n + 1) , &:nth-child(3n + 2){
-        @include xl-g {
+        @include mixins.xl-g {
             margin-right: 1.25%;
         };
     }
@@ -980,8 +583,8 @@ color: #eee !important;
     &-bg-wrap {
         position: relative;
         overflow: hidden;
-        @include wh(100%, 500px);
-        background: url($videoSubstituteImage) no-repeatat center center/cover;
+        @include mixins.wh(100%, 500px);
+        // background: url(variables.$videoSubstituteImage) no-repeatat center center/cover;
     }
 
 
@@ -991,7 +594,7 @@ color: #eee !important;
         // height: 50vh;
         z-index: 1;
 
-        @if $GraphicPerformanceImprovement==true {
+        @if variables.$GraphicPerformanceImprovement==true {
 
             // ブラウザに事前通知して、アニメーションパフォーマンスを改善。GPUレンダリング予告かな。低スペでのパフォーマンスは要テスト。
             .ex-motion {
@@ -1002,7 +605,7 @@ color: #eee !important;
     }
 
     &-overlay {
-        @include wh(100%, 500px);
+        @include mixins.wh(100%, 500px);
         position: absolute;
         top: 0;
         left: 0;
@@ -1021,7 +624,7 @@ color: #eee !important;
         margin: auto;
         z-index: 3;
         height: 50px;
-        @include heroFont();
+        @include mixins.heroFont();
 
         &-text {
             max-width: 500px;
@@ -1030,11 +633,11 @@ color: #eee !important;
 
             font-size: 6rem;
 
-            @if $debug_mode==true {
+            @if variables.$debug_mode==true {
                 //display: none;
             }
 
-            @else if $debug_mode==false {
+            @else if variables.$debug_mode==false {
                 display: none;
             }
 
@@ -1055,16 +658,16 @@ color: #eee !important;
                 font-size: 4.5rem;
                 line-height: 1;
 
-                @include xl-l {
+                @include mixins.xl-l {
                     margin-right: 25%;
                 }
 
-                @include lg-l {
+                @include mixins.lg-l {
                     margin-right: 14%;
                     font-size: 4.4rem;
                 }
 
-                @include md-l {
+                @include mixins.md-l {
                     text-align: center;
                     margin-top: 330px;
                     margin-right: auto;
@@ -1079,16 +682,16 @@ color: #eee !important;
                 margin: 325px auto 0;
                 font-size: 1rem;
 
-                @include xl-l {
+                @include mixins.xl-l {
                     margin-right: 25%;
                 }
 
-                @include lg-l {
+                @include mixins.lg-l {
                     margin-right: 14%;
                     // font-size: 4.4rem;
                 }
 
-                @include md-l {
+                @include mixins.md-l {
                     text-align: center;
                     margin-top: 420px;
                     margin-right: auto;
@@ -1109,7 +712,7 @@ color: #eee !important;
                 border: 1px #fff solid;
                 border-radius: 3px;
 
-                @include md-l {
+                @include mixins.md-l {
                     display: none;
                     // margin-top: 10%;
                     // margin-right: 10%;
@@ -1119,15 +722,15 @@ color: #eee !important;
 
             &-img {
                 max-width: 200px;
-                max-height: #{200 * $logoLgX2Yratio}px;
+                max-height: #{200 * variables.$logoLgX2Yratio}px;
                 // min-width: 100px;
-                // min-height: #{100 * $logoLgX2Yratio}px;
-                width: $logoLgX;
-                height: $logoLgY;
+                // min-height: #{100 * variables.$logoLgX2Yratio}px;
+                width: variables.$logoLgX;
+                height: variables.$logoLgY;
                 margin-left: 8%;
                 margin-bottom: 90px;
 
-                @include md-l {
+                @include mixins.md-l {
                     margin: 80px auto;
                     font-size: 3rem;
                 }
@@ -1142,7 +745,7 @@ color: #eee !important;
     // animation-name: fadein-soft_flicker;
     // display: none;
 
-    @if $GraphicPerformanceImprovement==true {
+    @if variables.$GraphicPerformanceImprovement==true {
         // ブラウザに事前通知して、アニメーションパフォーマンスを改善。GPUレンダリング予告かな。低スペでのパフォーマンスは要テスト。
         .ex-motion {transform: translate3d(0, 0, 0);}
         // こちらは具体的なアニメーションを指示。要CanIuse
@@ -1158,7 +761,7 @@ color: #eee !important;
     // animation-name: fadein-soft_flicker;
     // display: none;
 
-    @if $GraphicPerformanceImprovement==true {
+    @if variables.$GraphicPerformanceImprovement==true {
         // ブラウザに事前通知して、アニメーションパフォーマンスを改善。GPUレンダリング予告かな。低スペでのパフォーマンスは要テスト。
         .ex-motion {transform: translate3d(0, 0, 0);}
         // こちらは具体的なアニメーションを指示。要CanIuse
@@ -1174,7 +777,7 @@ color: #eee !important;
     // animation-name: fadein-soft_flicker;
     // display: none;
 
-    @if $GraphicPerformanceImprovement==true {
+    @if variables.$GraphicPerformanceImprovement==true {
         // ブラウザに事前通知して、アニメーションパフォーマンスを改善。GPUレンダリング予告かな。低スペでのパフォーマンスは要テスト。
         .ex-motion {transform: translate3d(0, 0, 0);}
         // こちらは具体的なアニメーションを指示。要CanIuse
@@ -1186,10 +789,10 @@ color: #eee !important;
 
 
 .nav-anim{
-    @include hover-underline($type: slide, $dir: right-in-left, $weight: $underLineWeight, $color: #eee);
+    @include mixins.hover-underline(variables.$type: slide, variables.$dir: right-in-left, variables.$weight: variables.$underLineWeight, variables.$color: #eee);
 
     &-twitter:hover{
-        color: $twitterClr;
+        color: variables.$twitterClr;
     }
 }
 
@@ -1262,7 +865,7 @@ color: #eee !important;
 .aside-margin {
     margin-right: -15px;
 
-    @include xl-g {
+    @include mixins.xl-g {
         margin-right: 3vw;
     }
 
@@ -1275,19 +878,19 @@ color: #eee !important;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
 
-    @include md-g {
+    @include mixins.md-g {
         max-width: calc(640px + 2rem + 2rem);
 
     }
-    @include xl-g {
+    @include mixins.xl-g {
         width: 100%;
     }
-    // border: 3px solid $subClr1;
+    // border: 3px solid variables.$subClr1;
     // box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
 
     & h2 {
 
-        @include lg-l {
+        @include mixins.lg-l {
             margin: 2rem auto;
         };
 
@@ -1297,13 +900,13 @@ color: #eee !important;
 
         height: 50vh !important;
 
-        @include sm-g {
+        @include mixins.sm-g {
             height: 960px !important;
         }
 
         ;
 
-        @include xl-g {
+        @include mixins.xl-g {
             height: 1280px !important;
         }
 
@@ -1331,7 +934,7 @@ color: #eee !important;
 .textarea-back{
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
-    background-color: $textBackClr;
+    background-color: variables.$textBackClr;
     padding: 2rem;
 }
 
@@ -1343,7 +946,7 @@ color: #eee !important;
         flex-direction: row;
         padding-bottom: 1rem;
 
-        @include md-g {
+        @include mixins.md-g {
             display: block;
             padding-left: 0;
             padding-right: 1.75rem;
@@ -1354,7 +957,7 @@ color: #eee !important;
             padding: 0.2rem .5rem;
             font-size: 0.8rem;
 
-            @include md-g {
+            @include mixins.md-g {
                 width: 100%;
                 padding: 0.7rem 0 0.7rem 1.2rem;
                 font-size: 1rem;
@@ -1368,7 +971,7 @@ color: #eee !important;
         overflow: auto;
         height: calc(80vh - 100px);
 
-        @include sm-g {
+        @include mixins.sm-g {
             height: calc(95vh - 100px);
             min-height: 400px;
         };
@@ -1399,7 +1002,7 @@ color: #eee !important;
 .list-group-item {
 
     &:first-child {
-        @include sm-l {
+        @include mixins.sm-l {
             border-top-right-radius: 0rem;
         }
 
@@ -1407,7 +1010,7 @@ color: #eee !important;
     }
 
     &:last-child {
-        @include sm-l {
+        @include mixins.sm-l {
             border-bottom-left-radius: 0rem;
         }
 
@@ -1417,9 +1020,9 @@ color: #eee !important;
 
     &.active {
         z-index: 2;
-        color: $fClr;
-        background-color: $themeClr;
-        border-color: $themeClr;
+        color: variables.$fClr;
+        background-color: variables.$themeClr;
+        border-color: variables.$themeClr;
     }
 
 
@@ -1428,7 +1031,7 @@ color: #eee !important;
         z-index: 1;
         color: #495057;
         text-decoration: none;
-        background-color: $subClr1;
+        background-color: variables.$subClr1;
     }
 }
 
@@ -1466,7 +1069,7 @@ color: #eee !important;
     }
     & td:nth-child(2){
         width: 75%;
-        @include sm-l {
+        @include mixins.sm-l {
             padding-left: 20px;
         }
     }
@@ -1483,11 +1086,11 @@ color: #eee !important;
     &-name {
         padding: 0 15px;
 
-        @include md-g {
+        @include mixins.md-g {
             padding-left: 7%;
         }
 
-        @include xl-g {
+        @include mixins.xl-g {
             padding: 0 15px;
         }
 
@@ -1557,7 +1160,7 @@ color: #eee !important;
     & td:nth-child(3){
         width: 40%;
     }
-        @include sm-l {
+        @include mixins.sm-l {
             font-size: 0.8rem;
         }
 

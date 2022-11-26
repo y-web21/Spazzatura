@@ -1,3 +1,4 @@
+@use "common" as var;
 @keyframes key-content-fadein {
     0% {
         opacity: 0;
@@ -11,7 +12,7 @@
 @keyframes key-sidetab-fadein {
     0% {
         opacity: 0;
-        transform: rotate(-90deg) translateY($sideTabHeight);
+        transform: rotate(-90deg) translateY(var.$sideTabHeight);
     }
 
     100% {
@@ -27,7 +28,7 @@
     }
 
     100% {
-        transform: rotate(-90deg) translateY($sideTabHeight);
+        transform: rotate(-90deg) translateY(var.$sideTabHeight);
         opacity: 0;
         display: none;
         visibility: hidden;
@@ -45,33 +46,33 @@
 }
 
 @keyframes key-circle-all {
-    0%      {right: $circleNavInitX;}
-    100%    {right: $circleNavSplitX;}
+    0%      {right: var.$circleNavInitX;}
+    100%    {right: var.$circleNavSplitX;}
 }
 
 @keyframes key-circle-slide1 {
-    0%      {right: $circleNavSplitX;}
-    100%    {right: ($circleNavDiameter + 20px) * 4 + $circleNavSplitX;}
+    0%      {right: var.$circleNavSplitX;}
+    100%    {right: (var.$circleNavDiameter + 20px) * 4 + var.$circleNavSplitX;}
 }
 
 @keyframes key-circle-slide2 {
-    0%      {right: $circleNavSplitX;}
-    100%    {right: ($circleNavDiameter + 20px) * 3 + $circleNavSplitX;}
+    0%      {right: var.$circleNavSplitX;}
+    100%    {right: (var.$circleNavDiameter + 20px) * 3 + var.$circleNavSplitX;}
 }
 
 @keyframes key-circle-slide3 {
-    0%      {right: $circleNavSplitX;}
-    100%    {right: ($circleNavDiameter + 20px) * 2 + $circleNavSplitX;}
+    0%      {right: var.$circleNavSplitX;}
+    100%    {right: (var.$circleNavDiameter + 20px) * 2 + var.$circleNavSplitX;}
 }
 
 @keyframes key-circle-slide4 {
-    0%      {right: $circleNavSplitX;}
-    100%    {right: ($circleNavDiameter + 20px) * 1 + $circleNavSplitX;}
+    0%      {right: var.$circleNavSplitX;}
+    100%    {right: (var.$circleNavDiameter + 20px) * 1 + var.$circleNavSplitX;}
 }
 
 @keyframes key-circle-slide5 {
-    0%      {right: $circleNavSplitX;}
-    100%    {right: ($circleNavDiameter + 20px) * 0 + $circleNavSplitX;}
+    0%      {right: var.$circleNavSplitX;}
+    100%    {right: (var.$circleNavDiameter + 20px) * 0 + var.$circleNavSplitX;}
 }
 
 .sidetab-fadein {

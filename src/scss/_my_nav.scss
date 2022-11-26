@@ -1,24 +1,27 @@
+@use "my_variables" as variables;
+@use "my_mixins" as mixins;
+
 // ============= global nav ===============
 .grad-nav{
-    background: linear-gradient(to bottom, $themeClrAlpha90, $themeClrAlpha95);
+    background: linear-gradient(to bottom, variables.$themeClrAlpha90, variables.$themeClrAlpha95);
 }
 
 .nav-item{
     &-right{
         width: 9rem;
-        @include xl-g {
+        @include mixins.xl-g {
             width: 11rem;
         }
     }
     &-top {
-        height: $headerHeight;
+        height: variables.$headerHeight;
         text-align: center;
-        @include xl-g {
+        @include mixins.xl-g {
             width: 7rem;
         }
     }
     &-delimline{
-        @include navBorderStyle;
+        @include mixins.navBorderStyle;
         &:first-child {
             border-left: 0;
         }
@@ -31,13 +34,13 @@
 }
 
 .banner {
-    width: $bannerX;
-    height: $bannerY;
-    max-width: $bannerX;
+    width: variables.$bannerX;
+    height: variables.$bannerY;
+    max-width: variables.$bannerX;
 
     box-sizing: content-box;
-    border-left: 4px solid $white;
-    border-right: 7px solid $white;
+    // border-left: 4px solid variables.$white;
+    // border-right: 7px solid variables.$white;
     margin: 0 7px;
 
     &:hover {
@@ -45,8 +48,8 @@
     }
 
     &-s {
-        width: $headerHeight * $bannerY2Xratio;
-        height: $headerHeight;
+        width: variables.$headerHeight * variables.$bannerY2Xratio;
+        height: variables.$headerHeight;
         // margin: 0 5px;
 
 
@@ -65,7 +68,7 @@
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba($fClr, 0.9) !important;
+    color: rgba(variables.$fClr, 0.9) !important;
 }
 
 // ============= mobile nav ===============
@@ -75,7 +78,7 @@
     &-nav {
 
         &-y {
-            height:$mobileNaviY;
+            height:variables.$mobileNaviY;
         }
 
         &-style {

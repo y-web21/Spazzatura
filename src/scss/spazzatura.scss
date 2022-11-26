@@ -6,8 +6,18 @@ $circleNavSplitX: 50px;
 $sideTabHeight:3.5rem;
 $gotoTopHeight: 50vh;
 $clrActivePage: #90c;
-@import "my_variables", "my_mixins", "my_common_style" ,"my_anime";
+@use "my_variables" as var;
+@use "my_mixins" as mix;
+@use "my_common_style";
+@use "my_anime" as anim;
+@use "common" as cmn;
 
+html {
+    visibility: hidden;
+  }
+  html.wf-active {
+    visibility: visible;
+  }
 
 *{
     box-sizing: border-box;
@@ -25,7 +35,7 @@ h2{
 }
 
 a {
-    color: $fClr;
+    color: var.$fClr;
     text-decoration: none;
 }
 
@@ -125,13 +135,13 @@ a {
 }
 
 .d-n-ls-md{
-    @include md-l {
+    @include mix.md-l {
         display: none;
     }
 }
 
 .d-n-gr-md{
-    @include md-g {
+    @include mix.md-g {
         display: none;
     }
 }
@@ -215,7 +225,7 @@ $sideTabClr: #444;
         padding-right: 20px;
         width: $sideTabWidth;
         height: $sideTabHeight;
-        color: $fClr;
+        color: var.$fClr;
         text-align: center;
         line-height: $sideTabHeight - 0.5rem;
         text-decoration: none;
@@ -224,8 +234,8 @@ $sideTabClr: #444;
     &::after {
         position: absolute;
         content: '';
-        border-top: 2px solid $fClr;
-        border-right: 2px solid $fClr;
+        border-top: 2px solid var.$fClr;
+        border-right: 2px solid var.$fClr;
         top: 18px;
         right: 33px;
         width: 0.6rem;
@@ -245,10 +255,10 @@ $sideTabClr: #444;
         width: $circleNavDiameter;
         height: $circleNavDiameter;
         border-radius: $circleNavDiameter / 2;
-        background:  map-get($snsColor, 'twitter');
+        background:  map-get(var.$snsColor, 'twitter');
         margin: 0 0.3rem;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 0 0.6rem;
         }
 
@@ -280,7 +290,7 @@ $sideTabClr: #444;
         // top: 50%;
         // left: 50%;
         // transform: translateY(-15%) translateX(-50%);
-        // color: $fClr;
+        // color: var.$fClr;
         // text-decoration: none;
         text-align: center;
         font-size: 1.2rem;
@@ -322,7 +332,7 @@ $imgSizeKurageY: 200px;
         height: $imgSizeKurageY;
         z-index: 1;
         opacity: 0;
-        color:$fClr;
+        color:var.$fClr;
         background-color: #008;
         text-align: center;
         overflow: hidden;
@@ -360,7 +370,8 @@ $imgSizeKurageY: 200px;
 
 .gnav{
     &_anim{
-        @include hover-underline($type: slide, $dir: center, $weight: 6px, $color: #eee);
+        @include anim.hover-underline($type: slide, $dir: center, $weight: 6px, $color: #eee);
+        @include anim.hover-underline-slow($type: slide, $dir: center, $weight: 5px, $color: map-get(cmn.$clrMap, 'text') ,$pd-btm:  11px , $time: 500ms);
     }
     &_style{
         width: 8rem;
@@ -368,8 +379,7 @@ $imgSizeKurageY: 200px;
     }
 }
 
-
-// ============= oden ===============
+// ============= parallax scroll ===============
 $parallaxBgY: 800px;
 $parallaxBgRatio: 2;
 
@@ -505,7 +515,7 @@ $clrFormCorrect:#95fe72;
         margin: 0;
         width: 100%;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 1rem 0;
             width: 70%;
         }
@@ -516,7 +526,7 @@ $clrFormCorrect:#95fe72;
         width: 100%;
         height: 200px;
 
-        @include md-g {
+        @include mix.md-g {
         margin: 1rem 0 2rem;
             width: 70%;
         }
@@ -527,7 +537,7 @@ $clrFormCorrect:#95fe72;
         margin: 1.4rem 0 0.3rem;
         width: 100%;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 1rem 0;
             width: 30%;
         }
@@ -539,7 +549,7 @@ $clrFormCorrect:#95fe72;
         text-align: left;
         width: 100%;
 
-        @include md-g {
+        @include mix.md-g {
             margin: 1rem 0;
             width: 100%;
         }
@@ -549,7 +559,7 @@ $clrFormCorrect:#95fe72;
 .h_200_gr_sm{
     height: 100%;
 
-    @include md-g {
+    @include mix.md-g {
         height: 200px;
     }
 }
