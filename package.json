@@ -6,7 +6,7 @@
     "webpack-cli": "^5.0.0"
   },
   "scripts": {
-    "prod-prod": "webpack --config webpack.prod.js",
+    "build-prod": "webpack --config webpack.prod.js",
     "build": "webpack --config webpack.dev.js"
   },
   "engines": {
