@@ -12,7 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, "dest"),
-    filename: path.join("js", 'main.js'),
+    filename: './main.js',
     clean: {
       keep: /.*.html/, // 出力先削除後にビルドソース出力の対象外
     },
@@ -46,37 +46,6 @@ module.exports = {
           loader: 'sass-loader' // compiles Sass to CSS
         }]
       },
-      //     {
-      //       test: /\.s[ac]ss$/i,
-      //       use: [
-      //         // Creates `style` nodes from JS strings
-      //         "style-loader",
-      //         "css-loader",
-      //         "sass-loader",
-      //       ],
-      //     },
-      //   ],
-      //   rules: [
-      //     {
-      //       test: /\.s[ac]ss$/i,
-      //       use: [
-      //         "style-loader",
-      //         {
-      //           // Compiles Sass to CSS
-      //           loader: "css-loader",
-      //           options: {
-      //             sourceMap: true,
-      //           },
-      //         },
-      //         {
-      //           // Translates CSS into CommonJS
-      //           loader: "sass-loader",
-      //           options: {
-      //             sourceMap: true,
-      //           },
-      //         },
-      //       ],
-      //     },
     ],
   },
 };

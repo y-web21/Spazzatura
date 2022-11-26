@@ -15,7 +15,6 @@ module.exports = merge(common, {
   },
   devtool: "hidden-source-map",
   module: {
-    rules: [
-    ],
+    rules: [],
   },
 });
