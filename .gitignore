@@ -85,6 +85,6 @@ Thumbs.db
 
 .env
 *.map
-dest/**/*
-!dest/**/*html
+dist/**/*
+!dist/**/*html
 

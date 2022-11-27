@@ -1,5 +1,6 @@
 const path = require('path');
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   context: path.join(__dirname, "src"),
   entry: [
@@ -7,76 +8,54 @@ module.exports = {
     './holder.min.js',
     './main.js',
     './common.js',
-    // './scss/style.scss',
-    './scss/spazzatura.scss'
   ],
   output: {
-    path: path.join(__dirname, "dest"),
+    path: path.join(__dirname, "dist"),
     filename: path.join("js", 'main.js'),
     clean: {
-      keep: /.*.html/, // 出力先削除後にビルドソース出力の対象外
+      keep: /.*.(html|css|jpg)/, // 出力先削除後にビルドソース出力の対象外
     },
   },
   module: {
+    // options: {
+    //   sourceMap: true,
+    // },
     rules: [
       {
         test: /\.(scss)$/,
         use: [
-        {
-          // inject CSS to page
-          loader: 'style-loader',
-        },
-        {
-        //   // translates CSS into CommonJS modules
-          loader: 'css-loader',
-        },
-        {
-          // Run postcss actions
-          loader: 'postcss-loader',
-          options: {
-            // postcss plugins, can be exported to postcss.config.js
-            plugins:function () { // postcss plugins, can be exported to postcss.config.js
-              return [
-                require('autoprefixer')
-              ];
+          {
+            // inject CSS to page
+            loader: 'style-loader',
+          },
+          {
+            // translates CSS into CommonJS modules
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            },
+          },
+          {
+            // Run postcss actions
+            loader: 'postcss-loader',
+            options: {
+              // postcss plugins, can be exported to postcss.config.js
+              plugins: function () { // postcss plugins, can be exported to postcss.config.js
+                return [
+                  require('autoprefixer')
+                ];
+              }
             }
-          }
-        },
-        {
-          loader: 'sass-loader' // compiles Sass to CSS
-        }]
+          },
+          {
+            // compiles Sass to CSS
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }]
       },
-      //     {
-      //       test: /\.s[ac]ss$/i,
-      //       use: [
-      //         // Creates `style` nodes from JS strings
-      //         "style-loader",
-      //         "css-loader",
-      //         "sass-loader",
-      //       ],
-      //     },
-      //   ],
-      //   rules: [
-      //     {
-      //       test: /\.s[ac]ss$/i,
-      //       use: [
-      //         "style-loader",
-      //         {
-      //           // Compiles Sass to CSS
-      //           loader: "css-loader",
-      //           options: {
-      //             sourceMap: true,
-      //           },
-      //         },
-      //         {
-      //           // Translates CSS into CommonJS
-      //           loader: "sass-loader",
-      //           options: {
-      //             sourceMap: true,
-      //           },
-      //         },
-      //       ],
-      //     },
     ],
   },
+  // target: ["web", "es5"], トランスパイル向けの設定
 };
