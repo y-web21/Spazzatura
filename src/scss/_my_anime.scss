@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use "common" as var;
 @keyframes key-content-fadein {
     0% {
@@ -116,7 +117,7 @@
         bottom: $weight;
       }
     } @else if $type == slide {
-      bottom: $weight * -2 +12px;
+      bottom: $weight * -2 + 12px;
       transform: scale(0, 1);
       transition: transform .3s;
       @if $dir == left-right or $dir == right-in-left {
@@ -168,12 +169,12 @@
       opacity: 0;
       visibility: hidden;
       @if $dir == bottom {
-        bottom: $weight - $pd-btm / 2;
+        bottom: $weight - math.div($pd-btm, 2) ;
       } @else {
-        bottom: $weight - $pd-btm / 2;
+        bottom: $weight - math.div($pd-btm, 2) ;
       }
     } @else if $type == slide {
-      bottom: $weight - $pd-btm / 2;
+      bottom: $weight - math.div($pd-btm, 2) ;
       transform: scale(0, 1);
       transition: transform $time;
       @if $dir == left-right or $dir == right-in-left {
@@ -187,7 +188,7 @@
   }
   &:hover::after {
     @if $type == fade {
-      bottom: $weight - $pd-btm / 2;
+      bottom: $weight - math.div($pd-btm, 2) ;
       opacity: 1;
       visibility: visible;
     } @else if $type == slide {

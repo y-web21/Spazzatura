@@ -1,3 +1,4 @@
+@use "sass:math";
 $mainVisualHeight: 480px;
 $globalNavHeight: 80px;
 $circleNavDiameter:100px;
@@ -11,13 +12,6 @@ $clrActivePage: #90c;
 @use "my_common_style";
 @use "my_anime" as anim;
 @use "common" as cmn;
-
-html {
-    visibility: hidden;
-  }
-  html.wf-active {
-    visibility: visible;
-  }
 
 *{
     box-sizing: border-box;
@@ -254,7 +248,7 @@ $sideTabClr: #444;
     & li {
         width: $circleNavDiameter;
         height: $circleNavDiameter;
-        border-radius: $circleNavDiameter / 2;
+        border-radius: math.div($circleNavDiameter, 2);
         background:  map-get(var.$snsColor, 'twitter');
         margin: 0 0.3rem;
 
@@ -286,7 +280,7 @@ $sideTabClr: #444;
         position: absolute;
         width: $circleNavDiameter;
         height: $circleNavDiameter;
-        border-radius: $circleNavDiameter / 2;
+        border-radius: math.div($circleNavDiameter, 2);
         // top: 50%;
         // left: 50%;
         // transform: translateY(-15%) translateX(-50%);
@@ -440,7 +434,7 @@ $parallaxBgRatio: 2;
     margin: 0;
     font-size: 5rem;
     position: absolute;
-    top: $parallaxBgY / 2;
+    top: math.div($parallaxBgY, 2);
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
@@ -665,7 +659,7 @@ $globalNavHeightMobile: 4rem;
 
     & a {
         width: 100%;
-        height: $globalNavHeight / 2;
+        height: math.div($globalNavHeight, 2);
         color: #fff;
         font-size: 0.5rem;
         list-style-type: none;
@@ -675,7 +669,7 @@ $globalNavHeightMobile: 4rem;
     & i {
         padding: 1rem;
         width: 100%;
-        height: $globalNavHeight / 2;
+        height: math.div($globalNavHeight, 2);
 
         & #text {
             font-size: 10rem;
