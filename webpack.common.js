@@ -12,9 +12,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: path.join("js", 'main.js'),
-    clean: {
-      keep: /.*.(html|css|jpg)/, // 出力先削除後にビルドソース出力の対象外
-    },
+    // clean: {
+    //   keep: /.*.(html|css|jpg)/, // 出力先削除後にビルドソース出力の対象外
+    // },
   },
   module: {
     // options: {
