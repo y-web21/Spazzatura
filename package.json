@@ -10,12 +10,15 @@
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "watch": "webpack --config webpack.dev.js",
-    "test": "npx webpack --config webpack.common.js --mode production"
+    "build": "webpack --config webpack.prod.js --mode production",
+    "watch": "webpack --config webpack.dev.js --mode development",
+    "serve": "webpack serve --config webpack.dev.js --mode development",
+    "bs": "browser-sync start --config bs-config.js",
+    "bswatch": "browser-sync start --config bs-config.js; webpack --config webpack.dev.js --mode development"
   },
   "engines": {
     "node": "16.14.x",
