@@ -2,127 +2,98 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Spazzatura</title>
-    <!-- <link rel="stylesheet" href="./css/goodstyle.css"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./css/common.css"> -->
-    <script defer src="./js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
-<!-- <script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script> -->
+  <meta charset="UTF-8">
+  <title>Spazzatura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script defer src="./js/main.js"></script>
 </head>
 
 <body>
-	<!-- <div class="bg_subClr1"></div> -->
   <h1 class="mx-0 my-0 ta-c main_vis_text d-block">Spa<span>zz</span>atura</h1>
-  <!-- <h1 class="mx-0 my-0 ta-c main_vis_text d-block">Spa<span>zz</span>atur<a href="jstest.html#formName">a</a></h1> -->
   <div class="container-fluid main_vis_wrap">
-	  	<!-- <img src="./images/gyu-lamp.jpg" alt=""> -->
-        <!-- <h1 class="ta-c"><img src="./images/logo.png" alt="" width="500" height="300"></h1> -->
+  </div>
+
+  <nav class="container-fluid global_menu sticky_nav_wrap " id="stickyNav">
+    <ul class="mx-auto my-0 d-n-ls-l">
+      <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
+      <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
+      <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
+      <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
+      <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
+    </ul>
+  </nav>
+
+  <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
+
+  <section class="container-fluid mt-4 mb-5">
+    <h2 class="w-100per mb-2 home_h2_style hr"><span>WELCOME</span></h2>
+    <div class="d_flex_row px-4 px0_ls_md">
+      <div class="fw-60per fw-lslg-100per maxw-800 mx-auto my-auto px-0 img_shadow_white">
+        <img class="w-100per" src="./images/welcome.jpg" alt="">
+      </div>
+      <p class="fw-40per fw-lslg-100per home_content_text text_ls_lg_center pdauto fadeIn">究極の贅沢が、<br> あなたをお待ちしております。
+        <br> 都心ということを忘れさせる、
+        <br> 静寂な空間。
+        <br> 旬の食材、
+        <br> こだわり抜いた食材で
+        <br> おもてなしいたします。
+        <br> 大切なひと時をお過ごしください。
+      </p>
     </div>
+  </section>
 
-    <nav class="container-fluid global_menu sticky_nav_wrap " id="stickyNav">
-        <ul class="mx-auto my-0 d-n-ls-l">
-            <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
-            <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
-            <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
-            <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
-            <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
-        </ul>
-    </nav>
+  <section class="container-fluid">
+    <div class="d_flex_row fx-AI-start">
+      <div class="fw-45per fw-lsmd-100per mb-5 px-0 menu">
+        <h2 class="mb-2 home_h2_style hr-r"><span>MENU</span></h2>
+        <div class="ta-c px-3 px0_ls_md">
+          <div class="maxh-100">
+            <img class="maxw-550 w-100per" src="./images/menu.jpg" alt="">
+          </div>
+          <p class="home_content_text text_ls_lg_center ta-l mt-2 ta-c fadeIn" id="fadeIn0">
+            最高の時間を過ごして頂くために、<br>お飲み物にも「こだわり」を。<br> 各種ご用意しております。
+          </p>
+          <button class="w-150 h-50 button ff_theme"><a href="menu.html">more</a></button>
+        </div>
+      </div>
+      <div class="fw-10per d-n-ls-lg"></div>
+      <div class="fw-45per fw-lsmd-100per mb-5 px-0 staff">
+        <h2 class="mb-2 home_h2_style hr-r"><span>MESSAGE</span></h2>
+        <div class="ta-c px-3 px0_ls_md">
+          <div class="maxh-100">
+            <img class="maxw-550 w-100per" src="./images/chef_home.jpg" alt="">
+          </div>
+          <p class="home_content_text text_ls_lg_center ta-l mt-2 ta-c fadeIn" id="fadeIn1">特別な時間を過ごして頂けるように、<br>
+            店内・空間にもこだわり、
+            <br> 思い出に残る体験をご提供いたします。
+          </p>
+          <button class="w-150 h-50 button ff_theme"><a href="message.html">more</a></button>
 
-    <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
-
-    <!--   <section class="container-fluid main_visual mt-2" id="mainVisual">
-    <div class="frame pos-r">
-      <img src="./images/gyu-lamp.jpg" alt="">
-      <div class="catch_phrase_bg"><p class="catch_phrase_text"><span>うまい</span>ですね<br>
-      ああ・・・</p></div>
+        </div>
+      </div>
     </div>
-  </section> -->
+  </section>
+  </div>
 
-
-    <section class="container-fluid mt-4 mb-5">
-        <!-- <div class="d_flex_row mb-2 px0_ls_md welcome"> -->
-        <h2 class="w-100per mb-2 home_h2_style hr"><span>WELCOME</span></h2>
-        <!-- </div> -->
-        <div class="d_flex_row px-4 px0_ls_md">
-            <div class="fw-60per fw-lslg-100per maxw-800 mx-auto my-auto px-0 img_shadow_white">
-                <img class="w-100per" src="./images/welcome.jpg" alt="">
-            </div>
-            <p class="fw-40per fw-lslg-100per home_content_text text_ls_lg_center pdauto fadeIn">究極の贅沢が、<br> あなたをお待ちしております。
-                <br> 都心ということを忘れさせる、
-                <br> 静寂な空間。
-                <br> 旬の食材、
-                <br> こだわり抜いた食材で
-                <br> おもてなしいたします。
-                <br> 大切なひと時をお過ごしください。
-            </p>
-        </div>
-    </section>
-
-    <section class="container-fluid">
-        <div class="d_flex_row fx-AI-start">
-            <div class="fw-45per fw-lsmd-100per mb-5 px-0 menu">
-                <h2 class="mb-2 home_h2_style hr-r"><span>MENU</span></h2>
-                <div class="ta-c px-3 px0_ls_md">
-                    <div class="maxh-100">
-                        <img class="maxw-550 w-100per" src="./images/menu.jpg" alt="">
-                    </div>
-                    <p class="home_content_text text_ls_lg_center ta-l mt-2 ta-c fadeIn" id="fadeIn0">
-                        最高の時間を過ごして頂くために、<br>お飲み物にも「こだわり」を。<br> 各種ご用意しております。
-                    </p>
-                    <button class="w-150 h-50 button ff_theme"><a href="menu.html">more</a></button>
-                </div>
-            </div>
-            <div class="fw-10per d-n-ls-lg"></div>
-            <div class="fw-45per fw-lsmd-100per mb-5 px-0 staff">
-                <h2 class="mb-2 home_h2_style hr-r"><span>MESSAGE</span></h2>
-                <div class="ta-c px-3 px0_ls_md">
-                    <div class="maxh-100">
-                        <img class="maxw-550 w-100per" src="./images/chef_home.jpg" alt="">
-                    </div>
-                    <p class="home_content_text text_ls_lg_center ta-l mt-2 ta-c fadeIn" id="fadeIn1">特別な時間を過ごして頂けるように、<br> 店内・空間にもこだわり、
-                        <br> 思い出に残る体験をご提供いたします。
-                    </p>
-                    <button class="w-150 h-50 button ff_theme"><a href="message.html">more</a></button>
-
-                </div>
-            </div>
-        </div>
-    </section>
+  <footer class="container-fulid">
+    <div class="line mb-4"></div>
+    <div class="d_flex_row footer_text">
+      <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
+      <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
+        <span class="tel">03-xxxx-xxxx</span>
+      </p>
     </div>
-
-    <!--   <section class="container-fluid mb-4 information">
-    <div class="d_flex_row mb-2 x0_ls_md information">
-     <h2 class="w-100per mb-2 home_h2_style hr"><span>INFORMATION</span></h2>
     </div>
-    <p class="home_content_text text_ls_lg_center"><time datetime="2022-8-8">2022/8/8</time>menuを一新しました</p>
-    <p class="home_content_text text_ls_lg_center"><time datetime="2022-8-8">2022/8/8</time><time datetime="2022-8-8">2022/12/32</time>休業します</p>
-  </section> -->
+    </div>
+    <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
+  </footer>
 
-    <footer class="container-fulid">
-        <div class="line mb-4"></div>
-        <div class="d_flex_row footer_text">
-            <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
-            <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
-                <span class="tel">03-xxxx-xxxx</span></p>
-        </div>
-        </div>
-        </div>
-        <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
-    </footer>
-
-    <!-- mobile navi用にフッターリフト -->
-    <div class="d-n-gr-lg mb-6"></div>
-
-    <!-- parts -->
-    <!--   <div class="goto_top_tag">
-    <a class="d-block" href="#">Go To Top</a>
-  </div> -->
+  <!-- mobile navi用にフッターリフト -->
+  <div class="d-n-gr-lg mb-6"></div>
 </body>
 
 </html>
