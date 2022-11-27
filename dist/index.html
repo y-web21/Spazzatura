@@ -15,8 +15,29 @@
 <!-- <script defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script> -->
 </head>
 
+<script>
+  WebFontConfig={
+    google:{
+      families:['Roboto:400,700', 'Noto+Sans+JP:400,700']
+    },
+    active: function() {
+      sessionStorage.fonts = true;
+    }
+  };
+
+  if (typeof WebFont === 'object') {
+    WebFont.load(WebFontConfig);
+  }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" async></script>
+
+<link rel="preload" as="font" href="/assets/fonts/yakuhanjp/YakuHanJP-Regular.woff2" crossorigin>
+<link rel="preload" as="font" href="/assets/fonts/yakuhanjp/YakuHanJP-Bold.woff2" crossorigin>
+<link rel="preload" as="font" href="/assets/fonts/yakuhanjp/YakuHanJP-Regular.woff" crossorigin>
+<link rel="preload" as="font" href="/assets/fonts/yakuhanjp/YakuHanJP-Bold.woff" crossorigin>
+
 <body>
-	<div class="pos-r" style="height: 7px;"></div>
 	<!-- <div class="bg_subClr1"></div> -->
   <h1 class="mx-0 my-0 ta-c main_vis_text d-block">Spa<span>zz</span>atura</h1>
   <!-- <h1 class="mx-0 my-0 ta-c main_vis_text d-block">Spa<span>zz</span>atur<a href="jstest.html#formName">a</a></h1> -->
