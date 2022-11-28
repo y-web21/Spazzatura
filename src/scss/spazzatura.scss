@@ -1,3 +1,4 @@
+@use "fonts" as font;
 @use "sass:math";
 $mainVisualHeight: 480px;
 $globalNavHeight: 80px;
@@ -99,9 +100,17 @@ a {
     height: 100%;
 }
 
-.full-width {
+.full_width_access {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
+
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    @include mix.md-l {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
 }
 
 .container{
@@ -613,7 +622,6 @@ input[type="submit"] {
     }
 }
 
-
 // ============= message ===============
 .message {
 
@@ -622,7 +630,7 @@ input[type="submit"] {
         outline-offset: -6px;
         width: 100%;
         max-width: 1138px;
-        max-height: 450px;
+        max-height: 600px;
         min-height: 410px;
         height: 38vw;
         box-sizing: border-box;
@@ -630,43 +638,39 @@ input[type="submit"] {
         overflow: hidden;
 
         @include mix.lg-l {
-            // height: 800px;
-            max-height: 800px;
+            max-height: 900px;
             height: auto;
+        }
+
+        // inline-box 回り込み対策
+        letter-spacing: -1em;
+        * {
+            letter-spacing: normal;
         }
     }
 
     &_title {
         letter-spacing: 0.2rem;
         font-weight: 1;
-        // font-family: 'Great Vibes', cursive;
-        // @include font.theme_fonts_en;
-        // font-family: 'Parisienne', cursive;
-        // font-family: 'Italianno', cursive;
-        // font-family: 'Allura', cursive;
-        // font-family: 'Pinyon Script', cursive;
-        // font-family: 'Alex Brush', cursive;
-        // font-family: 'Petit Formal Script', cursive;
-        // font-family: 'Herr Von Muellerhoff', cursive;
-        // font-family: 'Mr De Haviland', cursive;
         @include font.theme_fonts;
         padding-left: 0;
         padding-right: 0;
         transform: scale(0.8, 1);
-        // width: 150%;
     }
 
     &_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 0;
         padding: 1rem;
         display: inline-block;
-        background-color: map-get($clrMap, 'main');
+        background-color: map-get(cmn.$clrMap, 'main');
         vertical-align: top;
         width: 35%;
         height: 100%;
         @include mix.lg-l {
             width: 100%;
-            // height: 30%;
         }
     }
 
@@ -674,9 +678,11 @@ input[type="submit"] {
         display: inline-block;
         max-width: 800px;
         width: 65%;
+        height:100%;
+        object-fit: cover;
         @include mix.lg-l {
-            width: 100%;
-            max-width: 100%;
+            min-width: 100%;
+            min-height: 300px;
         }
     }
 
