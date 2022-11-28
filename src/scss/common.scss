@@ -1,6 +1,7 @@
 @use "my_mixins" as mix;
 @use "sass:math";
-@import "my_variables", "my_mixins", "my_common_style", "fonts";
+@use "fonts" as font;
+@import "my_variables", "my_mixins", "my_common_style";
 
 $imagesPath: "../images/";
 @function imgUrl($fileName) {
@@ -212,9 +213,7 @@ a {
 }
 
 li, p, dd, dt, h3, h4 {
-    font-family: 'Sawarabi Mincho', sans-serif;
-    // font-weight: 200;
-    //font-family: 'Noto Serif JP', serif;
+    @include font.theme_fonts;
 }
 
 p{
@@ -503,18 +502,10 @@ dd {
 
 
 
-@mixin fonts() {
-    font-family: 'Sawarabi Mincho', sans-serif;
-}
-@mixin fonts_eng() {
-    font-family: 'Tangerine', cursive;
-}
-
-
+// --- top page button ---
 .ff_theme{
-    @include fonts;
+    @include font.theme_fonts;
 }
-
 
 .button {
   border-radius: 1px;
@@ -525,7 +516,7 @@ dd {
       color: map-get($clrMap, 'text');
       font-size: 2rem;
       display: block;
-      @include fonts_eng;
+      @include font.theme_fonts_en;
       padding-bottom: 0.3rem;
     }
 
@@ -845,7 +836,7 @@ $imgSizeKurageY: 200px;
             }
             &::after {
                 padding: 4px;
-                font-family: 'Tangerine', cursive;
+                @include font.theme_fonts_en;
                 font-size: 2.2rem;
                 line-height: 1;
                 text-align: center;
@@ -880,7 +871,7 @@ $imgSizeKurageY: 200px;
     letter-spacing: 0.5rem;
     font-weight: 1;
     // font-family: 'Great Vibes', cursive;
-    // font-family: 'Tangerine', cursive;
+    // @include font.theme_fonts_en;
     // font-family: 'Parisienne', cursive;
     // font-family: 'Italianno', cursive;
     // font-family: 'Allura', cursive;
@@ -889,7 +880,7 @@ $imgSizeKurageY: 200px;
     // font-family: 'Petit Formal Script', cursive;
     // font-family: 'Herr Von Muellerhoff', cursive;
     // font-family: 'Mr De Haviland', cursive;
-    font-family: 'Sawarabi Mincho', sans-serif;
+    @include font.theme_fonts;
     padding-left: 0;
     padding-right: 0;
     & span{
@@ -1119,7 +1110,7 @@ $imgSizeKurageY: 200px;
         top: math.div($mainVisualHeight, 2);
         left: 50%;
         transform:translateX(-50%) translateY(-50%);
-        font-family: 'Tangerine', cursive;
+        @include font.theme_fonts_en;
         font-size: 7rem;
         font-weight: 1000;
         color: #FFF;
@@ -1248,7 +1239,7 @@ $catchCircleDiameter: 100px;
         letter-spacing: 0.2rem;
         font-weight: 1;
         // font-family: 'Great Vibes', cursive;
-        // font-family: 'Tangerine', cursive;
+        // @include font.theme_fonts_en;
         // font-family: 'Parisienne', cursive;
         // font-family: 'Italianno', cursive;
         // font-family: 'Allura', cursive;
@@ -1257,7 +1248,7 @@ $catchCircleDiameter: 100px;
         // font-family: 'Petit Formal Script', cursive;
         // font-family: 'Herr Von Muellerhoff', cursive;
         // font-family: 'Mr De Haviland', cursive;
-        font-family: 'Sawarabi Mincho', sans-serif;
+        @include font.theme_fonts;
         padding-left: 0;
         padding-right: 0;
         transform: scale(0.8, 1);
@@ -1614,7 +1605,7 @@ input[type="submit"] {
     }
 
     &_logo{
-        font-family: 'Tangerine', cursive;
+        @include font.theme_fonts_en;
         font-size: 4rem;
         font-weight: 1000;
         color: #FFF;
