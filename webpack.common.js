@@ -17,9 +17,6 @@ module.exports = {
     },
   },
   module: {
-    // options: {
-    //   sourceMap: true,
-    // },
     rules: [
       {
         test: /\.(scss)$/,

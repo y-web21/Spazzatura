@@ -387,7 +387,7 @@ $parallaxBgRatio: 2;
 
         &_entity{
             position: absolute;
-            background:url('../images/kafun.jpg') repeat;
+            // background:url('../images/kafun.jpg') repeat;
             width: 100%;
             height: $parallaxBgY * $parallaxBgRatio;
             // top: 0px;

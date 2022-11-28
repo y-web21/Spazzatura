@@ -1,19 +1,24 @@
-// <style>
-// @import url('https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Great+Vibes|Herr+Von+Muellerhoff|Italianno|Mr+De+Haviland|Parisienne|Petit+Formal+Script|Pinyon+Script|Tangerine:400,700&display=swap&subset=latin-ext');
-@import url('https://fonts.googleapis.com/css?family=Tangerine:400,700&display=swap&subset=latin-ext');
-// </style>
+// Tangerine
+/* latin */
+@font-face {
+    font-family: 'fbTangerine';
+    font-style: normal;
+    font-weight: 700;
+    font-display: block;
+    src: url(https://fonts.gstatic.com/s/tangerine/v17/Iurd6Y5j_oScZZow4VO5srNZi5FN.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-// font-family: 'Great Vibes', cursive;
-// font-family: 'Tangerine', cursive;
-// font-family: 'Marck Script', cursive;
-// font-family: 'Playball', cursive;
-// font-family: 'Parisienne', cursive;
-// font-family: 'Italianno', cursive;
-// font-family: 'Allura', cursive;
+@mixin theme_fonts_en() {
+    font-family: 'fbTangerine', 'tangerine';
+}
 
+// Sawarabi Mincho japone
+@import url('https://fonts.googleapis.com/css?family=Sawarabi+Mincho&display=swap');
 
-//japone
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP:200|Sawarabi+Mincho&display=swap');
+$webMinchoFont: 'Sawarabi Mincho';
+$localMinchoFont: '游明朝', 'YuMincho', 'Hiragino Mincho ProN W3', 'ヒラギノ明朝 ProN W3', 'Hiragino Mincho ProN', 'HG明朝E', 'ＭＳ Ｐ明朝', 'ＭＳ 明朝', 'serif';
 
-//font-family: 'Sawarabi Mincho', sans-serif;
-//font-family: 'Noto Serif JP', serif;
+@mixin theme_fonts() {
+    font-family: join($webMinchoFont, $localMinchoFont)
+}
