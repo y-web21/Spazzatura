@@ -87,4 +87,5 @@ Thumbs.db
 *.map
 dist/**/*
 !dist/**/*html
+!dist/**/*.jpg
 
