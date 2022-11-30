@@ -1,5 +1,8 @@
 "use strict";
 
+import appConf from 'appConf';
+console.log(appConf.hasUrlPathPrefix);
+
 // debug console
 console.print = false;
 console.dev = (...args) => { if (console.print) console.log(...args); };
@@ -107,7 +110,7 @@ const throttle = (callback, interval = 200, ...args) => {
 const addClassActivePageLink = () => {
   const className = 'nav_active_page';
   for (const el of document.querySelectorAll('#gnav a')){
-    console.dev(pageCategory().replace('/',''), el.getAttribute('href').replace('/',''));
+    console.dev(pageCategory(), el.getAttribute('href'));
     if (pageCategory().replace('/','') === el.getAttribute('href').replace('/','')){
       addClass(el, className);
       return;
@@ -182,7 +185,7 @@ const doWhenIntersect = entries => {
 const startFadeInAnim = el => {
   /** @type {Number} ms. CSSアニメーションの長さと合わせる */
   const animationTime = 300;
-  /** @type {String} animation class name */
+  /** @type {string} animation class name */
   const animationClass = 'fadeInAnim';
   if (! el.classList.contains(animationClass)){
     addClass(el, animationClass);
@@ -193,17 +196,17 @@ const startFadeInAnim = el => {
 // css 関連ヘルパ
 /**
  * @param {HTMLElement} el
- * @param {String} className
+ * @param {string} className
  */
 const addClass = (el, className) => el.classList.add(className);
 /**
  * @param {HTMLElement} el
- * @param {String} className
+ * @param {string} className
  */
 const rmClass = (el, className) => el.classList.remove(className);
 /**
  * @param {HTMLElement} el
- * @param {String} styleName
+ * @param {string} styleName
  */
 const getCssValue = (el, styleName) => window.getComputedStyle(el).styles.getPropertyValue(styleName);
 
@@ -217,9 +220,23 @@ const getCurrentY = () => window.scrollY;
  * @return {string}
  */
 const pageCategory = () => {
-  const current = location.pathname.split()[0];
+  console.dev(spazzatura.homePathPos);
+  const current = solvePathPrefix(appConf.hasUrlPathPrefix);
   if (current === '' || current === '/'){
     return spazzatura.home;
   }
   return current;
 };
+
+/**
+ * false であれあばドメイン直下、true であればその次のパス文字列を返します。
+ * @param {boolean} prefix [false]
+ * @return {string}
+ */
+const solvePathPrefix = (prefix = false) => {
+  if (prefix){
+    return location.pathname.split('/')[2];
+  }
+  return location.pathname.split('/')[1];
+};
+
