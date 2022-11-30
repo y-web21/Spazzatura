@@ -5,9 +5,7 @@ module.exports = {
   context: path.join(__dirname, "src"),
   entry: [
     './index.js',
-    './holder.min.js',
     './main.js',
-    './common.js',
   ],
   output: {
     path: path.join(__dirname, "dist"),

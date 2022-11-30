@@ -6,9 +6,6 @@
   <title>Spazzatura</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
@@ -17,12 +14,12 @@
 
 <body>
   <div class="h-200 bgc_sub1">
-    <div class="container-fluid main_vis_wrap_second"></div>
+    <div id="mainVisual" class="container-fluid main_vis_wrap_second"></div>
     <h1 class="mx-0 my-0 ta-c main_vis_text main_vis_text_second">Spa<span>zz</span>atura</h1>
   </div>
 
-  <nav class="container-fluid global_menu sticky_nav_wrap " id="stickyNav">
-    <ul class="mx-auto my-0 d-n-ls-l">
+  <nav class="global_menu container-fulid sticky_nav_wrap" id="stickyNav">
+    <ul id="gnav" class="mx-auto my-0 d-n-ls-l">
       <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
       <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
       <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
@@ -33,53 +30,57 @@
 
   <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
 
-  <section class="container-fulid mt-8 mb-4 px-1">
-    <h2 class="w-100per mb-2 home_h2_style hr"><span>ACCESS</span></h2>
-    <div class="dltable my-3 mx-auto px-0">
-      <dl>
-        <dt>店名</dt>
-        <dd>Spazzatura</dd>
-        <dt>代表者</dt>
-        <dd>アルバル・ヌニェス・カベサ・デ・バカ</dd>
-        <dt>住所</dt>
-        <dd>〒xxx-xxxx 昭和基地 19広場</dd>
-        <dt>電話</dt>
-        <dd>（不通）</dd>
-        <dt>E-Mail</dt>
-        <dd>
-          <address>spazzatura@aa.nz</address>
-        </dd>
-        <dt>アクセス</dt>
-        <dd><iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d379243.81431452837!2d39.443526610843264!3d-69.06710956682423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb117e3256620884d%3A0x2c5de33064b7f227!2z5pit5ZKM5Z-65ZywIDE55bqD5aC0!5e0!3m2!1sja!2sjp!4v1567944475326!5m2!1sja!2sjp"
-            width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe><br>
-          <small>より大きな地図で <a class="clrMainLight common-link d-inline-block"
-              href="https://www.google.com/maps/d/viewer?mid=15sWOpi6JDd9eLuwixJgiAlb9jSHuWbI&amp;ll=-68.66398911380108%2C40.05740092728548&amp;z=9"
-              style="text-align:left accent_text">
-              <p class=" accent_text clrMainLight">Spa<span>zz</span>atura</p>
-            </a> を表示</small>
-          <p class="m-0 mt-3 clr_main">オーストラリアまで飛行機で行き、<br>オーストラリア西岸のフリーマントルより<br> 南極観測船”しらせ”にて3週間
-          </p>
-        </dd>
-      </dl>
-    </div>
-  </section>
+  <div class="container-expand">
+    <section class="home_content_text mt-8 mb-6">
+      <h2 class="w-100per mb-6 home_h2_style hr"><span>ACCESS</span></h2>
+      <!-- <h2 class="w-100per mb-6 home_h2_style hr"><span>MESSAGE</span></h2> -->
+      <!-- <h2 class="w-100per mb-6 home_h2_style hr"><span>COURSE</span></h2> -->
 
-  <footer class="container-fulid">
-    <div class="line mb-4"></div>
-    <div class="d_flex_row footer_text">
-      <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
-      <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
-        <span class="tel">03-xxxx-xxxx</span>
-      </p>
-    </div>
-    </div>
-    </div>
-    <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
-  </footer>
 
-  <!-- mobile navi用にフッターリフト -->
-  <div class="d-n-gr-lg mb-6"></div>
+      <div class="full_width_access dltable my-3">
+        <dl>
+          <dt>店名</dt>
+          <dd>Spazzatura</dd>
+          <dt>代表者</dt>
+          <dd>アルバル・ヌニェス・カベサ・デ・バカ</dd>
+          <dt>住所</dt>
+          <dd>〒xxx-xxxx 昭和基地 19広場</dd>
+          <dt>電話</dt>
+          <dd>（不通）</dd>
+          <dt>E-Mail</dt>
+          <dd>
+            <address>spazzatura@aa.nz</address>
+          </dd>
+          <dt>アクセス</dt>
+          <dd><iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d379243.81431452837!2d39.443526610843264!3d-69.06710956682423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb117e3256620884d%3A0x2c5de33064b7f227!2z5pit5ZKM5Z-65ZywIDE55bqD5aC0!5e0!3m2!1sja!2sjp!4v1567944475326!5m2!1sja!2sjp"
+              width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe><br>
+            <small>より大きな地図で <a class="clrMainLight common-link d-inline-block"
+                href="https://www.google.com/maps/d/viewer?mid=15sWOpi6JDd9eLuwixJgiAlb9jSHuWbI&amp;ll=-68.66398911380108%2C40.05740092728548&amp;z=9"
+                style="text-align:left accent_text">
+                <p class=" accent_text clrMainLight">Spa<span>zz</span>atura</p>
+              </a> を表示</small>
+            <p class="m-0 mt-3 clr_main">オーストラリアまで飛行機で行き、<br>オーストラリア西岸のフリーマントルより<br> 南極観測船”しらせ”にて3週間
+            </p>
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <footer class="container-fulid">
+      <div class="line mb-4"></div>
+      <div class="d_flex_row footer_text">
+        <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
+        <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
+          <span class="tel">03-xxxx-xxxx</span>
+        </p>
+      </div>
+      <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
+    </footer>
+
+    <!-- mobile navi用にフッターリフト -->
+    <div class="d-n-gr-lg mb-6"></div>
+  </div>
 </body>
 
 </html>

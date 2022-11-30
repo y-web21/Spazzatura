@@ -5,6 +5,7 @@
     "bootstrap": "^4.3.1",
     "browser-sync": "^2.18.13",
     "css-loader": "^6.7.2",
+    "eslint": "^8.28.0",
     "postcss-loader": "^3.0.0",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
