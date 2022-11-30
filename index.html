@@ -6,53 +6,50 @@
   <title>Spazzatura</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
+  <script src="./js/main.js"></script>
 </head>
 
 <body>
   <h1 class="mx-0 my-0 ta-c main_vis_text d-block">Spa<span>zz</span>atura</h1>
-  <div class="container-fluid main_vis_wrap">
+  <div id="mainVisual" class="container-fluid main_vis_wrap">
   </div>
 
-  <nav class="container-fluid global_menu sticky_nav_wrap " id="stickyNav">
-    <ul class="mx-auto my-0 d-n-ls-l">
-      <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
-      <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
-      <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
-      <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
-      <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
+  <nav class="global_menu container-fluid sticky_nav_wrap" id="stickyNav">
+    <ul id="gnav" class="mx-auto my-0 d-n-ls-l">
+      <li id="gnav1" class="gnav_anim"><a href="index.html">ホーム</a></li>
+      <li id="gnav2" class="gnav_anim"><a href="menu.html">メニュー</a></li>
+      <li id="gnav3" class="gnav_anim"><a href="course.html">コース</a></li>
+      <li id="gnav4" class="gnav_anim"><a href="access.html">アクセス</a></li>
+      <li id="gnav5" class="gnav_anim"><a href="message.html">メッセージ</a></li>
     </ul>
   </nav>
 
   <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
 
-  <section class="container-fluid mt-4 mb-5">
-    <h2 class="w-100per mb-2 home_h2_style hr"><span>WELCOME</span></h2>
-    <div class="d_flex_row px-4 px0_ls_md">
-      <div class="fw-60per fw-lslg-100per maxw-800 mx-auto my-auto px-0 img_shadow_white">
-        <img class="w-100per" src="./images/welcome.jpg" alt="">
+  <div class="container-expand">
+    <section class="mt-8 mb-5">
+      <h2 class="w-100per mb-4 home_h2_style hr"><span>WELCOME</span></h2>
+      <div class="d_flex_row px-4 px0_ls_md">
+        <div class="fw-60per fw-lslg-100per maxw-800 mx-auto my-auto px-0 img_shadow_white">
+          <img class="w-100per" src="./images/welcome.jpg" alt="">
+        </div>
+        <p class="fw-40per fw-lslg-100per home_content_text text_ls_lg_center pdauto fadeIn">究極の贅沢が、<br> あなたをお待ちしております。
+          <br> 都心ということを忘れさせる、
+          <br> 静寂な空間。
+          <br> 旬の食材、
+          <br> こだわり抜いた食材で
+          <br> おもてなしいたします。
+          <br> 大切なひと時をお過ごしください。
+        </p>
       </div>
-      <p class="fw-40per fw-lslg-100per home_content_text text_ls_lg_center pdauto fadeIn">究極の贅沢が、<br> あなたをお待ちしております。
-        <br> 都心ということを忘れさせる、
-        <br> 静寂な空間。
-        <br> 旬の食材、
-        <br> こだわり抜いた食材で
-        <br> おもてなしいたします。
-        <br> 大切なひと時をお過ごしください。
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <section class="container-fluid">
-    <div class="d_flex_row fx-AI-start">
+    <section class="d_flex_row fx-AI-start">
       <div class="fw-45per fw-lsmd-100per mb-5 px-0 menu">
-        <h2 class="mb-2 home_h2_style hr-r"><span>MENU</span></h2>
+        <h2 class="mb-3 home_h2_style hr-r"><span>MENU</span></h2>
         <div class="ta-c px-3 px0_ls_md">
           <div class="maxh-100">
             <img class="maxw-550 w-100per" src="./images/menu.jpg" alt="">
@@ -65,7 +62,7 @@
       </div>
       <div class="fw-10per d-n-ls-lg"></div>
       <div class="fw-45per fw-lsmd-100per mb-5 px-0 staff">
-        <h2 class="mb-2 home_h2_style hr-r"><span>MESSAGE</span></h2>
+        <h2 class="mb-3 home_h2_style hr-r"><span>MESSAGE</span></h2>
         <div class="ta-c px-3 px0_ls_md">
           <div class="maxh-100">
             <img class="maxw-550 w-100per" src="./images/chef_home.jpg" alt="">
@@ -78,25 +75,22 @@
 
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <footer class="container-fulid">
+      <div class="line mb-4"></div>
+      <div class="d_flex_row footer_text">
+        <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
+        <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
+          <span class="tel">03-xxxx-xxxx</span>
+        </p>
+      </div>
+      <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
+    </footer>
+
+    <!-- mobile navi用にフッターリフト -->
+    <div class="d-n-gr-lg mb-6"></div>
   </div>
-
-  <footer class="container-fulid">
-    <div class="line mb-4"></div>
-    <div class="d_flex_row footer_text">
-      <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
-      <p class="fw-50per fw-lslg-100per mt-2 mb-2 px-3">〒xxx-xxxx 昭和基地 19広場<br>
-        <span class="tel">03-xxxx-xxxx</span>
-      </p>
-    </div>
-    </div>
-    </div>
-    <p class="ta-c footer_copy_style mt-3 mb-2">Copyright&copy;2022 Spazzatura.</p>
-  </footer>
-
-  <!-- mobile navi用にフッターリフト -->
-  <div class="d-n-gr-lg mb-6"></div>
 </body>
 
 </html>
