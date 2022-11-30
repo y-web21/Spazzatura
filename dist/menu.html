@@ -6,9 +6,6 @@
   <title>Spazzatura</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://unpkg.com/sanitize.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
@@ -17,24 +14,26 @@
 
 <body>
   <div class="h-200 bgc_sub1">
-    <div class="container-fluid main_vis_wrap_second"></div>
+    <div id="mainVisual" class="container-fluid main_vis_wrap_second"></div>
     <h1 class="mx-0 my-0 ta-c main_vis_text main_vis_text_second">Spa<span>zz</span>atura</h1>
   </div>
 
+  <nav class="global_menu container-fulid sticky_nav_wrap pos-s" style="  width: 100%; " id="stickyNav">
+    <ul id="gnav" class="mx-auto my-0 d-n-ls-l">
+      <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
+      <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
+      <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
+      <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
+      <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
+    </ul>
+  </nav>
+
+  <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
+
   <div class="container-expand">
-    <nav class="global_menu full-width sticky_nav_wrap" id="stickyNav">
-      <ul class="mx-auto my-0">
-        <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
-        <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
-        <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
-        <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
-        <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
-      </ul>
-    </nav>
-    <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
     <section class="home_content_text mt-8 mb-6">
-      <h2 class="w-100per mb-2 home_h2_style hr mb-4"><span>MENU</span></h2>
-      <p class="ta-c">手造り無添加にこだわり本当に美味しい料理と<br>
+      <h2 class="w-100per mb-6 home_h2_style hr mb-4"><span>COURSE</span></h2>
+      <p class="ta-c fadein">手造り無添加にこだわり本当に美味しい料理と<br>
         美味しいお酒をご用意しています。<br>
         米沢から、こだわりの無投薬「天元豚」を直接仕入ております。<br>
         この天元豚を余すことなく色々な料理に変え、お皿に表現していきます。<br>
@@ -186,7 +185,7 @@
       </article>
     </section>
 
-    <footer class="full-width">
+    <footer class="container-fulid">
       <div class="line mb-4"></div>
       <div class="d_flex_row footer_text">
         <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>

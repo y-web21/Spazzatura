@@ -259,10 +259,6 @@ dd {
     margin-top: 0px !important;
 }
 
-.h-100p{
-    height: 100%;
-}
-
 @for $i from 0 through 10 {
   .mt-#{$i} {
     margin-top: #{$i}rem !important;
@@ -321,9 +317,8 @@ dd {
     margin: 0 auto;
 }
 
-.full-width {
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+.top-0s {
+    top: 0;
 }
 
 .container{
@@ -470,7 +465,7 @@ dd {
     }
 }
 
-.fadeInL2R,.fadeInR2L{
+.fadeInL2R,.fadeInR2L,.fadeInAnim{
     animation: key-content-fadein 0.3s ease-in 0s 1 normal forwards;
 }
 
