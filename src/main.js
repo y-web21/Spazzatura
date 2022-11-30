@@ -65,9 +65,9 @@ class Pos {
   // el
   constructor(el) {
     this.el= el;
-    this._setValue();
+    this.#setValue();
   }
-  _setValue(){
+  #setValue(){
     this.top = this.el.getBoundingClientRect().top;
     this.left = this.el.getBoundingClientRect().left;
     this.bottom = this.el.getBoundingClientRect().bottom;
@@ -78,7 +78,7 @@ class Pos {
     this.absRight = this.right + window.scrollX;
   }
   update(){
-    this._setValue();
+    this.#setValue();
   }
 }
 
