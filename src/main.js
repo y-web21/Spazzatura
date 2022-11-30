@@ -87,7 +87,6 @@ class Pos {
 
 /**
  * イベントの連続発火を抑制します。
- * 抑制中にコールされた場合、最終呼び出しのコールバックのみ確保してタイムアウト後に実行します。
  *
  * @param {callback} callback 発火するイベント
  * @param {number} [interval=200] default 200ms 次にイベントが許可されるまでの時間
@@ -95,25 +94,12 @@ class Pos {
  */
 const throttle = (callback, interval = 200) => {
   let timerId;
-  let queue;
   return () => {
-    // タイマが空いていない場合は処理後に実施するコールバックを記憶して終了
-    if (timerId !== undefined) {
-      queue = callback;
-      return;
-    }
+    if (timerId !== undefined) return;
     // 通常実行
     callback();
-    // 次処理受付待ちタイマ起動
-    timerId = window.setTimeout(() => {
-      // timerIdを破棄して受け入れコールバック受け入れ状態にする
-      timerId = undefined;
-      if (!queue){
-        console.info('qeu fire!!!!!!!!');
-        queue();
-        queue = undefined;
-      }
-     }, interval);
+    // 次処理受付待ちタイマ起動。timerIdを破棄して受け入れコールバック受け入れ状態にする
+    timerId = window.setTimeout(() => timerId = undefined , interval);
   };
 };
 
@@ -155,6 +141,7 @@ const stickyNaviThrottle = throttle( () => {
     nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
     // global nav の高さ 80px 分の調整
     document.getElementById('offsetPlus').style.height = '180px';
+    console.error('うんちだぜぇ');
     return;
   }
   // static
