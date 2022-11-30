@@ -12,36 +12,31 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
-  <!-- <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="./css/common.css"> -->
-
-  <!-- <script src="js/common.js"></script> -->
+  <script src="./js/main.js"></script>
 </head>
 
 <body>
   <h1 class="mx-0 my-0 ta-c main_vis_text d-block">Spa<span>zz</span>atura</h1>
-  <div class="container-fluid main_vis_wrap">
+  <div id="mainVisual" class="container-fluid main_vis_wrap">
   </div>
 
+  <nav class="global_menu container-fluid sticky_nav_wrap" id="stickyNav">
+    <ul id="gnav" class="mx-auto my-0 d-n-ls-l">
+      <li id="gnav1" class="gnav_anim"><a href="index.html">ホーム</a></li>
+      <li id="gnav2" class="gnav_anim"><a href="menu.html">メニュー</a></li>
+      <li id="gnav3" class="gnav_anim"><a href="course.html">コース</a></li>
+      <li id="gnav4" class="gnav_anim"><a href="access.html">アクセス</a></li>
+      <li id="gnav5" class="gnav_anim"><a href="message.html">メッセージ</a></li>
+    </ul>
+  </nav>
+
+  <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
+
   <div class="container-expand">
-    <nav class="global_menu full-width sticky_nav_wrap" id="stickyNav">
-      <ul class="mx-auto my-0 d-n-ls-l">
-        <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
-        <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
-        <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
-        <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
-        <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
-      </ul>
-    </nav>
-
-    <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
-
     <section class="mt-8 mb-5">
       <h2 class="w-100per mb-4 home_h2_style hr"><span>WELCOME</span></h2>
       <div class="d_flex_row px-4 px0_ls_md">
-        <div class="fw-60per fw-lslg-100per maxw-800 mx-auto my-auto px-0 img_shadow_white">
+        <div class="fw-60per fw-lslg-100per maxw-800 mx-auto my-auto px-0 img_shadow_white fadeIn">
           <img class="w-100per" src="./images/welcome.jpg" alt="">
         </div>
         <p class="fw-40per fw-lslg-100per home_content_text text_ls_lg_center pdauto fadeIn">究極の贅沢が、<br> あなたをお待ちしております。
@@ -85,7 +80,7 @@
       </div>
     </section>
 
-    <footer class="full-width">
+    <footer class="container-fulid">
       <div class="line mb-4"></div>
       <div class="d_flex_row footer_text">
         <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>

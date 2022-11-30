@@ -17,33 +17,27 @@
 
 <body>
   <div class="h-200 bgc_sub1">
-    <div class="container-fluid main_vis_wrap_second"></div>
+    <div id="mainVisual" class="container-fluid main_vis_wrap_second"></div>
     <h1 class="mx-0 my-0 ta-c main_vis_text main_vis_text_second">Spa<span>zz</span>atura</h1>
   </div>
 
+  <nav class="global_menu container-fulid sticky_nav_wrap pos-s" id="stickyNav">
+    <ul id="gnav" class="mx-auto my-0 d-n-ls-l">
+      <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
+      <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
+      <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
+      <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
+      <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
+    </ul>
+  </nav>
+
+  <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
+
   <div class="container-expand">
-    <nav class="global_menu full-width sticky_nav_wrap" id="stickyNav">
-      <ul class="mx-auto my-0 d-n-ls-l">
-        <li id="gnav1" class="gnav_anim"><a class="addClsActiveLink" href="index.html">ホーム</a></li>
-        <li id="gnav2" class="gnav_anim"><a class="addClsActiveLink" href="menu.html">メニュー</a></li>
-        <li id="gnav3" class="gnav_anim"><a class="addClsActiveLink" href="course.html">コース</a></li>
-        <li id="gnav4" class="gnav_anim"><a class="addClsActiveLink" href="access.html">アクセス</a></li>
-        <li id="gnav5" class="gnav_anim"><a class="addClsActiveLink" href="message.html">メッセージ</a></li>
-      </ul>
-    </nav>
 
-    <div id="offsetPlus" class="bgc_sub1 h-100 d-n-ls-lg"></div>
-
-    <section class="main_visual mt-2 d-none" id="mainVisual">
-      <div class="frame">
-        <img src="./images/gyu-lamp.jpg" alt="">
-      </div>
-    </section>
-
-    <section class="mt-8 mb-5">
+    <section class="home_content_text mt-8 mb-6">
       <h2 class="w-100per mb-6 home_h2_style hr"><span>MESSAGE</span></h2>
-
-      <div class="message_wrap ta-c px-0 mb-8 mx-auto">
+      <div class="message_wrap ta-c px-0 mb-8 mx-auto fadein">
         <div class="message_text">
           <div class="f-center-column pt-2">
             <h3 class="message_title">MESSAGE FROM CHEF</h3>
@@ -62,7 +56,7 @@
         <img class="message_image" src="./images/chef.jpg" alt="">
       </div>
 
-      <div class="message_wrap ta-c px-0 mb-8 mx-auto">
+      <div class="message_wrap ta-c px-0 mb-8 mx-auto fadein">
         <div class="message_text">
           <div class="f-center-column">
             <h3 class="message_title pt-1">MESSAGE FROM PATISSIERE</h3>
@@ -82,7 +76,7 @@
       </div>
     </section>
 
-    <footer class="full-width">
+    <footer class="container-fulid">
       <div class="line mb-4"></div>
       <div class="d_flex_row footer_text">
         <p class="fw-50per fw-lslg-100per footer_text_logo my-0 px-3">Spa<span>zz</span>atura</p>
