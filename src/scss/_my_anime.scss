@@ -202,7 +202,9 @@
   }
 }
 
-
-
 //3d宣言をすることでハードウェアレンダリング(GPU)をブラウザに促す
 .ex-motion {transform: translate3d(0,0,0);}
+
+.fadeInL2R,.fadeInR2L,.fadeInAnim{
+    animation: key-content-fadein 0.3s ease-in 0s 1 normal forwards;
+}

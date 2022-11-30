@@ -1,12 +1,7 @@
 @use "fonts" as font;
 @use "sass:math";
 $mainVisualHeight: 480px;
-$globalNavHeight: 80px;
-$circleNavDiameter:100px;
-$circleNavInitX: -200px;
-$circleNavSplitX: 50px;
-$sideTabHeight:3.5rem;
-$gotoTopHeight: 50vh;
+
 $clrActivePage: #90c;
 @use "my_variables" as var;
 @use "my_mixins" as mix;
@@ -14,82 +9,24 @@ $clrActivePage: #90c;
 @use "my_anime" as anim;
 @use "common" as cmn;
 
-*{
-    box-sizing: border-box;
+$imagesPath: "../images/";
+@function imgUrl($fileName) {
+  @return url($imagesPath + $fileName);
 }
+
 
 body {
     margin: 0;
-    // background-color: #ffC;
-    // z-index: 0;
-    // visibility:hidden;
+    background-color: cmn.$clrSub2;
 }
 
-h2{
+h2,h3{
     margin: 0;
+    color: map-get(cmn.$clrMap, 'text');
 }
 
 a {
     color: var.$fClr;
-    text-decoration: none;
-}
-
-// ============= bs4で代替可能 ===============
-// 名前毎流用(HTMLのクラス名そのままで入れ替え可能)
-.d-none{
-    display: none;
-}
-
-.d-block {
-    display: block;
-}
-
-.d-inline-block {
-    display: inline-block;
-}
-
-.mb-0,.my-0{
-    margin-bottom: 0px !important;
-}
-
-.my-0{
-    margin-top: 0px !important;
-}
-
-@for $i from 0 through 8 {
-  .mt-#{$i} {
-    margin-top: #{$i}rem !important;
-  }
-  .mb-#{$i} {
-    margin-bottom: #{$i}rem !important;
-  }
-  .mx-#{$i} {
-    margin-left: #{$i}rem !important;
-    margin-right: #{$i}rem !important;
-  }
-  .my-#{$i} {
-    margin-top: #{$i}rem !important;
-    margin-bottom: #{$i}rem !important;
-  }
-  .pt-#{$i} {
-    padding-top: #{$i}rem !important;
-  }
-  .pb-#{$i} {
-    padding-bottom: #{$i}rem !important;
-  }
-  .px-#{$i} {
-    padding-left: #{$i}rem !important;
-    padding-right: #{$i}rem !important;
-  }
-  .py-#{$i} {
-    padding-top: #{$i}rem !important;
-    padding-bottom: #{$i}rem !important;
-  }
-}
-
-.mx-auto{
-    margin-right: auto;
-    margin-left:auto;
 }
 
 .full_width_access {
@@ -105,43 +42,6 @@ a {
     }
 }
 
-.container{
-    margin: 0 auto;
-    max-width: 1000px;
-}
-
-.container-fluid{
-    margin: 0 auto;
-    width: 100%;
-}
-
-.fl-r{
-    float: right;
-
-    &::after {
-        clear: both;
-    }
-}
-
-.ta-c{
-    text-align: center;
-}
-
-.ta-r{
-    text-align: right;
-}
-
-.d-n-ls-md{
-    @include mix.md-l {
-        display: none;
-    }
-}
-
-.d-n-gr-md{
-    @include mix.md-g {
-        display: none;
-    }
-}
 
 // grid layoutで対応可能
 .d_flex_row {
@@ -157,11 +57,7 @@ a {
     }
 }
 
-.bg-white{
-    background-color: #fff;
-}
-
-// ============= js用パーツ ===============
+// ============= js用用定義 ===============
 .nav_active_page{
     background-color: $clrActivePage;
     // animation: key-opacity ease 100ms 0ms 1 normal forwards running;
@@ -179,36 +75,19 @@ a {
 }
 
 // ============= 汎用 ===============
-.sticky_menu {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: $globalNavHeight;
-    background-color: #999;
-    top: $mainVisualHeight;
-    left: 0;
-    // jsで付与
-    // position: fixed;
-
-    & > li > a{
-    }
-}
-
-$sideTabWidth: 10rem;
-$sideTabClr: #444;
-
+// jsで付与する
 .goto_top_tag {
     padding: 0 1.2rem 0 0;
-    width: $sideTabWidth;
-    height: $sideTabHeight;
-    background-color: $sideTabClr;
+    width: cmn.$sideTabWidth;
+    height: cmn.$sideTabHeight;
+    background-color: cmn.$sideTabClr;
     z-index: 9998;
 
     &:hover{
-        background-color: lighten($sideTabClr, 5%);
+        background-color: lighten(cmn.$sideTabClr, 5%);
     }
 
-    top: $gotoTopHeight;
+    top: cmn.$gotoTopHeight;
     left: calc(100% - 3rem);
     /*中心回転から起点を中心から左上に*/
     transform-origin: 0% 0%;
@@ -220,11 +99,11 @@ $sideTabClr: #444;
     & > a {
         margin: 0;
         padding-right: 20px;
-        width: $sideTabWidth;
-        height: $sideTabHeight;
+        width: cmn.$sideTabWidth;
+        height: cmn.$sideTabHeight;
         color: var.$fClr;
         text-align: center;
-        line-height: $sideTabHeight - 0.5rem;
+        line-height: cmn.$sideTabHeight - 0.5rem;
         text-decoration: none;
     }
 
@@ -243,59 +122,6 @@ $sideTabClr: #444;
 
     &:hover::after {
         right: 23px;
-    }
-}
-
-.circle_nav {
-
-    & li {
-        width: $circleNavDiameter;
-        height: $circleNavDiameter;
-        border-radius: math.div($circleNavDiameter, 2);
-        background:  map-get(var.$snsColor, 'twitter');
-        margin: 0 0.3rem;
-
-        @include mix.md-g {
-            margin: 0 0.6rem;
-        }
-
-        &:hover{
-            // opacity: 0.9;
-            transform:scale(1.00,0.95);
-        }
-
-    }
-
-    & li{
-        position: absolute;
-        // 初期位置が画面外のため、サイドスクロールバー出るのを防止
-        overflow:hidden;
-        // 処理不可の高いタイミングを避けるためディレイを設ける
-        animation: key-circle-all 500ms linear 500ms 1 normal forwards running;
-    }
-
-    & li:nth-child(1){animation: key-circle-slide1 1100ms ease-out 1000ms 1 normal forwards running;}
-    & li:nth-child(2){animation: key-circle-slide2 0900ms ease-out 1000ms 1 normal forwards running;}
-    & li:nth-child(3){animation: key-circle-slide3 0700ms ease-out 1000ms 1 normal forwards running;}
-    & li:nth-child(4){animation: key-circle-slide4 0500ms ease-out 1000ms 1 normal forwards running;}
-    // & li:nth-child(5) a{animation: key-circle-slide5 0300ms ease-out 1000ms 1 normal forwards running;}
-    & a {
-        position: absolute;
-        width: $circleNavDiameter;
-        height: $circleNavDiameter;
-        border-radius: math.div($circleNavDiameter, 2);
-        // top: 50%;
-        // left: 50%;
-        // transform: translateY(-15%) translateX(-50%);
-        // color: var.$fClr;
-        // text-decoration: none;
-        text-align: center;
-        font-size: 1.2rem;
-        line-height: $circleNavDiameter;
-
-        &:hover{
-            opacity: 0.9;
-        }
     }
 }
 
@@ -345,25 +171,88 @@ $imgSizeKurageY: 200px;
 
 
 // ============= mainVisual ===============
-.main_visual{
-    position: relative;
-    width: 100%;
-    height: $mainVisualHeight;
+.main_vis{
+
+    &_wrap{
+        position: relative;
+        width: 100%;
+        height: cmn.$mainVisualHeight;
+        background: {
+            image: imgUrl("gyu-lamp.jpg");
+            repeat: no-repeat;
+            size: cover;
+            position: bottom 40% left 50%;
+        }
+        // background: no-repeat center/80% imgUrl("gyu-lamp.jpg");
+        filter:brightness(70%);
+
+        // セカンドページ用縦幅が狭い装飾
+        &_second {
+            position: relative;
+            width: 100%;
+            height: cmn.$secondVisualHeight;
+            background: {
+                image: imgUrl("gyu-lamp.jpg");
+                repeat: no-repeat;
+                size: cover;
+                position: bottom 40% left 50%;
+            }
+                filter:brightness(70%);
+        }
+
+        & img{
+            width: 100%;
+        }
+    }
+
+
+    &_text{
+
+        position: absolute;
+        top: math.div($mainVisualHeight, 2);
+        left: 50%;
+        transform:translateX(-50%) translateY(-50%);
+        @include font.theme_fonts_en;
+        font-size: 7rem;
+        font-weight: 1000;
+        color: #FFF;
+        text-shadow: 1px 1px 3px #0005;
+        z-index: 2;
+        width: 100%;
+
+        &::first-letter{
+            font-size: 8rem;
+            color: cmn.$carmine;
+        }
+
+        & span{
+            color: cmn.$carmine;
+        }
+
+        @include mix.sm-l {
+            font-size: 5rem;
+
+            &::first-letter{
+                font-size: 6rem;
+                color: cmn.$carmine;
+            }
+        }
+
+        // セカンドページ用縦幅が狭い装飾
+        &_second {
+            position: absolute;
+            top: 100px;
+            color: #fff;
+        }
+    }
 }
 
-.catch_phrase{
-    position: absolute;
-    top: 100px;
-    left: calc(10vw + 100px);
-    font-size: 4rem;
-}
-
+// ============= nav ===============
 .sub_nav{
     position: absolute;
     top: 280px;
     right: 0px;
 }
-
 
 .gnav{
     &_anim{
@@ -372,34 +261,7 @@ $imgSizeKurageY: 200px;
     }
     &_style{
         width: 8rem;
-        height: $globalNavHeight;
-    }
-}
-
-// ============= parallax scroll ===============
-$parallaxBgY: 800px;
-$parallaxBgRatio: 2;
-
-// with js
-.parallax{
-    &_background{
-        position: relative;
-        width: 100%;
-        height: $parallaxBgY;
-        overflow: hidden;
-
-        &_entity{
-            position: absolute;
-            // background:url('../images/kafun.jpg') repeat;
-            width: 100%;
-            height: $parallaxBgY * $parallaxBgRatio;
-            // top: 0px;
-            top: - ($parallaxBgY * ($parallaxBgRatio - 1));
-            left: 0px;
-            filter: blur(5px);
-            // debug
-            z-index: -20;
-        }
+        height: cmn.$globalNavHeight;
     }
 }
 
@@ -407,7 +269,6 @@ $parallaxBgRatio: 2;
     margin: 0;
     width: 100%;
     background-color: #fff;
-    // border: #fff 50px solid;
     z-index: -1;
 }
 
@@ -429,190 +290,192 @@ $parallaxBgRatio: 2;
 .gray_box_500{
     margin: 0;
     width: 100%;
-    // height: 500px;
     background-color: #ddd;
 }
 
-.juhun{
+// ============= footer ===============
+
+.footer {
+    &_copy{
+        &_style{
+            font-weight: 550;
+            letter-spacing: 0.6rem;
+            text-transform: uppercase;
+            color: map-get(cmn.$clrMap, 'text');
+
+            @include mix.md-l {
+                font-size: 0.8em;
+                letter-spacing: 0.2rem;
+            }
+        }
+    }
+
+}
+
+.footer_text{
+
+    @include mix.lg-l {
+        text-align: center;
+    }
+
+    & .tel{
+        font-size: 1.3em;
+    }
+
+    &_logo{
+        @include font.theme_fonts_en;
+        font-size: 4rem;
+        font-weight: 1000;
+        color: #FFF;
+        text-shadow: 1px 1px 3px #0005;
+        z-index: 2;
+        width: 100%;
+        text-align: right;
+
+        @include mix.lg-l {
+            text-align: center;
+        }
+
+        &::first-letter{
+            font-size: 5rem;
+            color: cmn.$carmine;
+        }
+
+        & span{
+            color: cmn.$carmine;
+        }
+    }
+}
+
+$globalNavHeightMobile: 4rem;
+
+.sticky_menu_mobile {
+    padding: 0;
     margin: 0;
-    font-size: 5rem;
-    position: absolute;
-    top: math.div($parallaxBgY, 2);
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
-
-// ============= form ===============
-// HTML5のフォームバリデーション
-// :required
-// :optional
-// :valid
-// :invalid
-// JSのフォームバリデーション
-// checkValidity
-// formElement.addEventListener('invalid', function(){...}, true);と第3引数にtrueを入れる
-
-// form ブラウザ依存属性リセット
-input, button, textarea, select {
-  // margin: 0;
-  // padding: 0;
-  // background: none;
-  // border: none;
-  // border-radius: 0;
-  // outline: none;
-  // -webkit-appearance: none;
-  // -moz-appearance: none;
-  // appearance: none;
-}
-
-form{
-    display: inline-block;
-}
-
-input,select{
-    margin: 0.3rem;
-    // width: 200px;
-    height: 2rem;
-    // font-size: 1.5rem;
-    // border: 2px solid green;
-    // border-radius: 99px;
-}
-
-$clrFormIncorrect:red;
-$clrFormCorrect:#95fe72;
-
-.inputCorrect{
-    outline: 0;
-    border: $clrFormCorrect 1px solid;
-    box-shadow:0px 0px 2px 1px $clrFormCorrect;
-}
-
-.inputIncorrect{
-    outline: 0;
-    border: $clrFormIncorrect 1px solid;
-    box-shadow:0px 0px 2px 1px $clrFormIncorrect;
-
-    &+.errMsg{
-        // width: 10rem;
-        // height: 2rem;
-        color: red;
-        font-weight: bold;
-        display: inline;
-
-        &::before{
-            content: "※";
-        }
-    }
-}
-
-
-.form_flex{
-    & input[type="text"],& input[type="tel"],& input[type="email"],& select{
-        margin: 0;
-        width: 100%;
-
-        @include mix.md-g {
-            margin: 1rem 0;
-            width: 70%;
-        }
-    }
-
-    & textarea{
-        margin: 0 0 2rem;
-        width: 100%;
-        height: 200px;
-
-        @include mix.md-g {
-        margin: 1rem 0 2rem;
-            width: 70%;
-        }
-    }
-
-    & p{
-        text-align: left;
-        margin: 1.4rem 0 0.3rem;
-        width: 100%;
-
-        @include mix.md-g {
-            margin: 1rem 0;
-            width: 30%;
-        }
-    }
-
-    & .errMsg{
-        margin: 4px 0 0;
-        font-size: 0.8rem;
-        text-align: left;
-        width: 100%;
-
-        @include mix.md-g {
-            margin: 1rem 0;
-            width: 100%;
-        }
-    }
-}
-
-.h_200_gr_sm{
-    height: 100%;
-
-    @include mix.md-g {
-        height: 200px;
-    }
-}
-
-
-
-input[type="submit"] {
-    font-size: 1.0em;
-    display: block;
-    border: none;
-    outline: 0;
-    cursor: pointer;
-    color: #fff;
-    background: #555;
-    font-weight: bold;
-    height: 3.0em;
-    line-height: 3.0em;
     width: 100%;
-    padding: 0 2.5em 0 0.8em;
-    transition: 0.3s;
-    border-radius: 2px;
+    height: $globalNavHeightMobile;
+    background-color: gray;
+    bottom: 0;
+    left: 0;
+    // jsで付与
+    position: fixed;
+    z-index: 9999;
+    box-shadow:0px 0px 2px 1px lightgray;
 
+    & > li:nth-of-type(odd) {
+        width: calc(14%);
+        margin: 0 calc(1%);
+    }
 
-    &:hover {
-        background: #134767;
+    & > li:nth-of-type(even) {
+        width: calc(17%);
+        margin: 0 calc(1%);
+    }
+
+    & a {
+        width: 100%;
+        height: math.div(cmn.$globalNavHeight, 2);
+        color: #fff;
+        font-size: 0.5rem;
+        list-style-type: none;
+        letter-spacing: -0px;
+    }
+
+    & i {
+        padding: 1rem;
+        width: 100%;
+        height: math.div(cmn.$globalNavHeight, 2);
+
+        & #text {
+            font-size: 10rem;
+        }
+
     }
 }
 
-.button_wrap {
-    color: #fff;
-    position: relative;
-    line-height: 2.8em;
-    width: 190px;
-    transition: 0.5s;
-    margin: 0 auto;
+// ============= menu ===============
+.menu_table {
+    & dl {
+        display: flex;
+        flex-wrap: wrap;
+        border-top: none;
+        width: 100%;
+        background-color: map-get(cmn.$clrMap, 'sub3');
+        color: map-get(cmn.$clrMap, 'sub1');
+        // box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
 
-    &::after {
-        transition: 0.3s;
-        content: "";
-        width: .6em;
-        height: .6em;
-        border-top: 2px solid #fff;
-        border-right: 2px solid #fff;
-        position: absolute;
-        top: 23px;
-        right: 66px;
-        margin: auto;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform:translateY(-10%) rotate(45deg);
+        &:nth-of-type(n+1){
+            border-top: 1px solid #ccc;
+        }
+
+        @include mix.md-l {
+            &:nth-of-type(1){
+                border-top: 1px solid #ccc;
+            }
+        }
     }
 
-    &:hover::after {
-        right: 52px;
+    & dt {
+        // background: $clrMain;
+        width: 32%;
+        @include mix.md-l {
+            width:70%;
+            display: block;
+            padding: 1rem !important;
+        };
+        justify-content: start;
+        align-items: center;
+        min-width: 2rem;
+
+        &:nth-of-type(even){
+            padding-left: 3rem;
+        }
+    }
+
+    & dd {
+        text-align: right;
+        // background: $clrSub1;
+        // border-left: 1px solid #ccc;
+        margin: 0;
+        width: 18%;
+        justify-content: end;
+        align-items: center;
+
+        @include mix.md-l {
+            width:30%;
+            padding: 1rem !important;
+        };
+
+        &:nth-of-type(odd){
+            padding-right: 3rem;
+        }
+    }
+    & dt, & dd{
+        // height: 3.6rem;
+        color: map-get(cmn.$clrMap, 'text');
+        padding: 0.8rem;
+        box-sizing: border-box;
+        border-bottom: 1px solid #ccc;
+
+        @include mix.md-g {
+            &:nth-of-type(4n-3),&:nth-of-type(4n-2){
+                background-color: map-get(cmn.$clrMap, 'hr');
+            }
+        }
+
+        @include mix.md-l {
+            padding: 0.2rem !important;
+
+            &:nth-of-type(2n-1){
+                background-color: map-get(cmn.$clrMap, 'hr');
+            }
+            &:empty {
+                display: none;
+            }
+        }
     }
 }
+
 
 // ============= message ===============
 .message {
@@ -677,71 +540,4 @@ input[type="submit"] {
             min-height: 300px;
         }
     }
-
 }
-
-// ============= footer ===============
-
-.footer {
-
-    &_nav{
-
-    }
-
-    &_copy{
-
-        &_style{
-            font-weight: 550;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-    }
-
-}
-
-$globalNavHeightMobile: 4rem;
-
-.sticky_menu_mobile {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: $globalNavHeightMobile;
-    background-color: gray;
-    bottom: 0;
-    left: 0;
-    // jsで付与
-    position: fixed;
-    z-index: 9999;
-    box-shadow:0px 0px 2px 1px lightgray;
-
-    & > li:nth-of-type(odd) {
-        width: calc(14%);
-        margin: 0 calc(1%);
-    }
-
-    & > li:nth-of-type(even) {
-        width: calc(17%);
-        margin: 0 calc(1%);
-    }
-
-    & a {
-        width: 100%;
-        height: math.div($globalNavHeight, 2);
-        color: #fff;
-        font-size: 0.5rem;
-        list-style-type: none;
-        letter-spacing: -0px;
-    }
-
-    & i {
-        padding: 1rem;
-        width: 100%;
-        height: math.div($globalNavHeight, 2);
-
-        & #text {
-            font-size: 10rem;
-        }
-
-    }
-}
-
