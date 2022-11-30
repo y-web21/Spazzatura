@@ -21,6 +21,9 @@ module.exports = merge(common, {
     watchFiles: ['src/**/*', 'dist/**/*html'],
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx'],
+    alias: {
+      appConf$: path.resolve(__dirname, 'conf/development.js'),
+    },
   },
 });
