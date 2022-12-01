@@ -55,133 +55,7 @@ $clrAccent: #ffffff;
 $frameThick: 5px;
 
 
-// ============= test section ===============
-$prefix: ".maku";
-
-#{$prefix}-shout {
-  font-size: larger;
-}
-
-// $icons: "twitter" ,"facebook" ,"googleplus" ,"instagram";
-
-// @each $icon in $icons {
-//     .icon-#{$icon} {
-//         background-image: url("img/#{$icon}.png");
-//     }
-// }
-
-$icons: twitter, facebook, googleplus, instagram;
-@each $icon in $icons {
-    // インデックスキーを取得
-    $index: index($icons, $icon);
-    // 高さを指定
-    $heigth: 50px;
-    // 2つ目から50pxずつ引いてゆく
-    $position: ($index * $heigth - $heigth) * -1;
-
-    .icon-#{$icon} {
-        background-position: left $position;
-    }
-}
-
-// コンパイル後（CSS）
-.icon-twitter {
-    background-position: left 0px;
-}
-.icon-facebook {
-    background-position: left -50px;
-}
-.icon-googleplus {
-    background-position: left -100px;
-}
-.icon-instagram {
-    background-position: left -150px;
-}
-
-//配列をひとつずつ取得したい場合は nth関数 を使います。
-.twitter {
-    // リストの1番目を取得
-    content: "#{nth($icons, 1)}"; // twitter
-}
-
-// //classの継承
-// %box-base {
-//   margin: 10px;
-//   padding: 10px;
-// }
-
-// .box_red {
-//   @extend %box-base;
-//   color: #f00;
-// }
-
-// .box_blue {
-//   @extend %box-base;
-//   color: #00f;
-// }
-
-// // Mixinでもいい。CSSへの展開の仕方が違うが、効果は同じ
-// @mixin basebox {
-//   margin: 10px;
-//   padding: 10px;
-// }
-// .box_red {
-//   @include mix.basebox;
-//   color: #f00;
-// }
-
-// .box_blue {
-//   @include mix.basebox;
-//   color: #00f;
-// }
-
-// 関数も使用できる
-// $imagesPath: "../images/";
-// @function printUrl($fileName) {
-//   @return url($imagesPath + $fileName);
-// }
-
-// .icon {
-//   background: printUrl('icon.png') no-repeat center center;
-// }
-// // 出力
-// .icon {
-//   background: url("../images/icon.png") no-repeat center center;
-// }
-
-// if文もあるよ
-// @for $i from 1 through 5 {
-//   .box_#{$i} {
-//     margin: {
-//       // 普通の分岐
-//       @if $i == 1 {
-//         bottom: 5px;
-//       }
-//       @else {
-//         bottom: $i * 10px;
-//       }
-//     }
-//     // if関数まである
-//     padding: {
-//       left: if($i == 1, 5px, $i * 5px);
-//     }
-//   }
-// }
-
-// // 出力
-// .box1 {
-//   margin-bottom: 5px;
-//   padding-left: 5px;
-// }
-
-// .box2 {
-//   margin-bottom: 20px;
-//   padding-left: 10px;
-// }
-
-
 // ============= tag scope ===============
-
 
 *{
     box-sizing: border-box;
@@ -189,27 +63,19 @@ $icons: twitter, facebook, googleplus, instagram;
         box-sizing: border-box;
     }
     outline: gray 4px;
-    // visibility: hidden;
 }
+
 html {
   font-size: 100%;
 }
 
 body {
     margin: 0;
-    background-color: $clrSub2;
-    // z-index: 0;
-    // visibility:hidden;
 }
 
 
-h2,h3{
-    margin: 0;
-    color: map-get($clrMap, 'text');
-}
 
 a {
-    // color: $fClr;
     text-decoration: none;
 }
 
@@ -228,6 +94,9 @@ dd {
     color: #000;
 }
 
+.bg-white{
+    background-color: #fff;
+}
 
 // ============= bs4で代替可能 ===============
 // 名前毎流用(HTMLのクラス名そのままで入れ替え可能)
@@ -373,11 +242,9 @@ dd {
 .ta-l{
     text-align: left;
 }
-
 .ta-c{
     text-align: center;
 }
-
 .ta-r{
     text-align: right;
 }
@@ -419,10 +286,6 @@ dd {
     align-content: space-betwen;
     align-items: center;
     // align-items: center;
-
-    & > img{
-        // flex:0 1 auto;
-    }
 }
 
 // --- layouts ---
@@ -450,25 +313,6 @@ dd {
 .hidUntilOnload{
     visibility: hidden;
 }
-
-//コンテナをウインドウ幅(フルサイズ)とするためオミット
-.Li5Width{
-    width: 100%;
-    //優先度の関係で属性セレクタとする
-    & li[id^="gnav"]{
-        &:not(:last-of-type){
-            width: calc(100% / 5);
-        }
-        &:last-of-type{
-            width: calc(100% / 5);
-        }
-    }
-}
-
-.fadeInL2R,.fadeInR2L,.fadeInAnim{
-    animation: key-content-fadein 0.3s ease-in 0s 1 normal forwards;
-}
-
 
 // ============= common ===============
 .bgc_main{
@@ -513,8 +357,6 @@ dd {
 .clr_sub3{
     color: map-get($clrMap, 'sub3')
 }
-
-
 
 // --- top page button ---
 .ff_theme{
@@ -1005,189 +847,7 @@ $imgSizeKurageY: 200px;
     }
 }
 
-// ============= menu ===============
-.menu_table {
-    & dl {
-        display: flex;
-        flex-wrap: wrap;
-        border-top: none;
-        width: 100%;
-        background-color: map-get($clrMap, 'sub3');
-        color: map-get($clrMap, 'sub1');
-        // box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
-
-        &:nth-of-type(n+1){
-            border-top: 1px solid #ccc;
-        }
-
-        @include mix.md-l {
-            &:nth-of-type(1){
-                border-top: 1px solid #ccc;
-            }
-        }
-    }
-
-    & dt {
-        // background: $clrMain;
-        width: 32%;
-        @include mix.md-l {
-            width:70%;
-            display: block;
-            padding: 1rem !important;
-        };
-        justify-content: start;
-        align-items: center;
-        min-width: 2rem;
-
-        &:nth-of-type(even){
-            padding-left: 3rem;
-        }
-    }
-
-    & dd {
-        text-align: right;
-        // background: $clrSub1;
-        // border-left: 1px solid #ccc;
-        margin: 0;
-        width: 18%;
-        justify-content: end;
-        align-items: center;
-
-        @include mix.md-l {
-            width:30%;
-            padding: 1rem !important;
-        };
-
-        &:nth-of-type(odd){
-            padding-right: 3rem;
-        }
-    }
-    & dt, & dd{
-        // height: 3.6rem;
-        color: map-get($clrMap, 'text');
-        padding: 0.8rem;
-        box-sizing: border-box;
-        border-bottom: 1px solid #ccc;
-
-        @include mix.md-g {
-            &:nth-of-type(4n-3),&:nth-of-type(4n-2){
-                background-color: map-get($clrMap, 'hr');
-            }
-        }
-
-        @include mix.md-l {
-            padding: 0.2rem !important;
-
-            &:nth-of-type(2n-1){
-                background-color: map-get($clrMap, 'hr');
-            }
-            &:empty {
-                display: none;
-            }
-        }
-    }
-}
-
-
-// ============= mainVisual ===============
-.main_vis{
-
-    &_wrap{
-        position: relative;
-        width: 100%;
-        height: $mainVisualHeight;
-        background: {
-            image: imgUrl("gyu-lamp.jpg");
-            repeat: no-repeat;
-            size: cover;
-            position: bottom 40% left 50%;
-        }
-        // background: no-repeat center/80% imgUrl("gyu-lamp.jpg");
-        filter:brightness(70%);
-
-        // セカンドページ用縦幅が狭い装飾
-        &_second {
-            position: relative;
-            width: 100%;
-            height: $secondVisualHeight;
-            background: {
-                image: imgUrl("gyu-lamp.jpg");
-                repeat: no-repeat;
-                size: cover;
-                position: bottom 40% left 50%;
-            }
-                filter:brightness(70%);
-        }
-
-        & img{
-            width: 100%;
-        }
-    }
-
-
-    &_text{
-
-        position: absolute;
-        top: math.div($mainVisualHeight, 2);
-        left: 50%;
-        transform:translateX(-50%) translateY(-50%);
-        @include font.theme_fonts_en;
-        font-size: 7rem;
-        font-weight: 1000;
-        color: #FFF;
-        text-shadow: 1px 1px 3px #0005;
-        z-index: 2;
-        width: 100%;
-
-        &::first-letter{
-            font-size: 8rem;
-            color: $carmine;
-        }
-
-        & span{
-            color: $carmine;
-        }
-
-        @include mix.sm-l {
-            font-size: 5rem;
-
-            &::first-letter{
-                font-size: 6rem;
-                color: $carmine;
-            }
-        }
-
-        // セカンドページ用縦幅が狭い装飾
-        &_second {
-            position: absolute;
-            top: 100px;
-            color: #fff;
-        }
-    }
-}
-
-.main_visual{
-    // position: relative;
-    height: 400px;
-
-    // height: $mainVisualHeight;
-    & .frame {
-        position: relative;
-        border: $frameThick solid $clrMain;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-    & img {
-        position: absolute;
-        // width: $containerWidth - $frameThick * 2 -500px;
-        // width: 930px;
-        // height: 390px;
-        top: 0%;
-        filter:brightness(70%);
-    }
-}
-
+// sample
 $containerInnerWidth: 930px;
 $catchCircleDiameter: 100px;
 .catch_phrase{
@@ -1380,13 +1040,11 @@ form{
 
 input,select{
     margin: 0.3rem;
-    // width: 200px;
     height: 2rem;
-    // font-size: 1.5rem;
-    // border: 2px solid green;
-    // border-radius: 99px;
 }
 
+$clrFormIncorrect:red;
+$clrFormCorrect:#95fe72;
 .inputCorrect{
     outline: 0;
     border: $clrFormCorrect 1px solid;
@@ -1521,110 +1179,4 @@ input[type="submit"] {
 
 
 
-// ============= footer ===============
-
-.footer {
-
-    &_nav{
-
-    }
-
-    &_copy{
-
-        &_style{
-            // font-weight: 550;
-            font-size: 1rem;
-            letter-spacing: 0.8rem;
-            // text-transform: uppercase;
-            color: map-get($clrMap, 'text');
-
-            @include mix.md-l {
-                font-size: 0.8em;
-                letter-spacing: 0.2rem;
-            }
-
-        }
-    }
-}
-
-.footer_text{
-
-    @include mix.lg-l {
-        text-align: center;
-    }
-
-    & .tel{
-        font-size: 1.3em;
-    }
-
-    &_logo{
-        @include font.theme_fonts_en;
-        font-size: 4rem;
-        font-weight: 1000;
-        color: #FFF;
-        text-shadow: 1px 1px 3px #0005;
-        z-index: 2;
-        width: 100%;
-        text-align: right;
-
-        @include mix.lg-l {
-            text-align: center;
-        }
-
-        &::first-letter{
-            font-size: 5rem;
-            color: $carmine;
-        }
-
-        & span{
-            color: $carmine;
-        }
-    }
-}
-
-$globalNavHeightMobile: 4rem;
-
-.sticky_menu_mobile {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: $globalNavHeightMobile;
-    background-color: gray;
-    bottom: 0;
-    left: 0;
-    // jsで付与
-    position: fixed;
-    z-index: 9999;
-    box-shadow:0px 0px 2px 1px lightgray;
-
-    & > li:nth-of-type(odd) {
-        width: calc(14%);
-        margin: 0 calc(1%);
-    }
-
-    & > li:nth-of-type(even) {
-        width: calc(17%);
-        margin: 0 calc(1%);
-    }
-
-    & a {
-        width: 100%;
-        height: math.div($globalNavHeight, 2);
-        color: #fff;
-        font-size: 0.5rem;
-        list-style-type: none;
-        letter-spacing: -0px;
-    }
-
-    & i {
-        padding: 1rem;
-        width: 100%;
-        height: math.div($globalNavHeight, 2);
-
-        & #text {
-            font-size: 10rem;
-        }
-
-    }
-}
 

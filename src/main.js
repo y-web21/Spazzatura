@@ -1,5 +1,8 @@
 "use strict";
 
+import appConf from 'appConf';
+import {addClass,  rmClass,  bodyWidth,  getCurrentY} from './common.js';
+
 // debug console
 console.print = false;
 console.dev = (...args) => { if (console.print) console.log(...args); };
@@ -83,19 +86,20 @@ class Pos {
 }
 
 /**
- * イベントの連続発火を抑制します
+ * イベントの連続発火を抑制します。
  *
  * @param {callback} callback 発火するイベント
  * @param {number} [interval=200] default 200ms 次にイベントが許可されるまでの時間
- * @param {*} args
  * @return {void}
  */
-const throttle = (callback, interval = 200, ...args) => {
+const throttle = (callback, interval = 200) => {
   let timerId;
   return () => {
     if (timerId !== undefined) return;
-    callback(...args);
-    timerId = window.setTimeout(() => timerId = undefined, interval);
+    // 通常実行
+    callback();
+    // 次処理受付待ちタイマ起動。timerIdを破棄して受け入れコールバック受け入れ状態にする
+    timerId = window.setTimeout(() => timerId = undefined , interval);
   };
 };
 
@@ -107,7 +111,7 @@ const throttle = (callback, interval = 200, ...args) => {
 const addClassActivePageLink = () => {
   const className = 'nav_active_page';
   for (const el of document.querySelectorAll('#gnav a')){
-    console.dev(pageCategory().replace('/',''), el.getAttribute('href').replace('/',''));
+    console.dev(pageCategory(), el.getAttribute('href'));
     if (pageCategory().replace('/','') === el.getAttribute('href').replace('/','')){
       addClass(el, className);
       return;
@@ -120,7 +124,7 @@ const addClassActivePageLink = () => {
  */
 const setGlobalNaviPosition = () => {
   if (spazzatura.isMobile()) {
-    globalNaviMobile();
+    mobileNaviThrottle();
   }else{
     stickyNaviThrottle();
   }
@@ -137,6 +141,7 @@ const stickyNaviThrottle = throttle( () => {
     nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
     // global nav の高さ 80px 分の調整
     document.getElementById('offsetPlus').style.height = '180px';
+    console.error('うんちだぜぇ');
     return;
   }
   // static
@@ -147,12 +152,12 @@ const stickyNaviThrottle = throttle( () => {
   nav.boxShadow = '0 0';
   // global nav の高さ 80px 分の調整
   document.getElementById('offsetPlus').style.height = '100px';
-} , 40);
+} , 15);
 
 /**
  * モバイル用ナビのスタイルを適用
  */
-const globalNaviMobile = () => {
+const mobileNaviThrottle = throttle( () => {
   const nav = spazzatura.globalNavi.style;
   nav.removeProperty('position');
   nav.removeProperty('top');
@@ -160,10 +165,10 @@ const globalNaviMobile = () => {
   nav.removeProperty('z-index');
   nav.removeProperty('width');
   nav.removeProperty('box-shadow');
-};
+});
 
 /**
- * 登録したオブザーバー
+ * 登録したオブザーバーを実行
  * @param {IntersectionObserverEntry} entries
  */
 const doWhenIntersect = entries => {
@@ -182,7 +187,7 @@ const doWhenIntersect = entries => {
 const startFadeInAnim = el => {
   /** @type {Number} ms. CSSアニメーションの長さと合わせる */
   const animationTime = 300;
-  /** @type {String} animation class name */
+  /** @type {string} animation class name */
   const animationClass = 'fadeInAnim';
   if (! el.classList.contains(animationClass)){
     addClass(el, animationClass);
@@ -190,36 +195,29 @@ const startFadeInAnim = el => {
   }
 };
 
-// css 関連ヘルパ
-/**
- * @param {HTMLElement} el
- * @param {String} className
- */
-const addClass = (el, className) => el.classList.add(className);
-/**
- * @param {HTMLElement} el
- * @param {String} className
- */
-const rmClass = (el, className) => el.classList.remove(className);
-/**
- * @param {HTMLElement} el
- * @param {String} styleName
- */
-const getCssValue = (el, styleName) => window.getComputedStyle(el).styles.getPropertyValue(styleName);
-
-// html ヘルパ
-const bodyWidth = () => document.getElementsByTagName("body")[0].clientWidth;
-const getCurrentY = () => window.scrollY;
-
 /**
  * ドメイン名直後の/までの文字列を返します。
  * / と '' は、index.html とみなします。
  * @return {string}
  */
 const pageCategory = () => {
-  const current = location.pathname.split()[0];
+  console.dev(spazzatura.homePathPos);
+  const current = solvePathPrefix(appConf.hasUrlPathPrefix);
   if (current === '' || current === '/'){
     return spazzatura.home;
   }
   return current;
 };
+
+/**
+ * false であれあばドメイン直下、true であればその次のパス文字列を返します。
+ * @param {boolean} prefix [false]
+ * @return {string}
+ */
+const solvePathPrefix = (prefix = false) => {
+  if (prefix){
+    return location.pathname.split('/')[2];
+  }
+  return location.pathname.split('/')[1];
+};
+

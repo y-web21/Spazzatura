@@ -9,9 +9,8 @@ module.exports = {
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "ecmaVersion": 2018
   },
   "rules": {
     "semi": [2, "always"]
   }
-}
+};
