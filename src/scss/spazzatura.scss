@@ -209,7 +209,7 @@ $imgSizeKurageY: 200px;
     &_text{
 
         position: absolute;
-        top: math.div($mainVisualHeight, 2);
+        top: 25vh;
         left: 50%;
         transform:translateX(-50%) translateY(-50%);
         @include font.theme_fonts_en;
