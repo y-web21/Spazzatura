@@ -21,7 +21,6 @@
     "bswatch": "browser-sync start --config bs-config.js; webpack --config webpack.dev.js --mode development"
   },
   "engines": {
-    "node": "16.14.x",
-    "npm": "8.5.x"
+    "node": "18.x"
   }
 }
