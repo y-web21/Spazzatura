@@ -3,10 +3,6 @@
 import appConf from 'appConf';
 import {addClass,  rmClass,  bodyWidth,  getCurrentY} from './common.js';
 
-// debug console
-console.print = false;
-console.dev = (...args) => { if (console.print) console.log(...args); };
-
 const spazzatura = {
   home: 'index.html',
   mainVisPosId: 'mainVisual',
@@ -42,6 +38,9 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+/**
+ * 指定位置でアニメーションをするクラスを持つ要素をオブザーバーに登録
+ */
 window.addEventListener('DOMContentLoaded', ()=> {
   const options = {
     root: null,
@@ -111,7 +110,6 @@ const throttle = (callback, interval = 200) => {
 const addClassActivePageLink = () => {
   const className = 'nav_active_page';
   for (const el of document.querySelectorAll('#gnav a')){
-    console.dev(pageCategory(), el.getAttribute('href'));
     if (pageCategory().replace('/','') === el.getAttribute('href').replace('/','')){
       addClass(el, className);
       return;
@@ -130,6 +128,9 @@ const setGlobalNaviPosition = () => {
   }
 };
 
+/**
+ * PC用ナビゲーションのスタイルを適用
+ */
 const stickyNaviThrottle = throttle( () => {
   const nav = spazzatura.globalNavi.style;
   if (spazzatura.enableSticky()) {
@@ -141,7 +142,6 @@ const stickyNaviThrottle = throttle( () => {
     nav.boxShadow = '0 0 0.5rem 0.1rem rgba(0, 0, 0, 0.5)';
     // global nav の高さ 80px 分の調整
     document.getElementById('offsetPlus').style.height = '180px';
-    console.error('うんちだぜぇ');
     return;
   }
   // static
@@ -168,7 +168,7 @@ const mobileNaviThrottle = throttle( () => {
 });
 
 /**
- * 登録したオブザーバーを実行
+ * 登録したオブザーバーからイベントを呼び出す
  * @param {IntersectionObserverEntry} entries
  */
 const doWhenIntersect = entries => {
@@ -201,7 +201,6 @@ const startFadeInAnim = el => {
  * @return {string}
  */
 const pageCategory = () => {
-  console.dev(spazzatura.homePathPos);
   const current = solvePathPrefix(appConf.hasUrlPathPrefix);
   if (current === '' || current === '/'){
     return spazzatura.home;
